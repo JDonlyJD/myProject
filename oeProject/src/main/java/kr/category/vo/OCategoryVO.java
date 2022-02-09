@@ -1,9 +1,9 @@
 package kr.category.vo;
 
 public class OCategoryVO {
-	private int cate_num; //카테고리 번호
-	private int cate_name; //카테고리 이름
-	private int cate_status; //(0미사용, 1사용)
+	private int cate_num;//카테고리 번호
+	private int cate_name;//카테고리 이름
+	private int cate_status;//(0미사용, 1사용)
 	
 	public int getCate_num() {
 		return cate_num;
