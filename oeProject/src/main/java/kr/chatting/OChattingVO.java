@@ -1,4 +1,4 @@
-package kr.chatting.vo;
+package kr.chatting;
 
 import java.sql.Date;
 

@@ -1,4 +1,4 @@
-package kr.category.vo;
+package kr.category;
 
 public class OCategoryVO {
 	private int cate_num; //카테고리 번호

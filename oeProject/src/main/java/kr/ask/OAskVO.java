@@ -1,4 +1,4 @@
-package kr.ask.vo;
+package kr.ask;
 
 import java.sql.Date;
 
