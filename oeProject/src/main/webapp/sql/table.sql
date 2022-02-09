@@ -19,11 +19,12 @@ create table omember_detail( /*상세정보*/
    mem_date date default sysdate not null,
    mem_modifydate date
 );
-
 create sequence omember_seq;
 
+
+
 /*상품등록 테이블 영역*/
-create table oitem(
+CREATE TABLE oitem(
    item_num number not null, --한글기준50자
    mem_num number not null,
    cate_num number not null,
@@ -42,7 +43,6 @@ create table oitem(
 create sequence oitem_seq;
 
 
-
 /*구매내역 테이블*/
 create table oitem_order(
   order_num number not null,
@@ -55,8 +55,10 @@ create table oitem_order(
 );
 create sequence order_seq;
 
-/*좋아요 기능 , oitem_favorite*/
-create table oitem_favorite(
+
+
+/*상품 좋아요 테이블*/
+CREATE TABLE oitem_favorite(
    like_num number not null, 
    item_num number not null,
    mem_num number not null,
@@ -89,37 +91,39 @@ create table ocategory(
 );
 
 /*질문 문의(ask) 테이블 영역*/
-create table oask(
+CREATE TABLE oask(
    ask_num number not null,
    mem_num number not null,
    title varchar2(90) not null,
    state number(1) default 0 not null,
-   kind number(1) not null,
+   kind number(1)  not null,
    content clob not null,
    reg_date date default sysdate not null,
-   modify_date date,   
+   modify_date date,
+   
    constraint oask_pk primary key(ask_num),
    constraint oask_fk foreign key(mem_num) references omember (mem_num)
 );
 create sequence oask_seq;
 
-
 /*답변(oanswer) 테이블*/
-create table oanswer(
+CREATE TABLE oanswer(
    answer_num number not null,
    ask_num number not null,
    mem_num number not null,
    content varchar2(4000) not null,
    reg_date date default sysdate not null,
    modify_date date,
+   
    constraint oanswer_pk primary key(answer_num),
    constraint oanswer_fk foreign key(ask_num) references oask(ask_num),
    constraint oanswer_fk2 foreign key(mem_num) references omember(mem_num)
 );
 
 
+
 /*채팅(chatting) 테이블 영역*/
-create table ochatting(
+CREATE TABLE ochatting(
    chat_num number not null, --채팅번호
    to_num number not null, --메시지수신번호(판매자회원번호)
    from_num number not null, --메시지발신번호(구매자회원번호)
@@ -128,8 +132,8 @@ create table ochatting(
    item_num number not null,
    reg_date date default SYSDATE not null,
    constraint ochatting_pk primary key(chat_num),
-   constraint ochatting_fk1 foreign key (to_num) references omember (mem_num),
-   constraint ochatting_fk2 foreign key (from_num) references omember (mem_num),
-   constraint ochatting_fk3 foreign key (item_num) references oitem (item_num)
+    constraint ochatting_fk1 foreign key (to_num) references omember (mem_num),
+    constraint ochatting_fk2 foreign key (from_num) references omember (mem_num),
+    constraint ochatting_fk3 foreign key (item_num) references oitem (item_num)
 );
-create sequence ochatting_seq;
+CREATE SEQUENCE ochatting_seq;
