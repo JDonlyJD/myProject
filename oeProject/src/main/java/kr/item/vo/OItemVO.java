@@ -33,10 +33,6 @@ public class OItemVO {
 //	private String content;//댓글 내용
 //	private Date reg_date;//댓글 등록일
 //	private Date modify_date;//댓글 수정일
-	
-	
-	
 
-	
 	
 }
