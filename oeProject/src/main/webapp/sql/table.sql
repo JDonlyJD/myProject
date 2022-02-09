@@ -24,45 +24,62 @@ create sequence omember_seq;
 
 /*상품등록 테이블 영역*/
 create table oitem(
-   item_num number not null primary key,
-   mem_num number not null foreign key,
-   cate_num number not null foreign key,
+   item_num number not null, --한글기준50자
+   mem_num number not null,
+   cate_num number not null,
    title varchar2(90) not null,
    price number(7) not null,
-   state number(12) default 0 not null,
-   content clob not null,
+   state number(12) default 0 not null, --판매상태(0판매중/1예약중/2판매완료)
+   content clob not null, --최대4기가
    filename varchar2(150),
-   hit number(5) not null,
-   reg_date date default sysdate not null,
-   modify_date date
+   hit number(5) default 0 not null,
+   reg_date date default SYSDATE not null,
+   modify_date date,
+   constraint oitem_pk primary key(item_num),
+   constraint oitem_fk foreign key(mem_num) references omember(mem_num),
+   constraint oitem_fk2 foreign key(cate_num) references ocategory(cate_num)
 );
-
 create sequence oitem_seq;
+
+
 
 /*구매내역 테이블*/
 create table oitem_order(
-   order_num number not null primary key,
-   item_num number not null foreign key,
-   mem_num number not null foreign key,
-   reg_date date not null
+  order_num number not null,
+  item_num number not null,
+  mem_num number not null,
+  reg_date date not null,
+  constraint oitem_order_pk primary key(order_num),
+  constraint oitem_order_fk foreign key(item_num) references oitem(item_num),
+  constraint oitem_order_fk2 foreign key(mem_num) references omember(mem_num)
 );
+create sequence order_seq;
 
 /*좋아요 기능 , oitem_favorite*/
 create table oitem_favorite(
-   like_num number not null primary key,
-   item_num number not null foreign key,
-   mem_num number not null foreign key
+   like_num number not null, 
+   mem_num number not null,
+   reg_date date not null,
+   constraint oitem_favorite_pk primary key(like_num),
+   constraint oitem_favorite_fk foreign key(item_num) references oitem(item_num),
+   constraint oitem_favorite_fk2 foreign key(mem_num) references omember(mem_num)
 );
 
 /*상품 댓글*/
 create table oitem_reply(
-   re_num number not null primary key,
-   item_num number not null foreign key,
-   mem_num number not null foreign key,
+   re_num number not null,
+   item_num number not null,
+   mem_num number not null,
    content varchar2(900) not null,
    reg_date date default sysdate not null,
-   modify_date date
+   modify_date date,
+   constraint oitem_reply_pk primary key(re_num),
+   constraint oitem_reply_fk foreign key(item_num) references oitem(item_num),
+   constraint oitem_reply_fk2 foreign key(mem_num) references omember(mem_num)
 );
+create sequence oreply_seq;
+
+
 
 /*카테고리 테이블 영역*/
 create table ocategory(
@@ -73,51 +90,46 @@ create table ocategory(
 
 /*질문 문의(ask) 테이블 영역*/
 create table oask(
-   ask_num number not null primary key,
-   mem_num number not null foreign key,
+   ask_num number not null,
+   mem_num number not null,
    title varchar2(90) not null,
-   state number(1) not null,
+   state number(1) default 0 not null,
    kind number(1) not null,
    content clob not null,
    reg_date date default sysdate not null,
-   modify_date date
+   modify_date date,   
+   constraint oask_pk primary key(ask_num),
+   constraint oask_fk foreign key(mem_num) references omember (mem_num)
 );
+create sequence oask_seq;
 
-create sequence oack_seq;
 
 /*답변(oanswer) 테이블*/
 create table oanswer(
-   answer_num number not null primary key,
-   ask_num number not null foreign key,
-   mem_num number not null foreign key,
+   answer_num number not null,
+   ask_num number not null,
+   mem_num number not null,
    content varchar2(4000) not null,
    reg_date date default sysdate not null,
-   modify_date date
-);
-
-/*댓글(reply) 테이블 영역*/
-create table oreply(
-   mem_num number not null primary key,
-   upload_num number(100) not null foreign key,
-   mem_id varchar2(18) not null foreign key,
-   content clob not null,
-   reg_date date default sysdate not null,
    modify_date date,
-   ip varchar2(40) not null,
-   re_num number not null,
+   constraint oanswer_pk primary key(answer_num),
+   constraint oanswer_fk foreign key(ask_num) references oask(ask_num),
+   constraint oanswer_fk2 foreign key(mem_num) references omember(mem_num)
 );
 
-create sequence oreply_seq;
 
 /*채팅(chatting) 테이블 영역*/
 create table ochatting(
-   chat_num number not null primary key,
-   to_num number not null foreign key,
-   from_num number not null foreign key,
-   chatstate_num number(1) default 0 not null,
+   chat_num number not null, --채팅번호
+   to_num number not null, --메시지수신번호(판매자회원번호)
+   from_num number not null, --메시지발신번호(구매자회원번호)
+   chatstate_num number(1) default 0 not null, --읽기상태(0읽지 않음, 1 읽음)
    content varchar2(4000) not null,
-   item_num number not null foreign key,
-   reg_date date default sysdate not null
+   item_num number not null,
+   reg_date date default SYSDATE not null,
+   constraint ochatting_pk primary key(chat_num),
+   constraint ochatting_fk1 foreign key (to_num) references omember (mem_num),
+   constraint ochatting_fk2 foreign key (from_num) references omember (mem_num),
+   constraint ochatting_fk3 foreign key (item_num) references oitem (item_num)
 );
-
 create sequence ochatting_seq;
