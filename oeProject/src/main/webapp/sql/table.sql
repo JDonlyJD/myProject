@@ -58,8 +58,8 @@ create sequence order_seq;
 /*좋아요 기능 , oitem_favorite*/
 create table oitem_favorite(
    like_num number not null, 
+   item_num number not null,
    mem_num number not null,
-   reg_date date not null,
    constraint oitem_favorite_pk primary key(like_num),
    constraint oitem_favorite_fk foreign key(item_num) references oitem(item_num),
    constraint oitem_favorite_fk2 foreign key(mem_num) references omember(mem_num)
