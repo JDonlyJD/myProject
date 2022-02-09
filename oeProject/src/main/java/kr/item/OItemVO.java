@@ -35,4 +35,6 @@ public class OItemVO {
 //	private Date modify_date;//댓글 수정일
 
 	
+	
+	
 }
