@@ -16,7 +16,7 @@
 		<a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a>
 	</c:if>
 	<c:if test="${empty user_num}">
-		<a href="${pageContext.request.contextPath}/member/registerUserForm.do">회원가입</a>
+		<a href="${pageContext.request.contextPath}/member/joinForm.do">회원가입</a>
 		<a href="${pageContext.request.contextPath}/member/loginForm.do">로그인</a>
 	</c:if>
 	<c:if test="${!empty user_num && user_auth == 2}">

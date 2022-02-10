@@ -57,20 +57,19 @@ public class OMemberDAO {
 				pstmt2.executeUpdate();
 				
 				//omember_detail 테이블에 데이터 저장
-				sql = "INSERT INTO omember_detail (mem_num,mem_id,mem_nick,mem_pw,mem_phone,mem_email,"
-						+ "mem_zipcode,mem_addr,mem_addr2) VALUES (?,?,?,?,?,?,?,?,?)";
+				sql = "INSERT INTO omember_detail (mem_num,mem_nick,mem_pw,mem_phone,mem_email,"
+						+ "mem_zipcode,mem_addr,mem_addr2) VALUES (?,?,?,?,?,?,?,?)";
 				//PreparedStatement객체 생성
 				pstmt3 = conn.prepareStatement(sql);
 				//?에 데이터 바인딩
 				pstmt3.setInt(1, num);
-				pstmt3.setString(2, member.getMem_id());
-				pstmt3.setString(3, member.getMem_nick());
-				pstmt3.setString(4, member.getMem_pw());
-				pstmt3.setString(5, member.getMem_phone());
-				pstmt3.setString(6, member.getMem_email());
-				pstmt3.setString(7, member.getMem_zipcode());
-				pstmt3.setString(8, member.getMem_addr());
-				pstmt3.setString(9, member.getMem_addr2());
+				pstmt3.setString(2, member.getMem_nick());
+				pstmt3.setString(3, member.getMem_pw());
+				pstmt3.setString(4, member.getMem_phone());
+				pstmt3.setString(5, member.getMem_email());
+				pstmt3.setString(6, member.getMem_zipcode());
+				pstmt3.setString(7, member.getMem_addr());
+				pstmt3.setString(8, member.getMem_addr2());
 				
 				//sql문 실행
 				pstmt3.executeUpdate();
