@@ -15,26 +15,71 @@ public class OItemVO {
 	private Date reg_date;//상품등록일
 	private Date modify_date;//상품수정일
 	
-	//oitem_order
-	private int order_num;//구매번호
-//	private int item_num;//상품번호
-//	private int mem_num;//구매자 회원번호
-//	private Date reg_date;//상품구매일
 	
-	//oitem_favorite
-	private int like_num;//구매번호
-//	private int item_num;//상품번호
-//	private int mem_num;//구매자 회원번호
-	
-	//otiem_reply
-	private int re_num;//댓글번호
-//	private int item_num;//상품번호
-//	private int mem_num;//회원번호
-//	private String content;//댓글 내용
-//	private Date reg_date;//댓글 등록일
-//	private Date modify_date;//댓글 수정일
-
-	
-	
-	
+	public int getItem_num() {
+		return item_num;
+	}
+	public void setItem_num(int item_num) {
+		this.item_num = item_num;
+	}
+	public int getMem_num() {
+		return mem_num;
+	}
+	public void setMem_num(int mem_num) {
+		this.mem_num = mem_num;
+	}
+	public int getCate_num() {
+		return cate_num;
+	}
+	public void setCate_num(int cate_num) {
+		this.cate_num = cate_num;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	public int getState() {
+		return state;
+	}
+	public void setState(int state) {
+		this.state = state;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public String getFilename() {
+		return filename;
+	}
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
+	public int getHit() {
+		return hit;
+	}
+	public void setHit(int hit) {
+		this.hit = hit;
+	}
+	public Date getReg_date() {
+		return reg_date;
+	}
+	public void setReg_date(Date reg_date) {
+		this.reg_date = reg_date;
+	}
+	public Date getModify_date() {
+		return modify_date;
+	}
+	public void setModify_date(Date modify_date) {
+		this.modify_date = modify_date;
+	}
 }

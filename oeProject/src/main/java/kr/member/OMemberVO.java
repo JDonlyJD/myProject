@@ -7,7 +7,7 @@ public class OMemberVO {
 	private String mem_id;
 	private int mem_auth;
 	
-	private String mem_nick;
+	private String mem_nick;	//mem_nick : 회원 이름 
 	private String mem_pw;
 	private String mem_phone;
 	private String mem_photo;
@@ -18,13 +18,36 @@ public class OMemberVO {
 	private Date mem_date;
 	private Date mem_modifydate;
 	
-	//4. 진주
+	//4. 다원
 	// [메서드1. ID찾기 : findIdMember() ]
+	public boolean findIdMember(String Input_memnick, String Input_memphone) {
+		if(mem_nick.equals(Input_memnick) && mem_phone.equals(Input_memphone)) {
+			return true;
+				//**Q. String타입으로 return mem_id를 반환해줄까 ?
+		}
+		return false; 
+	}
 	
-	// [메서드2. PW찾기 : findPWMember() ]
+	
+	// [메서드2. PW찾기 : findPwMember() ]
+	public boolean findPwMember(String Input_memid, String Input_memnick, String Input_mememail) {
+		if(mem_id.equals(Input_memid) && mem_nick.equals(Input_memnick) && mem_email.equals(Input_mememail)) {
+			return true; 
+				//**Q. String타입으로 return mem_pw를 반환해줄까 ?
+		}
+		return false; 
+	}
+	
 	
 	// [메서드3. 비밀번호 일치여부 확인 : isCheckedPassword() ]
-	
+	   //비밀번호 일치 여부 체크
+	   public boolean isCheckedPassword(String UserPasswd) {
+	      //회원 등급(mem_auth) : 0탈퇴회원,1일반회원,2관리자
+	      if(mem_auth > 1 && mem_pw.equals(UserPasswd)) {
+	         return true;
+	      }
+	      return false;
+	   }
 	
 	
 	
