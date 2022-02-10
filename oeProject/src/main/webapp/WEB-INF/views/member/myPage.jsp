@@ -111,11 +111,11 @@
 				<div class="align-center">
 					<input type="button" value="수정" id="photo_btn">
 				</div>
-				<div id="photo_choice" style="display:none;">
+				<!-- <div id="photo_choice" style="display:none;">
 					<input type="file" id="photo" accept="image/gif,image/png,image/jpeg"><br>
 					<input type="button" value="전송" id="photo_submit">
 					<input type="button" value="취소" id="photo_reset">
-				</div>
+				</div> -->
 			</li>
 		</ul>
 		<h3>회원탈퇴</h3>
@@ -128,11 +128,11 @@
 	<div class="mypage-div">
 		<h3>연락처</h3>
 		<ul>
-			<li>이름 : ${member.nick}</li>
-			<li>전화번호 : ${member.phone}</li>
-			<li>이메일 : ${member.email}</li>
-			<li>우편번호 : ${member.zipcode}</li>
-			<li>주소 : ${member.addr} ${member.addr2}</li>
+			<li>이름 : ${member.mem_nick}</li>
+			<li>전화번호 : ${member.mem_phone}</li>
+			<li>이메일 : ${member.mem_email}</li>
+			<li>우편번호 : ${member.mem_zipcode}</li>
+			<li>주소 : ${member.mem_addr} ${member.mem_addr2}</li>
 			<li>가입일 : ${member.mem_date}</li>
 			<c:if test="${!empty member.mem_modifydate}">
 			<li>최근 정보 수정일 : ${member.mem_modifydate}</li>
