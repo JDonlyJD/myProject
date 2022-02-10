@@ -275,8 +275,59 @@ public class OMemberDAO {
 	}
 
 	// 민정
-	// [메서드7. 비밀번호 수정 : ]
-	// [메서드8. 프로필사진 수정 : ]
+	// [메서드7. 비밀번호 수정 : ] by.민정
+		public void updatePassword(String mem_pw, int mem_num)throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			String sql = null;
+			
+			try {
+				//커넥션 풀로부터 커넥션할당
+				conn = DBUtil.getConnection();
+				//SQL문 생성
+				sql = "UPDATE omember_detail SET mem_pw=? WHERE mem_num=?";
+				//PreparedStatement객체 생성
+				pstmt = conn.prepareStatement(sql);
+				//?에 데이터 할당
+				pstmt.setString(1, mem_pw); //새 비밀번호
+				pstmt.setInt(2, mem_num); //회원번호
+				//SQL문 실행
+				pstmt.executeUpdate();
+				
+			} catch (Exception e) {
+				throw new Exception(e);
+			}finally{
+				DBUtil.executeClose(null, pstmt, conn);
+				
+			}
+		}
+		
+	// [메서드8. 프로필사진 수정 : ] by.민정
+	public void updateMyPhoto(String mem_photo, int mem_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			//커넥션 풀로부터 커넥션할당
+			conn = DBUtil.getConnection(); //커넥션 풀로부터 커넥션을 할당
+			//SQL문 생성
+			sql = "UPDATE omember_detail SET mem_photo=? WHERE mem_num=?";
+			//PreparedStatement객체 생성
+			pstmt = conn.prepareStatement(sql); 
+			//?에 데이터 할당
+			pstmt.setString(1, mem_photo);
+			pstmt.setInt(2, mem_num);
+			//SQL문 실행
+			pstmt.executeUpdate(); 
+			
+		} catch (Exception e) {
+			throw new Exception(e);
+		}finally {
+			//자원정리
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	
 	// 진주
 	// [메서드9. 회원탈퇴(회원정보 삭제) : ]
