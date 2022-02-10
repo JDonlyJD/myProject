@@ -43,7 +43,7 @@ public class OMemberVO {
 	   //비밀번호 일치 여부 체크
 	   public boolean isCheckedPassword(String UserPasswd) {
 	      //회원 등급(mem_auth) : 0탈퇴회원,1일반회원,2관리자
-	      if(mem_auth > 1 && mem_pw.equals(UserPasswd)) {
+	      if(mem_auth > 0 && mem_pw.equals(UserPasswd)) {
 	         return true;
 	      }
 	      return false;
