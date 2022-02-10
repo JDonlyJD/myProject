@@ -128,14 +128,14 @@
 	<div class="mypage-div">
 		<h3>연락처</h3>
 		<ul>
-			<li>이름 : ${member.name}</li>
+			<li>이름 : ${member.nick}</li>
 			<li>전화번호 : ${member.phone}</li>
 			<li>이메일 : ${member.email}</li>
 			<li>우편번호 : ${member.zipcode}</li>
-			<li>주소 : ${member.address1} ${member.address2}</li>
-			<li>가입일 : ${member.reg_date}</li>
-			<c:if test="${!empty member.modify_date}">
-			<li>최근 정보 수정일 : ${member.modify_date}</li>
+			<li>주소 : ${member.addr} ${member.addr2}</li>
+			<li>가입일 : ${member.mem_date}</li>
+			<c:if test="${!empty member.mem_modifydate}">
+			<li>최근 정보 수정일 : ${member.mem_modifydate}</li>
 			</c:if>
 			<li>
 				<input type="button" value="연락처 수정" onclick="location.href='modifyUserForm.do'">
