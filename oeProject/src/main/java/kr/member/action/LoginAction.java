@@ -16,11 +16,11 @@ public class LoginAction implements Action{
 		request.setCharacterEncoding("utf-8");
 				
 		//전송된 데이터 반환
-		String mem_id = request.getParameter("mem_id");
+		String id = request.getParameter("id");
 		String passwd = request.getParameter("passwd");
 				
 		OMemberDAO dao = OMemberDAO.getInstance();
-		OMemberVO member = dao.checkMember(mem_id); //id데이터를 담음
+		OMemberVO member = dao.checkMember(id); //id데이터를 담음
 		boolean check = false;
 				
 		if(member!=null) { //id존재
