@@ -12,7 +12,7 @@ public class OMemberDAO {
 
 	//싱글턴 패턴
 	private static OMemberDAO instance = new OMemberDAO();
-	public static OMemberDAO getnInstance() {
+	public static OMemberDAO getInstance() {
 		return instance;
 	}
 	private OMemberDAO() {}	
@@ -79,7 +79,7 @@ public class OMemberDAO {
 	}
 	*/
 	// [메서드4. PW찾기 : findPwMember() ]
-
+	
 
 	// [메서드5. 회원 상세정보 : getMember() ]	
 	public OMemberVO getMember(int mem_num)throws Exception{
@@ -104,9 +104,9 @@ public class OMemberDAO {
 			if(rs.next()) {	//mem_num의 행은 1개 => if
 				member = new OMemberVO();
 				member.setMem_num(rs.getInt("mem_num"));			//회원번호
-				member.setMem_id(rs.getString("mem_id"));			//id
+				member.setMem_id(rs.getString("mem_id"));			//아이디
 				member.setMem_auth(rs.getInt("mem_auth"));			//등급
-				member.setMem_nick(rs.getString("mem_nick"));		//닉네임
+				member.setMem_nick(rs.getString("mem_nick"));		//이름
 				member.setMem_pw(rs.getString("mem_pw"));			//비밀번호
 				member.setMem_phone(rs.getString("mem_phone"));		//연락처
 				member.setMem_photo(rs.getString("mem_photo"));		//사진파일명
@@ -127,15 +127,88 @@ public class OMemberDAO {
 	
 	// 진주
 	// [메서드6. 회원정보 수정 : updateMember()]
-	
+	public void updateMember(OMemberVO member)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+
+		try {
+			//커넥션풀로부터 커넥션을 할당
+			conn = DBUtil.getConnection();
+			sql = "UPDATE omember_detail SET mem_nick=?, mem_phone=?, mem_email=?,"
+					+ "mem_zipcode=?, mem_addr=?, mem_addr2=? ,mem_modify_date=SYSDATE "
+					+ "WHERE mem_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setString(1, member.getMem_nick());
+			pstmt.setString(2, member.getMem_phone());
+			pstmt.setString(3, member.getMem_email());
+			pstmt.setString(4, member.getMem_zipcode());
+			pstmt.setString(5, member.getMem_addr());
+			pstmt.setString(6, member.getMem_addr2());
+			pstmt.setInt(7, member.getMem_num());
+
+			//SQL문 실행
+			pstmt.executeUpdate();
+
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			//자원정리
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+
 	// 민정
 	// [메서드7. 비밀번호 수정 : ]
 	// [메서드8. 프로필사진 수정 : ]
 	
 	// 진주
 	// [메서드9. 회원탈퇴(회원정보 삭제) : ]
-		
-	
+	public void deleteMember(int mem_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
+		String sql = null;
+
+		try {
+			//conn 
+			conn = DBUtil.getConnection();
+			//auto commit 해제 
+			conn.setAutoCommit(false);
+
+			//omember의 auth 값 변경
+			sql ="UPDATE omember SET mem_auth=0 WHERE mem_num=?";
+			//pstmt 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, mem_num);
+			//sql 실행
+			pstmt.executeUpdate();
+
+			//zmember_detail의 레코드 삭제
+			sql = "DELETE FROM omember_detail WHERE mem_num=?";
+			//pstmt 객체 생성
+			pstmt2 = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt2.setInt(1, mem_num);
+			//sql 실행
+			pstmt2.executeUpdate();
+
+			//모든 SQL문의 실행이 성공하면 commit
+			conn.commit();
+
+		}catch(Exception e) {
+			//SQL문이 하나라도 실패하면 rollback
+			conn.rollback();
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt2, conn);
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}		
+
 	
 	// [관리자-메서드8. 총 회원 수 : ]
 	// [관리자-메서드9. 회원 목록 : ]
