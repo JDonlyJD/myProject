@@ -1,5 +1,5 @@
 /*회원관리 부분*/
-create table omember(
+create table omember(  
    mem_num number not null primary key,
    mem_id varchar2(18) unique not null,
    mem_auth number(1) default 1 not null, /*회원등급:0 정지회원, 1:일반회원, 2.vip 3:관리자*/
