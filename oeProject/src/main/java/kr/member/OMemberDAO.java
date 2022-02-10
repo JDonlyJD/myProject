@@ -112,7 +112,7 @@ public class OMemberDAO {
 				pstmt = conn.prepareStatement(sql);
 				
 				//4.?에 데이터 바인딩
-				pstmt.setString(1, member.getMem_id());
+				pstmt.setString(1, mem_id);
 				
 				//5.sql문을 실행시켜 결과행을 rs에 담아 반환
 				rs = pstmt.executeQuery();
