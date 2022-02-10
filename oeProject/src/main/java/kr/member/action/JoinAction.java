@@ -16,14 +16,14 @@ public class JoinAction implements Action{
 				
 		//자바빈(VO)객체 생성
 		OMemberVO member = new OMemberVO();
-		member.setMem_id(request.getParameter("mem_id"));
-		member.setMem_nick(request.getParameter("mem_nick"));
-		member.setMem_pw(request.getParameter("mem_pw"));
-		member.setMem_phone(request.getParameter("mem_phone"));
-		member.setMem_email(request.getParameter("mem_email"));
-		member.setMem_zipcode(request.getParameter("mem_zipcode"));
-		member.setMem_addr(request.getParameter("mem_addr"));
-		member.setMem_addr2(request.getParameter("mem_addr2"));
+		member.setMem_id(request.getParameter("id"));
+		member.setMem_nick(request.getParameter("name"));
+		member.setMem_pw(request.getParameter("passwd"));
+		member.setMem_phone(request.getParameter("phone"));
+		member.setMem_email(request.getParameter("email"));
+		member.setMem_zipcode(request.getParameter("zipcode"));
+		member.setMem_addr(request.getParameter("address1"));
+		member.setMem_addr2(request.getParameter("address2"));
 				
 		OMemberDAO dao = OMemberDAO.getInstance();
 		dao.insertMember(member);
