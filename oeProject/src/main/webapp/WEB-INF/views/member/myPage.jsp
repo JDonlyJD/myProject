@@ -8,7 +8,8 @@
 <title>My Page</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript">
+
+<!-- <script type="text/javascript">
 	$(function() {
 		let photo_path = $('.my-photo').attr('src');//처음 화면에 보여지는 이미지 읽기
 		let my_photo;
@@ -86,25 +87,26 @@
 			});
 		});
 	});
-</script>
+</script> -->
+
 </head>
 <body>
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<h2>회원정보</h2>
 	<div class="mypage-div">
-		<h3>프로필 사진</h3>
+ 		<h3>프로필 사진</h3>
 		<ul>
-			<li>
+<%-- 			<li>
 				<c:if test="${empty member.photo}">
 				<img src="${pageContext.request.contextPath}/images/face.png" 
 				     width="200" height="200" class="my-photo">
 				</c:if>
 				<c:if test="${!empty member.photo}">
 				<img src="${pageContext.request.contextPath}/upload/${member.photo}"
-				     width="200" height="200" class="my-photo">
+				     width="200" height="200" class="my-photo"> 
 				</c:if>
-			</li>
+			</li> --%>
 			<li>
 				<div class="align-center">
 					<input type="button" value="수정" id="photo_btn">
