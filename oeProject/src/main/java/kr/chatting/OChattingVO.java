@@ -2,7 +2,7 @@ package kr.chatting;
 
 import java.sql.Date;
 
-public class OChattingVO {
+public class OChattingVO { 
 	private int chat_num; //체팅번호
 	private int to_num; //메시지수신번호(판매자회원번호)
 	private int from_num; //메시지발신번호(구매자회원번호)
