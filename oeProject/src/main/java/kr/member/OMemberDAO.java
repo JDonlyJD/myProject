@@ -3,6 +3,8 @@ package kr.member;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import kr.member.OMemberDAO;
 import kr.member.OMemberVO;
@@ -338,27 +340,27 @@ public class OMemberDAO {
 		String sql = null;
 
 		try {
-			//conn 
+			//커넥션 풀로부터 커넥션할당
 			conn = DBUtil.getConnection();
 			//auto commit 해제 
 			conn.setAutoCommit(false);
 
 			//omember의 auth 값 변경
 			sql ="UPDATE omember SET mem_auth=0 WHERE mem_num=?";
-			//pstmt 객체 생성
+			//PreparedStatement객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
 			pstmt.setInt(1, mem_num);
 			//sql 실행
 			pstmt.executeUpdate();
 
-			//zmember_detail의 레코드 삭제
+			//omember_detail의 레코드 삭제
 			sql = "DELETE FROM omember_detail WHERE mem_num=?";
-			//pstmt 객체 생성
+			//PreparedStatement객체 생성
 			pstmt2 = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
 			pstmt2.setInt(1, mem_num);
-			//sql 실행
+			//SQL문 실행
 			pstmt2.executeUpdate();
 
 			//모든 SQL문의 실행이 성공하면 commit
@@ -374,9 +376,163 @@ public class OMemberDAO {
 		}
 	}		
 
-	
 	// [관리자-메서드8. 총 회원 수 : ]
+	public int getMemberCountByAdmin(String keyfield, String keyword)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		String sub_sql = "";
+		int count = 0;
+		
+		try {
+			//커넥션 풀로부터 커넥션할당
+			conn = DBUtil.getConnection();
+			
+			if(keyword != null && !"".equals(keyword)) {
+				//검색글 처리
+				if(keyfield.equals("1")) sub_sql = "WHERE mem_id LIKE ?";
+				else if(keyfield.equals("2")) sub_sql = "WHERE mem_nick LIKE ?"; //mem_nick -> 이름
+				else if(keyfield.equals("3")) sub_sql = "WHERE mem_email LIKE ?";
+			}
+			
+			//전체 또는 검색 레코드 갯수
+			sql = "SELECT COUNT(*) FROM omember m "
+				+ "LEFT OUTER JOIN omember_detail d USING(mem_num) " + sub_sql;
+			//PreparedStatement객체 생성
+			pstmt = conn.prepareStatement(sql);
+			if(keyword != null && !"".equals(keyword)) {
+				pstmt.setString(1, "%" + keyword + "%");
+			}
+			//SQL문을 실행시켜 결과행을 ResultSet에 담음
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}	
+		return count;
+	}
 	// [관리자-메서드9. 회원 목록 : ]
+	public List<OMemberVO> getListMemberByAdmin(int startRow, int endRow, 
+			String keyfield, String keyword)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<OMemberVO> list = null;
+		String sql = null;
+		String sub_sql = "";
+		int cnt = 0;
+
+		try {
+			//커넥션 풀로부터 커넥션할당
+			conn = DBUtil.getConnection();
+
+			if(keyword != null && !"".equals(keyword)) {
+				//검색글 처리
+				if(keyfield.equals("1")) sub_sql = "WHERE mem_id LIKE ?";
+				else if(keyfield.equals("2")) sub_sql = "WHERE mem_nick LIKE ?"; //mem_nick -> 이름
+				else if(keyfield.equals("3")) sub_sql = "WHERE mem_email LIKE ?";
+			}
+
+			//SQL문 작성
+			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
+					+ "(SELECT * FROM omember m LEFT OUTER JOIN omember_detail d "
+					+ "USING(mem_num) " + sub_sql + " ORDER BY mem_date DESC NULLS LAST)a) "
+					+ "WHERE rnum >= ? AND rnum <= ?";
+			//PreparedStatement객체 생성
+			pstmt = conn.prepareStatement(sql);
+			if(keyword != null && !"".equals(keyword)) {
+				pstmt.setString(++cnt, "%" + keyword + "%");
+			}
+			pstmt.setInt(++cnt, startRow);
+			pstmt.setInt(++cnt, endRow);
+
+			//SQL문을 실행시켜 결과행을 ResultSet에 담음
+			rs = pstmt.executeQuery();
+			list = new ArrayList<OMemberVO>();
+			while(rs.next()) {
+				OMemberVO member = new OMemberVO();
+				member.setMem_num(rs.getInt("mem_num"));
+				member.setMem_id(rs.getString("mem_id"));
+				member.setMem_auth(rs.getInt("mem_auth"));
+				member.setMem_nick(rs.getString("mem_nick")); //이름
+				member.setMem_pw(rs.getString("mem_pw"));
+				member.setMem_phone(rs.getString("mem_phone"));
+				member.setMem_email(rs.getString("mem_email"));
+				member.setMem_zipcode(rs.getString("mem_zipcode"));
+				member.setMem_addr(rs.getString("mem_addr"));
+				member.setMem_addr2(rs.getString("mem_addr2"));
+				member.setMem_photo(rs.getString("mem_photo"));
+				member.setMem_date(rs.getDate("mem_date"));
+				member.setMem_modifydate(rs.getDate("mem_modifydate"));
+
+				//자바빈(vo) arraylist에 저장
+				list.add(member);
+			}
+
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return list;		
+	}
 	// [관리자-메서드10. 회원정보 수정 : ]
+	public void updateMemberByAdmin(OMemberVO member)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
+		String sql = null; 
+		
+		try {
+			//커넥션 풀로부터 커넥션할당
+			conn = DBUtil.getConnection();
+			//오토커밋 해제
+			conn.setAutoCommit(false);
+			
+			//SQL문 작성
+			sql = "UPDATE omember SET mem_auth=? WHERE mem_num=?";
+			//PreparedStatement객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, member.getMem_auth());
+			pstmt.setInt(2, member.getMem_num());
+			//SQL문 실행
+			pstmt.executeUpdate();
+			
+			//SQL문 작성
+			sql ="UPDATE omember_detail SET mem_nick=?, mem_phone=?, mem_email=?, "
+				+ "mem_zipcode=?, mem_addr=?, mem_addr2=?, mem_modifydate=SYSDATE "
+				+ "WHERE mem_num=?";
+			//PreparedStatement2 객체 생성
+			pstmt2 = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt2.setString(1, member.getMem_nick());
+			pstmt2.setString(2, member.getMem_phone());
+			pstmt2.setString(3, member.getMem_email());
+			pstmt2.setString(4, member.getMem_zipcode());
+			pstmt2.setString(5, member.getMem_addr());
+			pstmt2.setString(6, member.getMem_addr2());
+			pstmt2.setInt(7, member.getMem_num());
+			//SQL문 실행
+			pstmt2.executeUpdate();
+			
+			//모든 SQL문 정상적으로 실행(commit) 
+			conn.commit();
+		
+		}catch(Exception e) {
+			//SQL문 하나라도 실패하면 rollback
+			conn.rollback();
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt2, null);
+			DBUtil.executeClose(null, pstmt, conn);			
+		}
+	}
 	// [관리자-메서드11. 회원정보 삭제 : ]	
 }
