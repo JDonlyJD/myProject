@@ -17,6 +17,17 @@ public class OMemberVO {
 	private String mem_email;
 	private Date mem_date;
 	private Date mem_modifydate;
+	
+	//4. 진주
+	// [메서드1. ID찾기 : findIdMember() ]
+	
+	// [메서드2. PW찾기 : findPWMember() ]
+	
+	// [메서드3. 비밀번호 일치여부 확인 : isCheckedPassword() ]
+	
+	
+	
+	
 	public int getMem_num() {
 		return mem_num;
 	}
