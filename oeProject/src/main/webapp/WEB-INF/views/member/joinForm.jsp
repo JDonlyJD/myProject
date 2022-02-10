@@ -24,7 +24,7 @@
 				type:'post',
 				data:{id:$('#id').val()},
 				dataType:'json',
-				cashe:false,
+				cache:false,
 				timeout:30000,
 				success:function(param){
 					if(param.result == 'idNotFound'){
@@ -48,7 +48,7 @@
 		});//end of click
 		
 		//아이디 중복 안내 메세지 초기화 및 아이디 중복값 초기화
-		$('#register_form #id').keydown(function(){
+		$('#register_form #id').keyup(function(){
 			idChecked = 0;
 			$('#message_id').text('');
 		});
