@@ -36,7 +36,7 @@ public class ModifyPasswordAction implements Action{
 		 String passwd = request.getParameter("passwd");  
 		 
 		 //현재 로그인한 아이디 구하기
-		 String user_id = (String)session.getAttribute("user_num");
+		 String user_id = (String)session.getAttribute("user_id");
 		 //인증을 하기 위해 (checkmember ?) 메서드를 활용 (그러므로 dao호출)
 		 OMemberDAO dao = OMemberDAO.getInstance();
 		 //아이디가 있다면 한 건의 레코드를 읽어온다.
