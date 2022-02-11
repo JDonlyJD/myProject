@@ -74,9 +74,9 @@
 			<td>${member.mem_phone}</td>
 			<td>${member.mem_date}</td>
 			<td>
-			<c:if test="${member.auth == 0}">탈퇴</c:if>
-			<c:if test="${member.auth == 1}">일반</c:if>
-			<c:if test="${member.auth == 2}">관리</c:if>
+			<c:if test="${member.mem_auth == 0}">탈퇴</c:if>
+			<c:if test="${member.mem_auth == 1}">일반</c:if>
+			<c:if test="${member.mem_auth == 2}">관리</c:if>
 			</td>
 		</tr>
 		</c:forEach>
