@@ -54,11 +54,13 @@
 	<c:if test="${count > 0}">
 	<table>
 		<tr>
+			<th>번호</th>
 			<th>회원번호</th>
 			<th>회원ID</th>
 			<th>회원등급</th>
 			<th>연락처</th>
 			<th>회원가입날짜</th>
+			<th>계정상태</th>
 		</tr>
 		<c:forEach var="member" items="${list}">
 		<tr>
@@ -74,9 +76,9 @@
 			<td>${member.mem_phone}</td>
 			<td>${member.mem_date}</td>
 			<td>
-			<c:if test="${member.auth == 0}">탈퇴</c:if>
-			<c:if test="${member.auth == 1}">일반</c:if>
-			<c:if test="${member.auth == 2}">관리</c:if>
+			<c:if test="${member.mem_auth == 0}">탈퇴</c:if>
+			<c:if test="${member.mem_auth == 1}">일반</c:if>
+			<c:if test="${member.mem_auth == 2}">관리</c:if>
 			</td>
 		</tr>
 		</c:forEach>
