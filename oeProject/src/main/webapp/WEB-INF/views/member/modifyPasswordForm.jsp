@@ -15,7 +15,7 @@
 	$(function(){
 		//이벤트연결
 		$('#password_form').submit(function () {
-			if($('#id')).val().trim()=='') {
+			if($('#id').val().trim()=='') {
 				alert('아이디를 입력하세요!');
 				$('#id').val('').focus();
 				return false;
@@ -68,19 +68,19 @@
 	<ul>
 		<li>
 			<label for="id">아이디</label>
-			<input type="text" name="id" id="id" value="${member.name }" maxlength="12">
+			<input type="text" name="id" id="id" value="${member.mem_nick }" maxlength="18">
 		</li>
 		<li>
 			<label for="origin_passwd">현재 비밀번호</label>
-			<input type="password" name="origin_passwd" id="origin_passwd" maxlength="12">
+			<input type="password" name="origin_passwd" id="origin_passwd" maxlength="18">
 		</li>
 		<li>
 			<label for="passwd">새 비밀번호</label>
-			<input type="password" name="passwd" id="passwd" maxlength="12">
+			<input type="password" name="passwd" id="passwd" maxlength="18">
 		</li>		
 		<li>
 			<label for="cpasswd">새 비밀번호 확인</label>
-			<input type="password" name="cpasswd" id="cpasswd" maxlength="12">
+			<input type="password" name="cpasswd" id="cpasswd" maxlength="18">
 			<!-- 전송은 되는데 처리는 안할 것 -->
 			<span id="message_cpasswd"></span>
 		</li>
