@@ -57,6 +57,7 @@
 			<th>번호</th>
 			<th>회원번호</th>
 			<th>회원ID</th>
+			<th>회원이름</th>
 			<th>회원등급</th>
 			<th>연락처</th>
 			<th>회원가입날짜</th>
@@ -64,14 +65,14 @@
 		</tr>
 		<c:forEach var="member" items="${list}">
 		<tr>
+			<td>${member.mem_num}</td>
 			<td>
 				<c:if test="${member.mem_auth > 0}">
 				<a href="adminDetailUserForm.do?mem_num=${member.mem_num}">${member.mem_id}</a>
 				</c:if>
 				<c:if test="${member.mem_auth == 0}">${member.mem_id}</c:if>
 			</td>
-			<td>${member.mem_num}</td>
-			<td>${member.mem_id}</td>
+			<td>${member.mem_nick}</td>
 			<td>${member.mem_auth}</td>
 			<td>${member.mem_phone}</td>
 			<td>${member.mem_date}</td>
