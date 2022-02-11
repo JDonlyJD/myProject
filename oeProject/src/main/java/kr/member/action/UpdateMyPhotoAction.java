@@ -69,7 +69,7 @@ public class UpdateMyPhotoAction implements Action {
 		
 		mapAjax.put("result","success");
  		}
-	
+	     
 		//JSON데이터로 변환하기
 		ObjectMapper mapper = new ObjectMapper(); //ObjectMapper객체 생성
 		String ajaxData = mapper.writeValueAsString(mapAjax);

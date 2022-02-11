@@ -80,7 +80,7 @@
 					} else {
 						alert('파일 전송 오류 발생');
 					}
-				},
+				},    
 				error : function() {
 					alert('네트워크 오류 발생');
 				}
