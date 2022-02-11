@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-public class FileUtil {
+public class FileUtil { 
 	//인코딩 타입
 	public static final String ENCODING_TYPE = "utf-8";
 	//최대 업로드 사이즈
