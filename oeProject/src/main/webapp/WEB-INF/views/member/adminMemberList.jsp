@@ -24,7 +24,7 @@
 <div class="page-main">
    <jsp:include page="/WEB-INF/views/common/header.jsp"/>
    <h2>회원목록(관리자 전용)</h2>
-   <form id="search_form" action="AdminMemberList.do" method="get">
+   <form id="search_form" action="adminMemberList.do" method="get">
       <ul class="search">
          <li>
             <select name="keyfield">
