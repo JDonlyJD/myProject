@@ -56,11 +56,11 @@
 			<li>
 				<label>등급</label>
 				<c:if test="${member.mem_auth != 2}">
-				<input type="radio" name="auth" value="1" id="auth1" <c:if test="${member.mem_auth == 0}">checked</c:if>>탈퇴
-				<input type="radio" name="auth" value="2" id="auth2" <c:if test="${member.mem_auth == 1}">checked</c:if>>일반
+				<input type="radio" name="auth" value="0" id="auth1" <c:if test="${member.mem_auth == 0}">checked</c:if>>탈퇴
+				<input type="radio" name="auth" value="1" id="auth2" <c:if test="${member.mem_auth == 1}">checked</c:if>>일반
 				</c:if>
 				<c:if test="${member.mem_auth == 2}">
-				<input type="radio" name="auth" value="3" id="auth3" checked>관리
+				<input type="radio" name="auth" value="2" id="auth3" checked>관리
 				</c:if>
 			</li>
 			<li>
