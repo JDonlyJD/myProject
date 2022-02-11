@@ -11,7 +11,7 @@ import kr.member.OMemberVO;
 import kr.util.DBUtil;
 
 public class OMemberDAO {
-
+//test
 	//싱글턴 패턴
 	private static OMemberDAO instance = new OMemberDAO();
 	public static OMemberDAO getInstance() {
