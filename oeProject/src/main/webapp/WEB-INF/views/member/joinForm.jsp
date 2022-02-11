@@ -113,16 +113,16 @@
 				return false;
 			}
 			if($('#passwd').val()!=$('#cpasswd').val()){
-				alert('새 비밀번호와 새 비밀번호 확인이 불일치합니다.');
+				alert('비밀번호와 비밀번호 확인이 불일치합니다.');
 				$('#cpasswd').val('').focus();
 				return false;
 			}
 		});//end of submit
 		
-		//새비밀번호와 새비밀번호 확인일치 여부 체크
+		//비밀번호와 비밀번호 확인일치 여부 체크
 		$('#cpasswd').keyup(function(){
 			if($('#passwd').val()==$('#cpasswd').val()){
-				$('#message_cpasswd').text('새 비밀번호 일치');
+				$('#message_cpasswd').text('비밀번호와 비밀번호 확인 일치');
 			}else{
 				$('#message_cpasswd').text(''); //비어있게 처리
 			}
