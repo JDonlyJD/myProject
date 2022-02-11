@@ -32,6 +32,7 @@ public class AdminDetailUserAction implements Action{
 		member.setMem_auth(Integer.parseInt(request.getParameter("auth")));
 		member.setMem_nick(request.getParameter("name"));
 		member.setMem_phone(request.getParameter("phone"));
+		member.setMem_email(request.getParameter("email"));
 		member.setMem_zipcode(request.getParameter("zipcode"));
 		member.setMem_addr(request.getParameter("address1"));
 		member.setMem_addr2(request.getParameter("address2"));
