@@ -45,7 +45,7 @@ public class OMemberDAO {
 				if(rs.next()) {
 					num = rs.getInt(1);
 				}
-				
+				 
 				//omember테이블에 데이터 저장(auth값은 디폴트값 1로 들어가므로 생략o)
 				sql = "INSERT INTO omember (mem_num,mem_id) VALUES (?,?)";
 				//PreparedStatement객체 생성

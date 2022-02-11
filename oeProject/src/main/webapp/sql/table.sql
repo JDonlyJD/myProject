@@ -6,10 +6,10 @@ create table omember(
 );
 
 create table omember_detail( /*상세정보*/
-   mem_num number not null primary key,
-   mem_nick varchar2(18) unique not null,
+   mem_num number not null,
+   mem_nick varchar2(18) not null,
    mem_pw varchar2(18) not null,
-   mem_auth number(1) not null,
+   --mem_auth number(1) default 1 not null,
    mem_phone varchar2(13) not null,
    mem_photo varchar2(150),
    mem_addr varchar2(100) not null,
@@ -17,7 +17,8 @@ create table omember_detail( /*상세정보*/
    mem_zipcode varchar2(5) not null,
    mem_email varchar2(50) not null,
    mem_date date default sysdate not null,
-   mem_modifydate date
+   mem_modifydate date,
+   constraint omember_detail_pk primary key(mem_num)
 );
 create sequence omember_seq;
 
