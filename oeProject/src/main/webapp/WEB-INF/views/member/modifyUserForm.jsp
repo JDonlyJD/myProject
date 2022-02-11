@@ -51,35 +51,35 @@
 		<ul>
 			<li>
 				<label for="name">이름</label>
-				<input type="text" name="name" id="name" value="${member.name}"
+				<input type="text" name="name" id="name" value="${member.mem_nick}"
 				                                         maxlength="10">
 			</li>
 			<li>
 				<label for="phone">전화번호</label>
-				<input type="text" name="phone" id="phone" value="${member.phone}"
+				<input type="text" name="phone" id="phone" value="${member.mem_phone}"
 				                                         maxlength="15">
 			</li>
 			<li>
 				<label for="email">이메일</label>
-				<input type="email" name="email" id="email" value="${member.email}"
+				<input type="email" name="email" id="email" value="${member.mem_email}"
 				                                          maxlength="50">
 			</li>
 			<li>
 				<label for="zipcode">우편번호</label>
 				<input type="text" name="zipcode" id="zipcode" 
-				                  value="${member.zipcode}" maxlength="5">
+				                  value="${member.mem_zipcode}" maxlength="5">
 				<input type="button" onclick="sample2_execDaumPostcode()"
 				                                          value="우편번호 찾기">                  
 			</li>
 			<li>
 				<label for="address1">주소</label>
 				<input type="text" name="address1" id="address1" 
-				           value="${member.address1}" maxlength="30">
+				           value="${member.mem_addr}" maxlength="30">
 			</li>
 			<li>
 				<label for="address2">나머지 주소</label>
 				<input type="text" name="address2" id="address2"
-				           value="${member.address2}" maxlength="30">
+				           value="${member.mem_addr2}" maxlength="30">
 			</li>
 		</ul>
 		<div class="align-center">
