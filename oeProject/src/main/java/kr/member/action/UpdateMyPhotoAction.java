@@ -52,7 +52,7 @@ public class UpdateMyPhotoAction implements Action {
 		MultipartRequest multi =FileUtil.createFile(request);
 		
 		//서버에 저장된(업로드한 파일) 파일명 반환
-		String photo = multi.getFilesystemName("photo"); //"photo"라고 파라미터 네임 명시
+		String photo = multi.getFilesystemName("mem_photo"); //"photo"라고 파라미터 네임 명시
 		
 		//프로필 수정작업
 		dao.updateMyPhoto(photo, user_num); //(파일명, 회원번호(mem_num))
