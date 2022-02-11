@@ -251,7 +251,7 @@ public class OMemberDAO {
 			//커넥션풀로부터 커넥션을 할당
 			conn = DBUtil.getConnection();
 			sql = "UPDATE omember_detail SET mem_nick=?, mem_phone=?, mem_email=?,"
-					+ "mem_zipcode=?, mem_addr=?, mem_addr2=? ,mem_modify_date=SYSDATE "
+					+ "mem_zipcode=?, mem_addr=?, mem_addr2=? ,mem_modifydate=SYSDATE "
 					+ "WHERE mem_num=?";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
