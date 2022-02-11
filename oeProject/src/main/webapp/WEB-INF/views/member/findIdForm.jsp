@@ -1,45 +1,50 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
- 
- <c:choose>
- 
-	<c:when test="${FindId==NotSame}">
-		<script type="text/javascript">
-			alert('회원이름과 전화번호가 불일치합니다.')
-			history.go(-1);
-		</script>	
-	</c:when> 
-	
-	<c:when test="${FindId==NotExist}">
-		<script type="text/javascript">
-			alert('존재하지않는 회원정보입니다.')
-			history.go(-1);
-		</script>	
-	</c:when>
-	
-    <c:otherwise> 
-		<!DOCTYPE html>
-		<html>
-		<head>
-		<meta charset="UTF-8">
-		<title> ID찾기 </title>
-		<link rel="stylesheet" href="${pageContext.request.contextPath }/css/layout.css">
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title> ID 찾기 </title>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/layout.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	$(function(){
 		
-		</head>
-		<body>
-			<div class="page-main">
-				<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-				<h2> 회원 ID </h2>
-				<div class="result-display">
-					<div class="align-center">
-						회원님의 아이디는 ${Success}입니다.
-						<p>
-						<input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
-					</div>
-				</div>
-			</div>
-		</body>
-		</html>
-	</c:otherwise>	
-</c:choose>
+		$('#find_form').submit(function(){
+			if($('#name').val().trim()==''){
+				alert('이름을 입력하세요!');
+				$('#name').val('').focus();
+				return false;
+			}
+			if($('#phone').val().trim()==''){
+				alert('전화번호를 입력하세요!');
+				$('#phone').val('').focus();
+				return false;
+			}
+		});
+	});
+</script>
+</head>
+<body>
+<div class="page-main">
+	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+	<h2>ID찾기</h2>
+	<form id="find_form" action="findId.do" method="post">
+		<ul>
+			<li>
+				<label for="name">이름</label>
+				<input type="text" name="name" id="name" maxlength="8">
+			</li>
+			<li>
+				<label for="phone">전화번호</label>
+				<input type="text" name="phone" id="phone" maxlength="13">
+			</li>
+		</ul>
+		<div class="align-center">
+			<input type="submit" value="ID찾기">
+			<input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
+		</div>
+	</form>
+</div>
+</body>
+</html>
