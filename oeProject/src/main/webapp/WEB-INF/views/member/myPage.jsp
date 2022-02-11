@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 
-<!-- <script type="text/javascript">
+<script type="text/javascript">
 	$(function() {
 		let photo_path = $('.my-photo').attr('src');//처음 화면에 보여지는 이미지 읽기
 		let my_photo;
@@ -87,7 +87,7 @@
 			});
 		});
 	});
-</script> -->
+</script>
 
 </head>
 <body>
@@ -97,16 +97,16 @@
 	<div class="mypage-div">
  		<h3>프로필 사진</h3>
 		<ul>
-<%-- 			<li>
-				<c:if test="${empty member.photo}">
+			<li>
+				<c:if test="${empty member.mem_photo}">
 				<img src="${pageContext.request.contextPath}/images/face.png" 
 				     width="200" height="200" class="my-photo">
 				</c:if>
-				<c:if test="${!empty member.photo}">
-				<img src="${pageContext.request.contextPath}/upload/${member.photo}"
+				<c:if test="${!empty member.mem_photo}">
+				<img src="${pageContext.request.contextPath}/upload/${member.mem_photo}"
 				     width="200" height="200" class="my-photo"> 
 				</c:if>
-			</li> --%>
+			</li>
 			<li>
 				<div class="align-center">
 					<input type="button" value="수정" id="photo_btn">
