@@ -2,8 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:choose>
-	<%-- 정지회원(0인 경우) 일때 --%>
-	<c:when test="${auth == 0}">
+	<%-- 탈퇴회원(0인 경우) 일때 --%>
+<c:when test="${auth == 0}">
 	<!DOCTYPE html>
 	<html>
 	<head>
@@ -17,7 +17,7 @@
 		<h2>회원정보</h2>
 		<div class="result-display">
 			<div class="align-center">
-				회원님의 아이디가 정지되었습니다.
+				탈퇴된 계정입니다.
 				<p>
 				<input type="button" value="홈으로" 
 			onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
@@ -27,7 +27,7 @@
 	</body>
 	</html>
 	</c:when>
-	
+
 	<%-- 정지회원외의 모든 회원 전부 --%>
 	<c:otherwise>
 	<script type="text/javascript">
