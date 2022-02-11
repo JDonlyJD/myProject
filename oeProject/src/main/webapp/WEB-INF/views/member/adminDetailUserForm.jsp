@@ -100,6 +100,8 @@
 			<input type="submit" value="수정">
 			<input type="button" value="목록" 
 			                         onclick="location.href='adminMemberList.do'">
+			<input type="button" value="홈으로" 
+       onclick="location.href='${pageContext.request.contextPath}/main/main.do'">                         
 		</div>
 	</form>
 <!-- 우편번호 스크립트 시작 -->

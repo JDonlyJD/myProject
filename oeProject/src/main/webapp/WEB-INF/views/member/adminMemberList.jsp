@@ -44,7 +44,7 @@
    <div class="list-space align-right">
       <input type="button" value="목록" onclick="location.href='adminMemberList.do'">
       <input type="button" value="홈으로" 
-       onclick="locaton.href='${pageContext.request.contextPath}/main/main.do'">
+       onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
    </div>
    <c:if test="${count == 0}">
    <div class="result-display">
