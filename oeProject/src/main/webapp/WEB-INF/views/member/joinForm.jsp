@@ -77,6 +77,12 @@
 				return false;
 			}
 			
+			if($('#cpasswd').val().trim()==''){
+				alert('새 비밀번호 확인을 입력하세요!');
+				$('#cpasswd').val('').focus();
+				return false;
+			}
+			
 			if($('#phone').val().trim()==''){
 				alert('전화번호를 입력하세요!');
 				$('#phone').val('').focus();
@@ -106,7 +112,21 @@
 				$('#address2').val('').focus();
 				return false;
 			}
+			if($('#passwd').val()!=$('#cpasswd').val()){
+				alert('새 비밀번호와 새 비밀번호 확인이 불일치합니다.');
+				$('#cpasswd').val('').focus();
+				return false;
+			}
 		});//end of submit
+		
+		//새비밀번호와 새비밀번호 확인일치 여부 체크
+		$('#cpasswd').keyup(function(){
+			if($('#passwd').val()==$('#cpasswd').val()){
+				$('#message_cpasswd').text('새 비밀번호 일치');
+			}else{
+				$('#message_cpasswd').text(''); //비어있게 처리
+			}
+		});
 	});
 </script>
 </head>
@@ -129,6 +149,11 @@
 			<li>
 				<label for="passwd">비밀번호</label>
 				<input type="password" name="passwd" id="passwd" maxlength="12">
+			</li>
+			<li>
+				<label for="cpasswd">비밀번호 확인</label>
+				<input type="password" name="cpasswd" id="cpasswd" maxlength="12">
+				<span id="message_cpasswd"></span>
 			</li>
 			<li>
 				<label for="phone">전화번호</label>
