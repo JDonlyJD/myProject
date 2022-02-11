@@ -23,7 +23,7 @@ public class AdminMemberListAction implements Action{
 		}
 		
 		Integer user_auth = (Integer)session.getAttribute("user_auth");
-		if(user_auth < 3) {//관리자로 로그인하지 않은 경우
+		if(user_auth < 2) {//관리자로 로그인하지 않은 경우
 			return "/WEB-INF/views/common/notice.jsp";			
 		}
 		
