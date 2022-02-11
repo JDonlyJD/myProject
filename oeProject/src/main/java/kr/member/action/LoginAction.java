@@ -46,5 +46,4 @@ public class LoginAction implements Action{
 		//인증 실패시 호출, forward방식으로
 		return "/WEB-INF/views/member/login.jsp";
 	}
-  
 }
