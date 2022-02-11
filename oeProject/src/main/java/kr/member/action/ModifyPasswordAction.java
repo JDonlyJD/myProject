@@ -47,7 +47,7 @@ public class ModifyPasswordAction implements Action{
 		 //아이디 일치여부 체크
 		 if(member!=null && id.equals(user_id)) { //아이디가 일치한다면
 			 //비밀번호 일치 여부 체크(VO의 PW일치여부메서드 이용)
-//			 check = member.isCheckedPassword(origin_passwd);
+			 check = member.isCheckedPassword(origin_passwd);
 		 }
 		 
 		//인증성공의 경우(true)

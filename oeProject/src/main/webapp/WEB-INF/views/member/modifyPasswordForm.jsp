@@ -68,7 +68,7 @@
 	<ul>
 		<li>
 			<label for="id">아이디</label>
-			<input type="text" name="id" id="id" value="${member.mem_nick }" maxlength="18">
+			<input type="text" name="id" id="id" value="${member.mem_nick}" maxlength="18">
 		</li>
 		<li>
 			<label for="origin_passwd">현재 비밀번호</label>
