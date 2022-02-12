@@ -2,5 +2,5 @@
     pageEncoding="UTF-8"%>
 <script type="text/javascript">
 	alert('판매 상품 등록 완료!');
-	location.href='salelist.do';
+	location.href='itemDetail.do';
 </script>
