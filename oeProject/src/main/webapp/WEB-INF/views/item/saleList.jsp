@@ -64,8 +64,12 @@
 				<c:forEach var="item" items="${list }">
 					<tr>
 						<td>${item.item_num }</td>
-						<td><a href="detail.do?board_num=${item.item_num}">${item.title }</a></td>
-						<td>${item.state }</td>
+						<td><a href="itemDetail.do?item_num=${item.item_num}">${item.title }</a></td>
+						<td>
+							<c:if test="${item.state == 0 }">판매중</c:if>
+							<c:if test="${item.state == 1 }">예약중</c:if>
+							<c:if test="${item.state == 2 }">판매완료</c:if>
+						</td>						
 						<td>${item.price }</td>
 						<td>${item.reg_date }</td>
 						<!-- 판매상태(0판매중/1예약중/2판매완료) (default 0) -->
