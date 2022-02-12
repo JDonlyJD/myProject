@@ -14,7 +14,11 @@
 				alert('카테고리를 선택하세요.');
 				return false;
 			} */ 
-			
+			 if($('#cate').val()==''){
+					alert('카테고리를 선택하세요.');
+					$('#cate').focus();
+					return false;
+				}
 			if($('#title').val().trim()==''){
 				alert('판매글 제목을 입력하세요.');
 				$('#title').val('').focus();
@@ -25,9 +29,9 @@
 				$('#price').focus();
 				return false;
 			}
-			if($('#filename').val()==''){
+			if($('#filename').val().trim()==''){
 				alert('판매상품 사진을 등록하세요.');
-				$('#filename').focus();
+				$('#filename').val('').focus();
 				return false;
 			}
 			if($('#content').val().trim()==''){
@@ -46,7 +50,10 @@
 	<form action="itemWrite.do" method="post" enctype="multipart/form-data" id="write_form">
 	<!-- <input type="hidden" name="mem_num" value="${member.mem_num}">  -->
 	<ul>
-		<!-- 카테고리 추가해야함 cate --> 
+		<li>
+			<label for="cate">카테고리</label>
+			<input type="number" name="cate" id="cate" min="1" max="9999999">				
+		</li>
 		<li>
 			<label for="title">판매글 제목</label>
 			<input type="text" name="title" id="title">				
