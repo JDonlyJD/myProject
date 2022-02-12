@@ -147,6 +147,12 @@
 				<input type="button" value="비밀번호 수정" onclick="location.href='modifyPasswordForm.do'">
 			</li>
 		</ul>
+		<h3>상품 등록</h3>
+		<ul>
+			<li>
+				<input type="button" value="상품 등록" onclick="location.href='${pageContext.request.contextPath}/item/itemWriteForm.do'">
+			</li>
+		</ul>
 	</div>
 </div>
 </body>
