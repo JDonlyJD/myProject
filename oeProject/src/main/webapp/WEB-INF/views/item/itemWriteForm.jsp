@@ -44,7 +44,7 @@
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<h2>판매 상품 등록</h2>
 	<form action="itemWrite.do" method="post" enctype="multipart/form-data" id="write_form">
-	
+	<!-- <input type="hidden" name="mem_num" value="${member.mem_num}">  -->
 	<ul>
 		<!-- 카테고리 추가해야함 cate --> 
 		<li>
