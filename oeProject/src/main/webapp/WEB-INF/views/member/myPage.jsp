@@ -154,6 +154,16 @@
 			</li>
 		</ul>
 	</div>
+	
+	<!-- myhome테스트 -->
+	<ul>
+		<li>
+					<input type="button" value="myhome" 
+					onclick="location.href='${pageContext.request.contextPath}/member/myHome.do'">
+		</li>
+	</ul>
+	
+	
 </div>
 </body>
 </html>
