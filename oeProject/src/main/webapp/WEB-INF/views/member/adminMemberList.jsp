@@ -29,8 +29,8 @@
          <li>
             <select name="keyfield">
                <option value="1">ID</option>
-               <option value="2">email</option>
-               <option value="3">등급</option>
+               <option value="2">이름</option>
+               <option value="3">계정상태</option>
             </select>
          </li>
          <li>
@@ -57,7 +57,6 @@
          <th>회원번호</th>
          <th>회원ID</th>
          <th>회원이름</th>
-         <th>회원등급</th>
          <th>연락처</th>
          <th>회원가입날짜</th>
          <th>계정상태</th>
@@ -72,7 +71,6 @@
             <c:if test="${member.mem_auth == 0}">${member.mem_id}</c:if>
          </td>
          <td>${member.mem_nick}</td>
-         <td>${member.mem_auth}</td>
          <td>${member.mem_phone}</td>
          <td>${member.mem_date}</td>
          <td>
