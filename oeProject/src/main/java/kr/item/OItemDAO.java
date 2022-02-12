@@ -149,7 +149,7 @@ public class OItemDAO {
 			return list;
 		}
 */	
-/*
+
 	//민정
 	//총 레코드 수 (검색 레코드 수) 
 		//키워드를 통해서 검색을 할지 총갯수를 통해서 검색을 할지
@@ -269,7 +269,7 @@ public class OItemDAO {
 			
 			return list;
 		}
-*/
+
 	//다원
 	//상품Detail 부분(1) 조회수 증가메서드
 	public void updateReadcount(int item_num)throws Exception{
