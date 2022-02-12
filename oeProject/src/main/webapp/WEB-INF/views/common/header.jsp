@@ -19,8 +19,8 @@
 		<a href="${pageContext.request.contextPath}/member/joinForm.do">회원가입</a>
 		<a href="${pageContext.request.contextPath}/member/loginForm.do">로그인</a>
 	</c:if>
-	<c:if test="${!empty user_num && user_auth == 1}">
-		<a href="${pageContext.request.contextPath}/member/myPage.do">MY페이지</a>
+	<c:if test="${!empty user_num }">
+		<a href="${pageContext.request.contextPath}/member/myHome.do">MY HOME</a>
 	</c:if>
 	<c:if test="${!empty user_num && user_auth == 2}">
 		<a href="${pageContext.request.contextPath}/member/adminMemberList.do">회원관리</a>
