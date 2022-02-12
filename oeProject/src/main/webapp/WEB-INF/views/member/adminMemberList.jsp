@@ -30,7 +30,7 @@
             <select name="keyfield">
                <option value="1">ID</option>
                <option value="2">이름</option>
-               <option value="3">계정상태</option>
+               <option value="3">회원등급</option>
             </select>
          </li>
          <li>
@@ -60,6 +60,7 @@
          <th>연락처</th>
          <th>회원가입날짜</th>
          <th>계정상태</th>
+         <th>회원등급</th>
       </tr>
       <c:forEach var="member" items="${list}">
       <tr>
@@ -71,6 +72,7 @@
             <c:if test="${member.mem_auth == 0}">${member.mem_id}</c:if>
          </td>
          <td>${member.mem_nick}</td>
+         
          <td>${member.mem_phone}</td>
          <td>${member.mem_date}</td>
          <td>
@@ -78,6 +80,7 @@
          <c:if test="${member.mem_auth == 1}">일반</c:if>
          <c:if test="${member.mem_auth == 2}">관리</c:if>
          </td>
+         <td>${member.mem_auth}</td>
       </tr>
       </c:forEach>
    </table>
