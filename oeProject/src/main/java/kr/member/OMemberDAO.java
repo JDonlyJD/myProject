@@ -423,7 +423,7 @@ public class OMemberDAO {
 				//검색글 처리
 				if(keyfield.equals("1")) sub_sql = "WHERE mem_id LIKE ?";
 				else if(keyfield.equals("2")) sub_sql = "WHERE mem_nick LIKE ?"; //mem_nick -> 이름
-				else if(keyfield.equals("3")) sub_sql = "WHERE mem_email LIKE ?";
+				else if(keyfield.equals("3")) sub_sql = "WHERE mem_auth LIKE ?";
 			}
 
 			//SQL문 작성
