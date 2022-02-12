@@ -8,6 +8,7 @@ import java.util.List;
 
 import kr.item.OItemVO;
 import kr.util.DBUtil;
+import kr.util.StringUtil;
 
 public class OItemDAO {
 	//싱글턴 패턴
@@ -147,5 +148,127 @@ public class OItemDAO {
 			}
 			return list;
 		}
-*/		
+*/	
+/*
+	//민정
+	//총 레코드 수 (검색 레코드 수) 
+		//키워드를 통해서 검색을 할지 총갯수를 통해서 검색을 할지
+		public int getListItemCount(String keyfield,String keyword)throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql = null;
+			String sub_sql = "";
+			int count = 0;
+			
+			try {
+				//커넥션 풀로부터 커넥션 할당받기
+				conn = DBUtil.getConnection();
+				
+				//keyword를 통한 조건체크
+				if(keyword!=null && !"".equals(keyword)) {
+					//검색글 처리
+					if(keyfield.equals("1")) sub_sql = "WHERE i.title LIKE ? OR i.content LIKE ?"; //글제목+내용
+//					if(keyfield.equals("1")) sub_sql = "WHERE i.title LIKE ?"; //글제목
+//					else if(keyfield.equals("2")) sub_sql = "WHERE m.id LIKE ?"; //
+//					else if(keyfield.equals("3")) sub_sql = "WHERE b.content LIKE ?";
+				}
+				//SQL문 작성
+				sql = "SELECT COUNT(*) FROM oitem i JOIN omember m USING(mem_num) " + sub_sql;
+//				sql = "SELECT COUNT(*) FROM oitem i RIGHT OUTER JOIN omember m USING(mem_num) " + sub_sql;
+				
+				//PreparedStatement객체 생성
+				pstmt = conn.prepareStatement(sql);
+				
+				if(keyword!= null && !"".equals(keyword)) {
+					pstmt.setString(1, "%"+keyword+"%");
+					pstmt.setString(2, "%"+keyword+"%");
+				}
+				//SQL문을 실행하고 결과행을 resultSet에 담음
+				rs = pstmt.executeQuery();
+				if (rs.next()) {
+					count = rs.getInt(1);
+				}
+				
+			} catch (Exception e) {
+				throw new Exception();
+				
+			} finally {
+				//자원정리
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+			
+			return count;
+		}
+		
+		
+	//민정 판매목록
+	//글 목록
+		public List<OItemVO> getListItem(int startRow, int endRow, String keyfield, String keyword) throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			List<OItemVO> list = null;
+			String sql = null;
+			String sub_sql = "";
+			int cnt = 0;
+			
+			try {
+				//커넥션 풀로부터 커넥션 할당
+				conn = DBUtil.getConnection();
+				
+				//위와 동일한 검색에 대한 처리
+				//keyword를 통한 조건체크
+				if(keyword!=null && !"".equals(keyword)) {
+					if(keyfield.equals("1")) sub_sql = "WHERE i.title LIKE ? OR i.content LIKE ?"; //글제목+내용
+//					if(keyfield.equals("1")) sub_sql = "WHERE b.title LIKE ?";
+//					else if(keyfield.equals("2")) sub_sql = "WHERE m.id LIKE ?";
+//					else if(keyfield.equals("3")) sub_sql = "WHERE b.content LIKE ?";
+				}
+				
+				//SQL문 작성
+				sql = "SELECT * FROM(SELECT a.*, rownum rnum FROM "
+						+ "(SELECT * FROM oitem i JOIN omember m USING(mem_num) "
+						+ sub_sql + "ORDER BY i.state DESC)a) "
+						+ "WHERE rnum >= ? AND rnum <= ?";
+				
+				//PreparedStatement객체 생성
+				pstmt = conn.prepareStatement(sql);
+				//조건에 따라 ? 가 생기므로 조건체크
+				if(keyword != null && !"".equals(keyword)) {
+					pstmt.setString(++cnt, "%"+keyword+"%");
+					pstmt.setString(++cnt, "%"+keyword+"%");
+				}
+				pstmt.setInt(++cnt, startRow);
+				pstmt.setInt(++cnt, endRow);
+				
+				//SQL문을 실행해서 결과행들을 ResultSet에 담음
+				rs = pstmt.executeQuery();
+				list = new ArrayList<OItemVO>();
+				while(rs.next()) { //다명시하지않고 표시할 것만 넣겠음
+					OItemVO item = new OItemVO();
+					item.setItem_num(rs.getInt("item_num")); //상품번호
+					item.setTitle(StringUtil.useNoHtml(rs.getString("title")));//HTML태그를 허용하지 않음
+					item.setState(rs.getInt("state")); //판매상태(0판매중/1예약중/2판매완료) (default 0)
+					item.setPrice(rs.getInt("price")); //상품가격
+					item.setReg_date(rs.getDate("reg_date")); //상품등록일
+					//board.setMem_num(rs.getInt("mem_num")); 
+					//item.setHit(rs.getInt("hit"));
+					
+					//BoardVO 를 ArrayList에 저장
+					list.add(item);
+				}
+				
+			} catch (Exception e) {
+				throw new Exception(e);
+				
+			} finally {
+				//자원정리
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+			
+			return list;
+		}
+*/
+	
 }

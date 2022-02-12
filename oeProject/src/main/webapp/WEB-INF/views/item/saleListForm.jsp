@@ -1,12 +1,81 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>판매 내역</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/layout.css">
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-3.6.0.min.js">/* 컨텍스트경로부터 명시해야 에러안남 */</script>
+<script type="text/javascript">
+	$(function () {
+		$('#search_form').submit(function () {
+			if($('#keyword').val().trim()==''){
+				alert('검색어를 입력하세요!');
+				$('#keyword').val('').focus();
+				return false;
+			}
+		});
+	});
+</script>
 </head>
 <body>
-
+	<div class="page-main">
+		<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+		<h2>판매 내역</h2>
+		<form action="saleList.do" method="get" id="search_form">
+			<ul class="search">
+				<li>
+					<select name="keyfield">
+						<option value="1">제목+내용</option>
+					</select>
+				</li>
+				<li>
+					<input type="search" size="16" name="keyword" id="keyword" value="${param.keyword }"> <!-- value = 검색을 했다면 검색한것이 남아있게함 선택사항임 -->
+				</li>
+				<li>
+					<input type="submit" value="검색">
+				</li>
+			</ul>
+		</form>
+		<%-- <div class="list-space align-right">
+			<input type="button" value="글쓰기" 
+				onclick="location.href='writeForm.do'" <c:if test="${empty user_num}">disabled="disabled"</c:if>>  <!-- 같은경로이기 떄문에 파일경로만 작성했음  -->
+			<input type="button" value="목록" 
+				onclick="location.href='list.do'">  
+			<input type="button" value="홈으로" 
+				onclick="location.herf='${pageContext.request.contextPath}/main/main.do'">
+		</div> --%>
+		
+		<c:if test="${count == 0 }">
+			<div class="result-display">
+				표시할 게시물이 없습니다.
+			</div>
+		</c:if>
+		<c:if test="${count > 0 }">
+			<table>
+				<tr>
+					<th>상품번호</th>
+					<th>제목</th>
+					<th>판매상태</th>
+					<th>상품가격</th>
+					<th>등록일</th>
+				</tr>
+				<c:forEach var="board" items="${list }">
+					<tr>
+						<td>${board.item_num }</td>
+						<!-- (판매상품디테일)상품상세페이지어디? --><td><a href="detail.do?board_num=${board.board_num}">${board.title }</a></td>
+						<td>${board.state }</td>
+						<td>${board.price }</td>
+						<td>${board.reg_date }</td>
+					</tr>
+				</c:forEach>
+			</table>
+			<div class="align-center">
+				${pagingHtml}
+			</div>
+		</c:if>
+	</div>
 </body>
 </html>
