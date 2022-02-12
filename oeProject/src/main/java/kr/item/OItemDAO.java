@@ -28,17 +28,17 @@ public class OItemDAO {
 			//커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
 			//SQL문 작성
-			sql = "INSERT INTO oitem(item_num, cate_num, title, price, "
-				+ "filename, content, state) VALUES (oitem_seq.nextval,?,?,?,?,?,?)";
+			sql = "INSERT INTO oitem(item_num, mem_num, cate_num, title, price, "
+				+ "filename, content) VALUES (oitem_seq.nextval,?,?,?,?,?,?)";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
-			pstmt.setInt(1, item.getCate_num());
-			pstmt.setString(2, item.getTitle());
-			pstmt.setInt(3, item.getPrice());
-			pstmt.setString(4, item.getFilename());
-			pstmt.setString(5, item.getContent());
-			pstmt.setInt(6, item.getState());
+			pstmt.setInt(1, item.getMem_num());
+			pstmt.setInt(2, item.getCate_num());
+			pstmt.setString(3, item.getTitle());
+			pstmt.setInt(4, item.getPrice());
+			pstmt.setString(5, item.getFilename());
+			pstmt.setString(6, item.getContent());
 			
 			//SQL문 실행
 			pstmt.executeUpdate();

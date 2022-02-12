@@ -29,6 +29,7 @@
 				alert('판매상품 사진을 등록하세요.');
 				$('#filename').focus();
 				return false;
+			}
 			if($('#content').val().trim()==''){
 				alert('내용을 입력하세요.');
 				$('#content').val('').focus();
@@ -42,16 +43,17 @@
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<h2>판매 상품 등록</h2>
-	<form action="write.do" method="post" enctype="multipart/form-data" id="write_form">
+	<form action="itemWrite.do" method="post" enctype="multipart/form-data" id="write_form">
+	
 	<ul>
 		<!-- 카테고리 추가해야함 cate --> 
 		<li>
-			<label for=title">판매글 제목</label>
+			<label for="title">판매글 제목</label>
 			<input type="text" name="title" id="title">				
 		</li>
 		<li>
 			<label for="price">가격</label>
-			<input type="number" name="price" id="price" min="1" max="99999999">				
+			<input type="number" name="price" id="price" min="1" max="9999999">				
 		</li>
 		<li>
 			<label for="filename">판매상품 사진</label>
@@ -65,7 +67,7 @@
 	</ul>
 	<div class="align-center">
 		<input type="submit" value="등록">
-		<input type="button" value="목록으로" onclick="location.href='salelist.do'">
+		<!-- <input type="button" value="목록으로" onclick="location.href='salelist.do'"> -->
 	</div>
 	</form>
 </div>	

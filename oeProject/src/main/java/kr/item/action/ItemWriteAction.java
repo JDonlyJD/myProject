@@ -15,7 +15,10 @@ public class ItemWriteAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
+		
+		//인코딩처리
+		request.setCharacterEncoding("utf-8");
+		
 		HttpSession session = request.getSession();
 		Integer user_num = (Integer)session.getAttribute("user_num");
 		if(user_num == null) {//로그인 되지 않은 경우
@@ -26,6 +29,7 @@ public class ItemWriteAction implements Action{
 		MultipartRequest multi = FileUtil.createFile(request);
 		OItemVO item = new OItemVO();
 		item.setCate_num(Integer.parseInt(multi.getParameter("cate_num")));
+		item.setMem_num(user_num);   //회원번호
 		item.setTitle(multi.getParameter("title"));
 		item.setPrice(Integer.parseInt(multi.getParameter("price")));
 		item.setFilename(multi.getParameter("filename"));
