@@ -270,5 +270,86 @@ public class OItemDAO {
 			return list;
 		}
 */
+	//다원
+	//상품Detail 부분(1) 조회수 증가메서드
+	public void updateReadcount(int item_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+			
+		try {
+			//1. 커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//2. SQL문 작성
+			sql = "UPDATE OITEM SET hit=hit+1 WHERE item_num=?";
+			
+			//3. pstmt객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//4. ?에 데이터바인딩
+			pstmt.setInt(1, item_num);
+			//5. SQL문 실행
+			pstmt.executeUpdate();			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			//자원정리
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}	
+	
+	//다원
+	//상품Detail부분(2) 글상세 메서드
+	public OItemVO getItem(int item_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		OItemVO item = null;
+		String sql = null;
+		
+		try {
+			//1. 커넥션풀로부터 커넥션을 할당
+			conn = DBUtil.getConnection();
+			//2. SQL문 작성			
+			sql = "SELECT * FROM OITEM i JOIN OMEMBER m ON i.mem_num=m.mem_num WHERE i.item_num=?";
+			
+			//3. PreparedStatement객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//4. ?에 데이터바인딩
+			pstmt.setInt(1, item_num);
+			
+			//5. SQL문을 실행해서 결과행을 ResultSet에 담음
+			rs = pstmt.executeQuery();	
+			if(rs.next()) {
+				item = new OItemVO();
+				item.setItem_num(rs.getInt("item_num"));		//상품번호
+				item.setMem_id(rs.getString("mem_id"));			//회원아이디
+				item.setHit(rs.getInt("hit"));					//조회수
+				item.setReg_date(rs.getDate("reg_date"));		//등록일	
+				item.setCate_num(rs.getInt(Integer.parseInt("cate_num")));	//카테고리
+				item.setState(rs.getInt("state"));				//판매상태
+				item.setTitle(rs.getString("title"));			//판매글 제목
+				item.setContent(rs.getString("content"));		//판매글 내용
+				item.setPrice(rs.getInt("price"));				//가격
+				item.setFilename(rs.getString("filename"));		//파일명
+				
+				/*
+				MultipartRequest multi = FileUtil.createFile(request);
+				OItemVO item = new OItemVO();
+				item.setCate_num(Integer.parseInt(multi.getParameter("cate")));
+				item.setMem_num(user_num);   //회원번호
+				item.setTitle(multi.getParameter("title"));
+				item.setPrice(Integer.parseInt(multi.getParameter("price")));
+				item.setFilename(multi.getFilesystemName("filename"));
+				item.setContent(multi.getParameter("content"));
+				*/
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return item;
+	}	
 	
 }
