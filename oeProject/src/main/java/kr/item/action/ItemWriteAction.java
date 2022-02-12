@@ -32,7 +32,7 @@ public class ItemWriteAction implements Action{
 		item.setMem_num(user_num);   //회원번호
 		item.setTitle(multi.getParameter("title"));
 		item.setPrice(Integer.parseInt(multi.getParameter("price")));
-		item.setFilename(multi.getParameter("filename"));
+		item.setFilename(multi.getFilesystemName("filename"));
 		item.setContent(multi.getParameter("content"));
 		
 		OItemDAO dao = OItemDAO.getInstance();
