@@ -1,4 +1,4 @@
-package kr.board.action;
+package kr.item.action;
 
 public class LikeFormAction {
 
