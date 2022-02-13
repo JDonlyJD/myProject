@@ -52,6 +52,111 @@ public class OItemDAO {
 		}
 		
 	}
+	//판매상품 글 수정(update)
+	   public void updateItem(OItemVO item)throws Exception{
+		 Connection conn = null;
+		 PreparedStatement pstmt = null;
+		 String sql = null;
+		 String sub_sql = "";
+		 int cnt = 0;
+		  
+		 try {
+			 //커넥션풀로부터 커넥션 할당
+			 conn = DBUtil.getConnection();
+			 
+			 if(item.getFilename() != null) {
+				 sub_sql = ",filename=?";
+			 }
+			 sql = "UPDATE oitem SET title=?, price=?, modifydate=SYSDATE" 
+				     + sub_sql + " WHERE item_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt = conn.prepareStatement(sql);
+			 pstmt.setString(++cnt, item.getTitle());
+			 pstmt.setString(++cnt, item.getContent());
+			 if(item.getFilename()!=null) {
+				 pstmt.setString(++cnt, item.getFilename());
+			 }
+			 pstmt.setInt(++cnt, item.getItem_num());
+			 
+			 //SQL문 실행
+			 pstmt.executeUpdate();
+			 
+		 }catch(Exception e) {
+			 throw new Exception(e);
+		 }finally {
+			 //자원정리
+			 DBUtil.executeClose(null, pstmt, conn);
+		 }
+	 }	//파일삭제(deletefile)
+		public void deleteFile(int item_num)throws Exception{
+			Connection conn = null;
+			 PreparedStatement pstmt = null;
+			 String sql = null;
+			 
+			try {
+				 //커넥션풀로부터 커넥션 할당
+				conn = DBUtil.getConnection();
+				//SQL문 작성
+				sql = "UPDATE oitem SET filnename ='' WHERE item_num=?";
+				//PreparedStatement 객체 생성
+				pstmt = conn.prepareStatement(sql);
+				//?에 데이터 바인딩
+				
+				pstmt.setInt(1, item_num);
+				
+				//SQL문 실행
+				pstmt.executeUpdate();			 
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				//자원정리
+				DBUtil.executeClose(null, pstmt, conn);
+			}
+		}
+		//판매 상품 삭제(delete)
+		 public void deleteItem(int item_num)throws Exception{
+			 Connection conn = null;
+			 PreparedStatement pstmt = null;
+			 //PreparedStatement pstmt2 = null; (reply)
+			 String sql = null;
+			 
+			try {
+				//커넥션풀로부터 커넥션 할당
+				conn = DBUtil.getConnection();
+				//오토커밋 해제
+				conn.setAutoCommit(false);
+				 
+	/*			//댓글 삭제
+				sql = "DELETE FROM oitem_reply WHERE item_num=?";
+				//PreparedStatement 객체 생성
+				 pstmt = conn.prepareStatement(sql);
+				 //?에 데이터 바인딩
+				 pstmt.setInt(1, item_num); 
+				 //SQL문 실행
+	*/			
+				//부모글 삭제 
+				sql = "DELETE FROM oitem WHERE item_num=?";
+				//PrepardStatement 객체 생성
+				 pstmt = conn.prepareStatement(sql); //댓글 삭제 주석풀면 pstmt2로 변경
+				 //?에 데이터 바인딩
+				 pstmt.setInt(1, item_num);
+				 pstmt.executeUpdate();
+				 
+				 //정상적으로 모든 SQL문을 실행
+				 conn.commit();
+			 }catch(Exception e) {
+				 //SQL문이 하나라도 실패하면
+				 conn.rollback();
+				 throw new Exception(e);
+			 }finally {
+				 //자원정리
+				 DBUtil.executeClose(null, pstmt, conn);
+				 //DBUtil.executeClose(null, pstmt2, conn);
+				 //DBUtil.executeClose(null, pstmt, null);
+			 }
+		 }
 	/*
 	//전체 상품 갯수/검색 상품 갯수
 	public int getItemCount(String keyfield, String keyword, int status)throws Exception{
