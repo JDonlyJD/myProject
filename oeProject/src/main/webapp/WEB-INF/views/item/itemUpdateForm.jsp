@@ -34,8 +34,7 @@ $(function() {
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<h2>게시판 글수정</h2>
-	<form action="itemUpdate.do" method="post" enctype="multipart/form-data" 
-	                                                        id="update_form">
+	<form action="itemUpdate.do" method="post" enctype="multipart/form-data" id="update_form">
 		<input type="hidden" name="item_num" value="${item.item_num}"> 
 		<ul>
 			<li>
@@ -44,23 +43,19 @@ $(function() {
 		</li>
 			<li>
 				<label for="title">판매글 제목</label>
-				<input type="text" name="title" id="title" 
-				                     value="${item.title}" maxlength="50">
+				<input type="text" name="title" id="title" value="${item.title}" maxlength="50">
 			</li>
 			<li>
 				<label for="price">가격</label>
-				<input type="number" name="price" id="price" value="${item.price}" 
-												min="1" max="9999999">				
+				<input type="number" name="price" id="price" value="${item.price}" min="1" max="9999999">				
 			</li>
 			<li>
 				<label for="content">내용</label>
-				<textarea rows="5" cols="30" name="content" 
-				                   id="content">${item.content}</textarea>
+				<textarea rows="5" cols="30" name="content"  id="content">${item.content}</textarea>
 			</li>
 			<li>
 				<label for="filename">판매상품 사진</label>
-				<input type="file" name="filename" id="filename" 
-				                    accept="image/gif,image/png,image/jpeg">
+				<input type="file" name="filename" id="filename" accept="image/gif,image/png,image/jpeg">
 				<c:if test="${!empty item.filename}">
 				<br>
 				<span id="file_detail">
@@ -68,37 +63,38 @@ $(function() {
 					다시 파일을 업로드하면 기존 파일은 삭제됩니다.
 					<input type="button" value="파일삭제" id="file_del">
 				</span>
-				<script type="text/javascript">
-					$(function(){
-						$('#file_del').click(function(){
-							let choice = confirm('삭제하시겠습니까?');
-							if(choice){
-								$.ajax({
-									url:'itemDeleteFile.do',
-									type:'post',
-									data:{item_num:${item.item_num}},
-									dataType:'json',
-									cache:false,
-									timeout:30000,
-									success:function(param){
-										if(param.result == 'logout'){
-											alert('로그인 후 사용하세요!');
-										}else if(param.result == 'success'){
-											$('#file_detail').hide();
-										}else if(param.result == 'wrongAccess'){
-											alert('잘못된 접속입니다.');
-										}else{
-											alert('파일 삭제 오류 발생');
-										}
-									},
-									error:function(){
-										alert('네트워크 오류 발생!');
-									}
-								});
-							}
-						});
-					});
-				</script>
+				
+<script type="text/javascript">
+	$(function(){
+		$('#file_del').click(function(){
+			let choice = confirm('삭제하시겠습니까?');
+			if(choice){
+				$.ajax({
+					url:'itemDeleteFile.do',
+					type:'post',
+					data:{item_num:${item.item_num}},
+					dataType:'json',
+					cache:false,
+					timeout:30000,
+					success:function(param){
+						if(param.result == 'logout'){
+							alert('로그인 후 사용하세요!');
+						}else if(param.result == 'success'){
+							$('#file_detail').hide();
+						}else if(param.result == 'wrongAccess'){
+							alert('잘못된 접속입니다.');
+						}else{
+							alert('파일 삭제 오류 발생');
+						}
+					},
+					error:function(){
+						alert('네트워크 오류 발생!');
+					}
+				});
+			}
+		});
+	});
+</script>
 				</c:if>                    
 			</li>
 		</ul>   

@@ -67,7 +67,7 @@ public class OItemDAO {
 			 if(item.getFilename() != null) {
 				 sub_sql = ",filename=?";
 			 }
-			 sql = "UPDATE oitem SET cate_num=?, title=?, price=?, content=?,modify_date=SYSDATE" 
+			 sql = "UPDATE oitem SET cate_num=?, title=?, price=?, content=?, modify_date=SYSDATE" 
 				     + sub_sql + " WHERE item_num=?";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
@@ -91,7 +91,9 @@ public class OItemDAO {
 			 //자원정리
 			 DBUtil.executeClose(null, pstmt, conn);
 		 }
-	 }	//파일삭제(deletefile)
+	 }	
+	   
+	   //파일삭제(deletefile)
 		public void deleteFile(int item_num)throws Exception{
 			Connection conn = null;
 			 PreparedStatement pstmt = null;
@@ -101,7 +103,7 @@ public class OItemDAO {
 				 //커넥션풀로부터 커넥션 할당
 				conn = DBUtil.getConnection();
 				//SQL문 작성
-				sql = "UPDATE oitem SET filnename ='' WHERE item_num=?";
+				sql = "UPDATE oitem SET filename ='' WHERE item_num=?";
 				//PreparedStatement 객체 생성
 				pstmt = conn.prepareStatement(sql);
 				//?에 데이터 바인딩
@@ -117,6 +119,7 @@ public class OItemDAO {
 				DBUtil.executeClose(null, pstmt, conn);
 			}
 		}
+		
 		//판매 상품 삭제(delete)
 		 public void deleteItem(int item_num)throws Exception{
 			 Connection conn = null;

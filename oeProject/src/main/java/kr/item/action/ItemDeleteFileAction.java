@@ -40,7 +40,7 @@ public class ItemDeleteFileAction implements Action{
 				
 				//로그인한 회원번호와 작성자 회원번호가 불일치 
 				if(user_num!=db_item.getMem_num()) {
-					mapAjax.put("result", "wrongAcccess");
+					mapAjax.put("result", "wrongAccess");
 				}else {
 					//로그인한 회원번호와 작성자 회원번호가 일치 = > 삭제
 					dao.deleteFile(item_num);
