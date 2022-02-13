@@ -25,7 +25,7 @@ public class ItemUpdateFormAction implements Action{
 		OItemDAO dao = OItemDAO.getInstance();
 		OItemVO db_item = dao.getItem(item_num);
 		
-		if(user_num == db_item.getMem_num()) {//(로그인한 회원번호와 작성자 회원번호가 불일치하는 경우)
+		if(user_num == null) {
 			return "/WEB-INF/views/common/notice.jsp";
 		}
 		

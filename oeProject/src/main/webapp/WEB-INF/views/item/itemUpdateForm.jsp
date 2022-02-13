@@ -8,6 +8,27 @@
 <title>판매 글수정</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+$(function() {
+	$('#update_form').submit(function(){
+		if($('#title').val().trim()==''){
+			alert('판매글 제목을 입력하세요.');
+			$('#title').val('').focus();
+			return false;
+		}
+		if($('#price').val()==''){
+			alert('물품 가격을 입력하세요.');
+			$('#price').val('').focus();
+			return false;
+		}
+		if($('#content').val().trim()==''){
+			alert('판매 설명을 입력하세요.');
+			$('#content').val('').focus();
+			return false;
+		}
+	});
+});
+</script>
 </head>
 <body>
 <div class="page-main">
@@ -47,37 +68,37 @@
 					다시 파일을 업로드하면 기존 파일은 삭제됩니다.
 					<input type="button" value="파일삭제" id="file_del">
 				</span>
-<script type="text/javascript">
-	$(function(){
-		$('#file_del').click(function(){
-			let choice = confirm('삭제하시겠습니까?');
-			if(choice){
-				$.ajax({
-					url:'itemDeleteFile.do',
-					type:'post',
-					data:{item_num:${item.item_num}},
-					dataType:'json',
-					cache:false,
-					timeout:30000,
-					success:function(param){
-						if(param.result == 'logout'){
-							alert('로그인 후 사용하세요!');
-						}else if(param.result == 'success'){
-							$('#file_detail').hide();
-						}else if(param.result == 'wrongAccess'){
-							alert('잘못된 접속입니다.');
-						}else{
-							alert('파일 삭제 오류 발생');
-						}
-					},
-					error:function(){
-						alert('네트워크 오류 발생!');
-					}
-				});
-			}
-		});
-	});
-</script>
+				<script type="text/javascript">
+					$(function(){
+						$('#file_del').click(function(){
+							let choice = confirm('삭제하시겠습니까?');
+							if(choice){
+								$.ajax({
+									url:'itemDeleteFile.do',
+									type:'post',
+									data:{item_num:${item.item_num}},
+									dataType:'json',
+									cache:false,
+									timeout:30000,
+									success:function(param){
+										if(param.result == 'logout'){
+											alert('로그인 후 사용하세요!');
+										}else if(param.result == 'success'){
+											$('#file_detail').hide();
+										}else if(param.result == 'wrongAccess'){
+											alert('잘못된 접속입니다.');
+										}else{
+											alert('파일 삭제 오류 발생');
+										}
+									},
+									error:function(){
+										alert('네트워크 오류 발생!');
+									}
+								});
+							}
+						});
+					});
+				</script>
 				</c:if>                    
 			</li>
 		</ul>   
@@ -86,6 +107,7 @@
 			<input type="button" value="목록" onclick="location.href='saleList.do'">
 		</div>                                                    
 	</form>
+	
 </div>
 </body>
 </html>
