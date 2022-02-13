@@ -431,7 +431,7 @@ public class OItemDAO {
 				item.setMem_id(rs.getString("mem_id"));			//회원아이디
 				item.setHit(rs.getInt("hit"));					//조회수
 				item.setReg_date(rs.getDate("reg_date"));		//등록일	
-				item.setCate_num(rs.getInt(Integer.parseInt("cate_num")));	//카테고리
+				item.setCate_num(rs.getInt("cate_num"));		//카테고리
 				item.setState(rs.getInt("state"));				//판매상태
 				item.setTitle(rs.getString("title"));			//판매글 제목
 				item.setContent(rs.getString("content"));		//판매글 내용

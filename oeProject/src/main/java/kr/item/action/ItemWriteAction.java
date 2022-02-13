@@ -28,7 +28,7 @@ public class ItemWriteAction implements Action{
 		//로그인이 된경우
 		MultipartRequest multi = FileUtil.createFile(request);
 		OItemVO item = new OItemVO();
-		item.setCate_num(Integer.parseInt(multi.getParameter("cate")));
+		item.setCate_num(Integer.parseInt(multi.getParameter("cate_num")));
 		item.setMem_num(user_num);   //회원번호
 		item.setTitle(multi.getParameter("title"));
 		item.setPrice(Integer.parseInt(multi.getParameter("price")));

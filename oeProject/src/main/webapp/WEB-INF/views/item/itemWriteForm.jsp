@@ -11,10 +11,11 @@
 <script type="text/javascript">
 	$(function(){
 		 $('#write_form').submit(function(){
-			 /*if($('input[type=radio]:checked').length < 1){
-				alert('카테고리를 선택하세요.');
+
+			if($('#cate_num').val()==''){
+				alert('카테고리를 지정하세요!');
 				return false;
-			} */ 
+			}
 			
 			if($('#title').val().trim()==''){
 				alert('판매글 제목을 입력하세요.');
@@ -129,7 +130,10 @@
 	<form action="itemWrite.do" method="post" enctype="multipart/form-data" id="write_form">
 	<!-- <input type="hidden" name="mem_num" value="${member.mem_num}">  -->
 	<ul>
-		<!-- 카테고리 추가해야함 cate --> 
+		<li>
+			<label>카테고리 여부</label>
+			<input type="number" name="cate_num" id="cate_num">
+		</li>
 		<li>
 			<label for="title">판매글 제목</label>
 			<input type="text" name="title" id="title">				

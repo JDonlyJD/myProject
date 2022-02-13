@@ -18,7 +18,7 @@
 		<li>판매자 : ${item.mem_id}</li>
 		<li>판매상황 : ${item.state}</li>
 		<li>조회수 : ${item.hit}</li>
-		<li>카테고리 : ${item.cate}</li>
+		<li>카테고리 : ${item.cate_num}</li>
 		<li>가격 : ${item.price}</li>
 	</ul>
 	<hr size="1" noshade width="100%">
