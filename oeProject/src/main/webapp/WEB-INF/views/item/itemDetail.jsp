@@ -15,8 +15,13 @@
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<h2>판매상품 글상세 </h2>
 	<ul>
+		<li>제목 : ${item.title}</li>
 		<li>판매자 : ${item.mem_id}</li>
-		<li>판매상황 : ${item.state}</li>
+		<li>
+			<c:if test="${item.state == 0 }">판매상황 : 판매중</c:if>
+			<c:if test="${item.state == 1 }">판매상황 : 예약중</c:if>
+			<c:if test="${item.state == 2 }">판매상황 : 판매완료</c:if>
+		</li>
 		<li>조회수 : ${item.hit}</li>
 		<li>카테고리 : ${item.cate_num}</li>
 		<li>가격 : ${item.price}</li>

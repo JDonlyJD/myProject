@@ -34,12 +34,13 @@ public class ItemUpdateAction implements Action{
       }
       //로그인한 회원번호와 작성자 회원번호가 일치
       OItemVO item = new OItemVO();
-      item.setCate_num(Integer.parseInt(multi.getParameter("cate")));
+      
       item.setMem_num(user_num);
+      item.setCate_num(Integer.parseInt(multi.getParameter("cate")));
       item.setTitle(multi.getParameter("title"));
       item.setPrice(Integer.parseInt(multi.getParameter("price")));
-      item.setFilename(multi.getFilesystemName("filename"));
       item.setContent(multi.getParameter("content"));
+      item.setFilename(multi.getFilesystemName("filename"));
       
       //판매 상품 수정
       dao.updateItem(item);

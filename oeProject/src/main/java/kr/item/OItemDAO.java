@@ -67,18 +67,20 @@ public class OItemDAO {
 			 if(item.getFilename() != null) {
 				 sub_sql = ",filename=?";
 			 }
-			 sql = "UPDATE oitem SET title=?, price=?, modifydate=SYSDATE" 
+			 sql = "UPDATE oitem SET cate_num=?, title=?, price=?, content=?,modify_date=SYSDATE" 
 				     + sub_sql + " WHERE item_num=?";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
 			pstmt = conn.prepareStatement(sql);
-			 pstmt.setString(++cnt, item.getTitle());
-			 pstmt.setString(++cnt, item.getContent());
+			pstmt.setInt(++cnt, item.getCate_num());
+			pstmt.setString(++cnt, item.getTitle());
+			pstmt.setInt(++cnt, item.getPrice());
+			pstmt.setString(++cnt, item.getContent());
 			 if(item.getFilename()!=null) {
-				 pstmt.setString(++cnt, item.getFilename());
+				pstmt.setString(++cnt, item.getFilename());
 			 }
-			 pstmt.setInt(++cnt, item.getItem_num());
+			pstmt.setInt(++cnt, item.getItem_num());
 			 
 			 //SQL문 실행
 			 pstmt.executeUpdate();

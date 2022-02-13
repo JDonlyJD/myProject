@@ -19,7 +19,7 @@
 		<ul>
 			<li>
 			<label for="cate">카테고리</label>
-			<input type="number" name="cate" id="cate" min="1" max="9999999">				
+			<input type="number" name="cate" id="cate" value="${item.cate_num}" min="1" max="9999999">				
 		</li>
 			<li>
 				<label for="title">판매글 제목</label>
@@ -28,7 +28,7 @@
 			</li>
 			<li>
 				<label for="price">가격</label>
-				<input type="number" name="price" id="price" value="${item.title}" 
+				<input type="number" name="price" id="price" value="${item.price}" 
 												min="1" max="9999999">				
 			</li>
 			<li>
@@ -83,7 +83,7 @@
 		</ul>   
 		<div class="align-center">
 			<input type="submit" value="수정">
-			<input type="button" value="목록" onclick="location.href='salelist.do'">
+			<input type="button" value="목록" onclick="location.href='saleList.do'">
 		</div>                                                    
 	</form>
 </div>

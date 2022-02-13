@@ -14,18 +14,22 @@ public class ItemUpdateFormAction implements Action{
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
 		Integer user_num = (Integer)session.getAttribute("user_num");
-		if(user_num==null) {//로그인 되지 않은 경우
+		
+		//로그인 되지 않은 경우
+		if(user_num==null) {
 			return "redirect:/member/loginForm.do";
 		}
 		
+		//로그인은 되어있는데 작성자가 아닐때 (잘못된 접속)
 		int item_num = Integer.parseInt(request.getParameter("item_num"));
 		OItemDAO dao = OItemDAO.getInstance();
 		OItemVO db_item = dao.getItem(item_num);
-		if(user_num == null) {
+		
+		if(user_num == db_item.getMem_num()) {//(로그인한 회원번호와 작성자 회원번호가 불일치하는 경우)
 			return "/WEB-INF/views/common/notice.jsp";
 		}
 		
-		////로그인이 되어있고 로그인한 회원번호와 작성자 회원번호 일치
+		//로그인이 되어있고 로그인한 회원번호와 작성자 회원번호 일치
 		request.setAttribute("item", db_item);
 		
 		
