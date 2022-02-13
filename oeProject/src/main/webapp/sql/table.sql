@@ -5,7 +5,7 @@ create table omember(
    mem_auth number(1) default 1 not null, /*회원등급:0 정지회원, 1:일반회원, 2.vip 3:관리자*/
 );
 
-create table omember_detail( /*상세정보*/
+create table omember_detail( /*상세정보*/ 
    mem_num number not null,
    mem_nick varchar2(18) not null,
    mem_pw varchar2(18) not null,
