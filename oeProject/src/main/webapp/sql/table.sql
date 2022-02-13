@@ -5,7 +5,7 @@ create table omember(
    mem_auth number(1) default 1 not null, /*회원등급:0 정지회원, 1:일반회원, 2.vip 3:관리자*/
 );
 
-create table omember_detail( /*상세정보*/ 
+create table omember_detail( /*상세정보*/
    mem_num number not null,
    mem_nick varchar2(18) not null,
    mem_pw varchar2(18) not null,
@@ -29,6 +29,7 @@ CREATE TABLE oitem(
    item_num number not null, --한글기준50자
    mem_num number not null,
    cate_num number not null,
+   --cate_num number,(ALTER TABLE oitem MODIFY cate_num NOT NULL;)
    title varchar2(90) not null,
    price number(7) not null,
    state number(12) default 0 not null, --판매상태(0판매중/1예약중/2판매완료)
@@ -84,12 +85,13 @@ create sequence oreply_seq;
 
 
 
-/*카테고리 테이블 영역*/
+/*카테고리 테이블 영역 */
 create table ocategory(
    cate_num number not null primary key,
    cate_name number(30) not null,
    cate_status number(1)
 );
+
 
 /*질문 문의(ask) 테이블 영역*/
 CREATE TABLE oask(
