@@ -39,7 +39,7 @@
 		
 		<%--로그인한 회원번호와 작성자 회원번호가 일치해야 수정, 삭제 가능 --%>	
 		<c:if test="${user_num == item.mem_num }">	
-			<input type="button" value="수정" onclick="location.href='updateForm.do?item_num=${item.item_num}'">
+			<input type="button" value="수정" onclick="location.href='itemUpdateForm.do?item_num=${item.item_num}'">
 			<input type="button" value="삭제" id="delete_btn">		<!-- 수정,삭제페이지 안만들었음 -->
 			<script type="text/javascript">
 				let delete_btn = document.getElementById('delete_btn');
@@ -47,14 +47,14 @@
 				delete_btn.onclick=function(){
 					let choice = confirm('삭제하시겠습니까?');
 					if(choice){
-						location.replace('delete.do?item_num=${item.item_num}'); 
+						location.replace('itemDelete.do?item_num=${item.item_num}'); 
 							//히스토리를 지우고(전페이지로 back불가) + delete로 이동하고 싶으면 location.replace
 							//히스토리를 남기면서(back가능) 이동하고 싶으면 location.href를 쓰면됨
 					}
 				};
 			</script>	
 		</c:if>	
-		<input type="button" value="목록" onclick="location.href='itemlist.do'">	<!-- 목록? -->
+		<input type="button" value="목록" onclick="location.href='salelist.do'">	<!-- 목록? -->
 	</div>
 	</div>
 	</body>

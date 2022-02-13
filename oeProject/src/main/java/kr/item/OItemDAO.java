@@ -427,6 +427,7 @@ public class OItemDAO {
 			rs = pstmt.executeQuery();	
 			if(rs.next()) {
 				item = new OItemVO();
+				item.setMem_num(rs.getInt("mem_num"));//넣었음!!!!!!!!
 				item.setItem_num(rs.getInt("item_num"));		//상품번호
 				item.setMem_id(rs.getString("mem_id"));			//회원아이디
 				item.setHit(rs.getInt("hit"));					//조회수
