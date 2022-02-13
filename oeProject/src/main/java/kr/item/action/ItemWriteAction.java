@@ -11,7 +11,7 @@ import kr.item.OItemDAO;
 import kr.item.OItemVO;
 import kr.util.FileUtil;
 
-public class ItemWriteAction implements Action{
+public class ItemWriteAction implements Action{  
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {

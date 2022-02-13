@@ -13,7 +13,7 @@
 <body>
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<h2>판매상품 글상세</h2>
+	<h2>판매상품 글상세 </h2> 
 	<ul>
 		<li>판매자 : ${item.mem_id}</li>
 		<li>판매상황 : ${item.state}</li>

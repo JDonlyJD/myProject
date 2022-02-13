@@ -404,7 +404,7 @@ public class OItemDAO {
 	}	
 	
 	//다원
-	//상품Detail부분(2) 글상세 메서드
+	//상품Detail부분(2) 글상세 메서드 
 	public OItemVO getItem(int item_num)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
