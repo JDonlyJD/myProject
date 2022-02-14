@@ -45,7 +45,7 @@
 		<%--로그인한 회원번호와 작성자 회원번호가 일치해야 수정, 삭제 가능 --%>	
 		<c:if test="${user_num == item.mem_num }">	
 			<input type="button" value="수정" onclick="location.href='itemUpdateForm.do?item_num=${item.item_num}'">
-			<input type="button" value="삭제" id="delete_btn">		<!-- 수정,삭제페이지 안만들었음 -->
+			<input type="button" value="삭제" id="delete_btn" onclick="location.href='itemDelete.do?item_num=${item.item_num}'">		
 			<script type="text/javascript">
 				let delete_btn = document.getElementById('delete_btn');
 				//이벤트 연결
