@@ -464,6 +464,8 @@ public class OItemDAO {
 		return item;
 	}	
 	
+//------------------댓글(Reply)_DAO------------------
+	
 	//[ 댓글메서드1. 댓글등록 : insertReplyItem() ]
 	public void insertReplyItem(OItemReplyVO itemReply)throws Exception{
 		Connection conn = null;
@@ -562,12 +564,12 @@ public class OItemDAO {
 				OItemReplyVO reply = new OItemReplyVO();
 				reply.setRe_num(rs.getInt("re_num"));
 				
-				//날짜 -> 1분전, 1시간전, 1일전 형식의 문자열로 변환
+				//날짜 -> 1분전, 1시간전, 1일전 형식의 문자열로 변환 (DurationFromNow에는 null에대한 처리없음)
 				reply.setRe_date(DurationFromNow.getTimeDiffLabel(rs.getString("re_date")));
 				if(rs.getString("re_modifydate")!=null) {	//수정날짜가 null이 아닐경우 변환작업 시작
 					reply.setRe_modifydate(DurationFromNow.getTimeDiffLabel(rs.getString("re_modifydate")));
 				}
-				reply.setRe_content(StringUtil.useBrNoHtml(rs.getString("re_content")));	//댓글내용에 html태그인정하지 않음
+				reply.setRe_content(StringUtil.useBrNoHtml(rs.getString("re_content")));	//댓글내용에 줄바꿈은 인정하면서 html태그 불인정
 				reply.setItem_num(rs.getInt("item_num"));
 				reply.setMem_num(rs.getInt("mem_num"));
 				reply.setId(rs.getString("mem_id"));
@@ -607,7 +609,7 @@ public class OItemDAO {
 				reply.setRe_num(rs.getInt("re_num"));
 				reply.setItem_num(rs.getInt("item_num"));
 				reply.setMem_num(rs.getInt("mem_num"));
-				reply.setId(rs.getString("mem_id"));
+				reply.setId(rs.getString("mem_id")); //oitem_reply테이블에는 id없는데 VO에 추가했음
 			}
 		}catch(Exception e) {
 			throw new Exception(e);
@@ -617,10 +619,58 @@ public class OItemDAO {
 		}
 		return reply;
 	}	
-	//[댓글 메서드5. 댓글 수정 : updateReplyItem() ]
+	//[댓글 메서드5. 댓글 수정 : updateReplyItem() ] by.민정
+	public void updateReplyItem(OItemReplyVO reply)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			//커넥션풀로 부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//SQL문작성
+			sql = "UPDATE zboard_reply SET re_content=?, re_modifydate=SYSDATE, re_ip=? "
+				+ "WHERE re_num=?";
+			//preparedStatement객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setString(1,reply.getRe_content());
+			pstmt.setString(2, reply.getRe_ip());
+			pstmt.setInt(3, reply.getRe_num());
+			//SQL문 실행
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			//자원정리
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}	
 
 	//[댓글 메서드6. 댓글 삭제 : deleteReplyItem() ]
-	
+	public void deleteReplyItem(int re_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			//커넥션 풀로 부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//SQL문작성
+			sql = "DELETE FROM oitem_reply WHERE re_num=?";
+			//PreparedStatement객체 생성
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, re_num);
+			//SQL문 실행
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}	
 	
 	
 	
