@@ -28,6 +28,34 @@ $(function() {
 		}
 	});
 });
+
+$(function(){
+    let photo_path = $('.my-file').attr('src');//처음 화면에 보여지는 이미지 읽기(기본값 셋팅)
+    let my_photo;
+       
+    //***이벤트3 )이미지 선택 및 이미지 미리보기
+    $('#filename').change(function(){
+       my_photo = this.files[0];
+       if(!my_photo){
+          $('.my-file').attr('src',photo_path);//처음 원본 이미지로 설정
+          return;
+       }
+       
+       //용량체크
+       if(my_photo.size > 1024*1024){
+          alert('1MB까지만 업로드 가능!');
+          $(this).val(''); //선택하지 못하게 막기
+          return;
+       }
+       
+       var reader = new FileReader(); //파일객체
+       reader.readAsDataURL(my_photo);
+       
+       reader.onload=function(){
+          $('.my-file').attr('src',reader.result);
+       };
+    });//end of change
+ });
 </script>
 </head>
 <body>
@@ -51,12 +79,23 @@ $(function() {
 			</li>
 			<li>
 				<label for="content">내용</label>
-				<textarea rows="5" cols="30" name="content"  id="content">${item.content}</textarea>
+				<textarea rows="5" cols="30" name="content" id="content">${item.content}</textarea>
 			</li>
 			<li>
 				<label for="filename">판매상품 사진</label>
 				<input type="file" name="filename" id="filename" accept="image/gif,image/png,image/jpeg">
+				
+				<%-- 사진 미리보기 --%>
+      		<li>
+         		<c:if test="${empty item.filename}">
+         		<img src="${pageContext.request.contextPath}/images/face.png" 
+               		width="200" height="200" class="my-file">
+         		</c:if>
+     
+      		</li>
 				<c:if test="${!empty item.filename}">
+				<img src="${pageContext.request.contextPath}/upload/${item.filename}"
+                           		width="200" height="200" class="my-file">
 				<br>
 				<span id="file_detail">
 					(${item.filename})파일이 등록되어 있습니다. 

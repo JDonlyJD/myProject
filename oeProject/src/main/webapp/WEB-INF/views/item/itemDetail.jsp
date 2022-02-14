@@ -9,6 +9,35 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/layout.css"> <%--css스타일 경로--%>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/board-reply.js"></script>
+<script type="text/javascript">
+	$(function(){
+   	 let photo_path = $('.my-file').attr('src');//처음 화면에 보여지는 이미지 읽기(기본값 셋팅)
+    	let my_photo;
+       
+    	//***이벤트3 )이미지 선택 및 이미지 미리보기
+   		 $('#filename').change(function(){
+      	 my_photo = this.files[0];
+      	 if(!my_photo){
+      	    $('.my-file').attr('src',photo_path);//처음 원본 이미지로 설정
+        	  return;
+         }
+     	  
+       //용량체크
+        if(my_photo.size > 1024*1024){
+           alert('1MB까지만 업로드 가능!');
+           $(this).val(''); //선택하지 못하게 막기
+           return;
+        }
+       
+        var reader = new FileReader(); //파일객체
+        reader.readAsDataURL(my_photo);
+       
+        reader.onload=function(){
+           $('.my-file').attr('src',reader.result);
+       	};
+   	 });//end of change
+ 	});
+</script>
 </head>
 <body>
 <div class="page-main">
@@ -29,7 +58,20 @@
 	<hr size="1" noshade width="100%">
 	<c:if test="${!empty item.filename}">
 		<div class="align-center">
-			<img src="${pageContext.request.contextPath}/upload/${item.filename}" class="detail-img">
+		<ul>
+			<%-- 사진 미리보기 --%>
+      <li>
+         <c:if test="${empty item.filename}">
+         <img src="${pageContext.request.contextPath}/images/face.png" 
+               width="200" height="200" class="my-file">
+         </c:if>
+         <c:if test="${!empty item.filename}">
+         <img src="${pageContext.request.contextPath}/upload/${item.filename}"
+                           width="200" height="200" class="my-file">
+         </c:if>
+      </li>
+		</ul>
+			<%-- <img src="${pageContext.request.contextPath}/upload/${item.filename}" class="detail-img"> --%>
 		</div>
 	</c:if>
 	<p>
