@@ -8,7 +8,7 @@
 <title>판매상품 글상세</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/layout.css"> <%--css스타일 경로--%>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/board-reply.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/item-reply.js"></script>
 <script type="text/javascript">
 	$(function(){
    	 let photo_path = $('.my-file').attr('src');//처음 화면에 보여지는 이미지 읽기(기본값 셋팅)
@@ -103,6 +103,41 @@
 		</c:if>	
 		<input type="button" value="목록" onclick="location.href='saleList.do'">	
 	</div>
+	
+	<!-- 댓글시작 -->
+	<div id="reply_div">
+		<span class="re_title">댓글 달기</span>
+		<form id="re_form">	<!-- ajax방식이기때문에 action이 없다. -->	<!-- value는 부모글번호  -->
+			<input type="hidden" name="item_num" value="${item.item_num }" id="item_num">
+			
+			<textarea rows="3" cols="50" name="re_content" id="re_content" class="rep-content"
+			<c:if test="${empty user_num}">disabled="disabled"</c:if>
+			><c:if test="${empty user_num }">로그인해야 작성할 수 있습니다.</c:if></textarea>
+			<!-- textarea태그 사이의 공백은 모두 데이터로 인식하기때문에, 공백을 넣으면안됨 -->
+			
+			
+			<c:if test="${!empty user_num }">
+				<div id="re_first">
+					<span class="letter-count">300/300</span>
+				</div>
+				<div id="re_second" class="align-right">
+					<input type="submit" value="전송">
+				</div>
+			</c:if>
+		</form>
+	</div>
+			<!-- 댓글목록 출력시작 -->
+			<div id="output"></div>
+			<div class="paging-button" style="display:none;">
+				<input type="button" value="다음댓글 보기">
+			</div>
+			<div id="loading" style="display:none;">
+				<img src="${pageContext.request.contextPath}/images/ajax-loader.gif">
+			</div>
+			<!-- 댓글목록 출력 끝  -->
+		
+	<!-- 댓글 끝 -->	
+	
 	</div>
 	</body>
 </html>

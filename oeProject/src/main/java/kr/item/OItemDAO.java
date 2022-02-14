@@ -8,6 +8,7 @@ import java.util.List;
 
 import kr.item.OItemVO;
 import kr.util.DBUtil;
+import kr.util.DurationFromNow;
 import kr.util.StringUtil;
 
 public class OItemDAO { 
@@ -463,4 +464,165 @@ public class OItemDAO {
 		return item;
 	}	
 	
+	//[ 댓글메서드1. 댓글등록 : insertReplyItem() ]
+	public void insertReplyItem(OItemReplyVO itemReply)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			//1. 커넥션풀로부터 커넥션을 할당
+			conn = DBUtil.getConnection();
+			
+			//2. sql문 작성			
+			sql = "INSERT INTO oitem_reply(re_num, item_num, mem_num,re_content,re_ip)"
+					+ "VALUES(oreply_seq.nextval, ?,?,?,?)";
+			//3. pstmt객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//4. ?에 데이터바인딩
+			pstmt.setInt(1, itemReply.getItem_num());
+			pstmt.setInt(2, itemReply.getMem_num());
+			pstmt.setString(3, itemReply.getRe_content());
+			pstmt.setString(4, itemReply.getRe_ip());
+
+			//5. sql문 실행
+			pstmt.executeUpdate();
+
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			//자원정리
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+	
+	//[ 댓글 메서드2. 댓글 갯수 : getReplyItemCount() ]
+	public int getReplyItemCount(int item_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int count = 0;
+		
+		try {
+			//1. ConnectionPool로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//2. SQL문 작성
+			sql = "SELECT COUNT(*) FROM OITEM_REPLY i JOIN OMEMBER o USING(mem_num)"
+					+ " WHERE i.item_num=?";
+			//3. PreparedStatement객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//4. ?에 데이터바인딩
+			pstmt.setInt(1, item_num);
+			//5. sql문을 실행해서 결과행을 ResultSet에 담음
+			rs = pstmt.executeQuery();
+
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			//자원정리
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return count;
+	}	
+	
+	//[ 댓글 메서드3. 댓글 목록 : getListReplyItem() ]
+	public List<OItemReplyVO> getListReplyItem(int startRow, int endRow, int item_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<OItemReplyVO> list = null;
+		String sql = null;
+		
+		try {
+			//1. ConnectionPool로부터 커넥션할당
+			conn = DBUtil.getConnection();
+			//2. sql문 작성
+			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
+					+ "(SELECT r.re_num, TO_CHAR(r.re_date,'YYYY-MM-DD HH24:MI:SS') re_date,"
+					+ "TO_CHAR(r.re_modifydate,'YYYY-MM-DD HH24:MI:SS') re_modifydate,"
+					+ "r.re_content,r.item_num,mem_num,m.mem_id FROM oitem_reply r "	
+										//mem_num은 USING을 쓸거기때문에 테이블알리아스(b.mem_num)을 쓰면 안됨 / ON을 쓸 때는 알리아스 넣어줘야함
+					+ "JOIN omember m USING(mem_num) WHERE r.item_num=? "
+					+ "ORDER BY r.re_num DESC)a) "
+					+ "WHERE rnum>=? AND rnum<= ?";
+			//3. psmt객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//4. ?에 데이터바인딩
+			pstmt.setInt(1, item_num);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			//5. sql문장을 수행해서 결과행들을 ResultSet에 담음
+			rs = pstmt.executeQuery();
+			list = new ArrayList<OItemReplyVO>();
+			while(rs.next()) {
+				OItemReplyVO reply = new OItemReplyVO();
+				reply.setRe_num(rs.getInt("re_num"));
+				
+				//날짜 -> 1분전, 1시간전, 1일전 형식의 문자열로 변환
+				reply.setRe_date(DurationFromNow.getTimeDiffLabel(rs.getString("re_date")));
+				if(rs.getString("re_modifydate")!=null) {	//수정날짜가 null이 아닐경우 변환작업 시작
+					reply.setRe_modifydate(DurationFromNow.getTimeDiffLabel(rs.getString("re_modifydate")));
+				}
+				reply.setRe_content(StringUtil.useBrNoHtml(rs.getString("re_content")));	//댓글내용에 html태그인정하지 않음
+				reply.setItem_num(rs.getInt("item_num"));
+				reply.setMem_num(rs.getInt("mem_num"));
+				reply.setId(rs.getString("mem_id"));
+				
+				list.add(reply);
+			}			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			//자원정리
+			DBUtil.executeClose(rs, pstmt, conn);
+		}		
+		return list;
+	}	
+	
+	//[댓글 메서드4. 댓글 상세 : getReplyItem() ]
+	public OItemReplyVO getReplyItem(int re_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		OItemReplyVO reply = null;
+		String sql = null;
+		
+		try {
+			//1. 커넥션풀에서 Connection 할당
+			conn = DBUtil.getConnection();
+			//2. SQL문 작성
+			sql = "SELECT * FROM OItem_reply r JOIN OMEMBER USING(mem_num) WHERE re_num=?";
+			//3. pstmt객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//4. ?에 데이터 바인딩
+			pstmt.setInt(1, re_num);
+			//5. sql문을 실행해서 결과해서 ResultSet에 데이터 담기
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				reply = new OItemReplyVO();
+				reply.setRe_num(rs.getInt("re_num"));
+				reply.setItem_num(rs.getInt("item_num"));
+				reply.setMem_num(rs.getInt("mem_num"));
+				reply.setId(rs.getString("mem_id"));
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			//자원정리
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return reply;
+	}	
+	//[댓글 메서드5. 댓글 수정 : updateReplyItem() ]
+
+	//[댓글 메서드6. 댓글 삭제 : deleteReplyItem() ]
+	
+	
+	
+	
 }
+

@@ -18,6 +18,7 @@ public class ItemDetailAction implements Action{
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 
+		/* 로그인하지 않아도 판매상품이 보여야한다.
 		//1. 로그인 확인
 		HttpSession session = request.getSession();
 		Integer user_num = (Integer)session.getAttribute("user_num");
@@ -25,6 +26,7 @@ public class ItemDetailAction implements Action{
 			if(user_num == null) {
 				return "redirect:/member/loginForm.do";
 			}
+		*/
 			
 		request.setCharacterEncoding("utf-8");
 		
