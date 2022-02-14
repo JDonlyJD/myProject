@@ -59,7 +59,7 @@
 				};
 			</script>	
 		</c:if>	
-		<input type="button" value="목록" onclick="location.href='salelist.do'">	<!-- 목록? -->
+		<input type="button" value="목록" onclick="location.href='saleList.do'">	
 	</div>
 	</div>
 	</body>
