@@ -69,7 +69,7 @@ CREATE TABLE oitem_favorite(
    constraint oitem_favorite_fk2 foreign key(mem_num) references omember(mem_num)
 );
 
-/*상품 댓글*/
+/*상품 댓글
 create table oitem_reply(
    re_num number not null,
    item_num number not null,
@@ -80,6 +80,19 @@ create table oitem_reply(
    constraint oitem_reply_pk primary key(re_num),
    constraint oitem_reply_fk foreign key(item_num) references oitem(item_num),
    constraint oitem_reply_fk2 foreign key(mem_num) references omember(mem_num)
+);*/
+
+create table oitem_reply(
+	re_num number not null,
+   	item_num number not null,
+    mem_num number not null,
+    re_content varchar2(900) not null,
+    re_date date default sysdate not null,
+    re_modifydate date,
+    re_ip varchar2(40) not null,
+    constraint oitem_reply_pk primary key(re_num),
+    constraint oitem_reply_fk foreign key(item_num) references oitem(item_num),
+    constraint oitem_reply_fk2 foreign key(mem_num) references omember(mem_num)
 );
 create sequence oreply_seq;
 
