@@ -312,7 +312,7 @@
 
 
 	//** 댓글 삭제 : 댓글이 생성되어야 삭제버튼이 보임 = 미래의 태그 => document.on : $(document).on('click','.delete-btn',function(){}
-	/*
+	
 	$(document).on('click','.delete-btn',function(){
 		//댓글 번호
 		let re_num = $(this).attr('data-renum');
@@ -341,7 +341,7 @@
 			}
 		});
 	});
-	*/
+	
 	
 	//2. ** 초기 데이터(목록) 호출
 	selectData(1);	//1페이지 목록정보를 읽어옴

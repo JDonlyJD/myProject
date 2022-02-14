@@ -121,7 +121,7 @@
 					<span class="letter-count">300/300</span>
 				</div>
 				<div id="re_second" class="align-right">
-					<input type="submit" value="전송">
+					<input type="submit" value="댓글 등록">
 				</div>
 			</c:if>
 		</form>
