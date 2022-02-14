@@ -41,14 +41,14 @@
    });
    
    $(function(){
-      let photo_path = $('.my-photo').attr('src');//처음 화면에 보여지는 이미지 읽기(기본값 셋팅)
+      let photo_path = $('.my-file').attr('src');//처음 화면에 보여지는 이미지 읽기(기본값 셋팅)
       let my_photo;
          
       //***이벤트3 )이미지 선택 및 이미지 미리보기
       $('#filename').change(function(){
          my_photo = this.files[0];
          if(!my_photo){
-            $('.my-photo').attr('src',photo_path);//처음 원본 이미지로 설정
+            $('.my-file').attr('src',photo_path);//처음 원본 이미지로 설정
             return;
          }
          
@@ -63,7 +63,7 @@
          reader.readAsDataURL(my_photo);
          
          reader.onload=function(){
-            $('.my-photo').attr('src',reader.result);
+            $('.my-file').attr('src',reader.result);
          };
       });//end of change
    });
@@ -97,11 +97,11 @@
       <li>
          <c:if test="${empty item.filename}">
          <img src="${pageContext.request.contextPath}/images/face.png" 
-               width="200" height="200" class="my-photo">
+               width="200" height="200" class="my-file">
          </c:if>
          <c:if test="${!empty item.filename}">
          <img src="${pageContext.request.contextPath}/upload/${item.filename}"
-                           width="200" height="200" class="my-photo">
+                           width="200" height="200" class="my-file">
          </c:if>
       </li>
       <li>
