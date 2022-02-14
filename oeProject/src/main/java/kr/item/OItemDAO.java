@@ -10,7 +10,7 @@ import kr.item.OItemVO;
 import kr.util.DBUtil;
 import kr.util.StringUtil;
 
-public class OItemDAO {
+public class OItemDAO { 
 	//싱글턴 패턴
 	private static OItemDAO instance = new OItemDAO();
 	
