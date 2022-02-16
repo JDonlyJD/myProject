@@ -15,17 +15,21 @@ public class MyHomeAction implements Action{
 		
 		HttpSession session = request.getSession();
 		Integer user_num = (Integer)session.getAttribute("user_num");
+		Integer user_auth = (Integer)session.getAttribute("user_auth");
+		OMemberDAO dao = OMemberDAO.getInstance();
+		
 		if(user_num == null) {//로그인이 되지 않은 경우
 			return "redirect:/member/loginForm.do";
-		}
-		
-		//로그인이 된 경우
-		OMemberDAO dao = OMemberDAO.getInstance();
-		OMemberVO member = dao.getMember(user_num);
-		
-		request.setAttribute("member", member);
-		
-		//JSP 경로 반환
-		return "/WEB-INF/views/member/myHome.jsp";
+		}else if(user_auth > 1) {
+			//관리자로 로그인이 된 경우
+			OMemberVO member = dao.getMember(user_num);
+			request.setAttribute("member", member);
+			 return "/WEB-INF/views/member/adminMyHome.jsp"; 
+		}else {
+			//일반회원으로 로그인된 경우
+			OMemberVO member = dao.getMember(user_num);
+			request.setAttribute("member", member);
+			return "/WEB-INF/views/member/myHome.jsp";
+		}		
 	}
 }  

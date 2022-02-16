@@ -98,6 +98,7 @@ create sequence oreply_seq;
 
 
 
+
 /*카테고리 테이블 영역 */
 create table ocategory(
    cate_num number not null primary key,

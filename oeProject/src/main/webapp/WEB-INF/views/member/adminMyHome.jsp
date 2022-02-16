@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>My Page(Admin)</title>
+<title>My Home(Admin)</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 
@@ -93,73 +93,41 @@
 <body>
 <div class="page-main">
    <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-   <h2>관리자정보</h2>
+   <h2>MY HOME(Admin)</h2>
    <div class="mypage-div">
        <h3>프로필 사진</h3>
       <ul>
          <li>
             <c:if test="${empty member.mem_photo}">
             <img src="${pageContext.request.contextPath}/images/face.png" 
-                 width="200" height="200" class="my-photo">
+                 width="100" height="100" class="my-photo">
             </c:if>
             <c:if test="${!empty member.mem_photo}">
             <img src="${pageContext.request.contextPath}/upload/${member.mem_photo}"
-                 width="200" height="200" class="my-photo"> 
+                 width="100" height="100" class="my-photo"> 
             </c:if>
          </li>
+         <li>${member.mem_nick}(${member.mem_id})님의 MY HOME입니다.</li>
+         <li><a href='${pageContext.request.contextPath}/member/adminMyPage.do'>회원정보 수정</a></li>
+         
          <li>
-            <div class="align-center">
-               <input type="button" value="수정" id="photo_btn">
-            </div>
-               <div id="photo_choice" style="display:none;">
-               <input type="file" id="photo" accept="image/gif,image/png,image/jpeg"><br>
-               <input type="button" value="전송" id="photo_submit">
-               <input type="button" value="취소" id="photo_reset">
-            </div>
+            <input type="button" value="회원목록" 
+            onclick="location.href='adminMemberList.do'">
          </li>
-      </ul>
-		      <!-- <h3>회원탈퇴</h3>
-		      <ul>
-		         <li>
-		            <input type="button" value="회원탈퇴" onclick="location.href='deleteUserForm.do'">
-		         </li>
-		      </ul> -->
-   </div>
-   <div class="mypage-div">
-   <!-- 변경해야함 -->
-      <h3>연락처</h3>
-      <ul>
-         <li>이름 : ${member.mem_nick}</li>
-         <li>전화번호 : ${member.mem_phone}</li>
-         <li>이메일 : ${member.mem_email}</li> 
-         <li>우편번호 : ${member.mem_zipcode}</li>
-         <li>주소 : ${member.mem_addr} ${member.mem_addr2}</li>
-         <li>가입일 : ${member.mem_date}</li>
-         <c:if test="${!empty member.mem_modifydate}">
-         	<li>최근 정보 수정일 : ${member.mem_modifydate}</li>
-         </c:if>
+          <p>
          <li>
-            <input type="button" value="연락처 수정" onclick="location.href='modifyUserForm.do'">
-         </li>
-      </ul>
-      <h3>비밀번호 수정</h3>
-      <ul>
+            <input type="button" value="문의게시판" 
+            onclick="location.href='${pageContext.request.contextPath}/board/askList.do'">
+         </li> 
+         <p>
          <li>
-            <input type="button" value="비밀번호 수정" onclick="location.href='modifyPasswordForm.do'">
+            <input type="button" value="카테고리관리" 
+            onclick="location.href='adminCate.do'">
          </li>
+         <p>
       </ul>
 
    </div>
-   
-   <!-- myhome테스트 -->
-   <ul>
-      <li>
-               <input type="button" value="myhome" 
-               onclick="location.href='${pageContext.request.contextPath}/member/myHome.do'">
-      </li>
-   </ul>
-   
-   
 </div>
 </body>
 </html>
