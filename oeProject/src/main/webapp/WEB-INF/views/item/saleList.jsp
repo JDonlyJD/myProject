@@ -46,7 +46,7 @@
 			<input type="button" value="홈으로" 
 				onclick="location.herf='${pageContext.request.contextPath}/main/main.do'">
 		</div> --%>
-		
+		<br>
 		<c:if test="${count == 0 }">
 			<div class="result-display">
 				표시할 게시물이 없습니다.
@@ -70,7 +70,7 @@
 							<c:if test="${item.state == 1 }">예약중</c:if>
 							<c:if test="${item.state == 2 }">판매완료</c:if>
 						</td>						
-						<td>${item.price }</td>
+						<td><fmt:formatNumber value="${item.price}" pattern="#,###"/></td>
 						<td>${item.reg_date }</td>
 						<!-- 판매상태(0판매중/1예약중/2판매완료) (default 0) -->
 						<%-- <td>
@@ -81,7 +81,8 @@
 				</c:forEach>
 			</table>
 			<div class="align-center">
-				${pagingHtml}
+				<br><a href="${pageContext.request.contextPath}/main/main.do"><img alt="홈으로" src="${pageContext.request.contextPath}/images/home.jpg" width="30px" height="30px"></a>
+				<br><br><br>${pagingHtml}
 			</div>
 		</c:if>
 	</div>

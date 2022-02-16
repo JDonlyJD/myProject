@@ -1,14 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>판매상품 글상세</title>
+<style type="text/css">
+h2{
+	text-align: center;
+}
+</style>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/layout.css"> <%--css스타일 경로--%>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/item-reply.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/board-reply.js"></script>
 <script type="text/javascript">
 	$(function(){
    	 let photo_path = $('.my-file').attr('src');//처음 화면에 보여지는 이미지 읽기(기본값 셋팅)
@@ -42,9 +48,11 @@
 <body>
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<h2>판매상품 글상세 </h2>
+	<br><form>
+	<h2><img alt="oi" src="${pageContext.request.contextPath}/images/oi.png" width="40" height="40">판매상품 글상세</h2>
+	<br><br>
 	<ul>
-		<li>제목 : ${item.title}</li>
+		<li>제목 : ${item.title}
 		<li>판매자 : ${item.mem_id}</li>
 		<li>
 			<c:if test="${item.state == 0 }">판매상황 : 판매중</c:if>
@@ -53,15 +61,14 @@
 		</li>
 		<li>조회수 : ${item.hit}</li>
 		<li>카테고리 : ${item.cate_num}</li>
-		<li>가격 : ${item.price}</li>
-	</ul>
-	<hr size="1" noshade width="100%">
-	<c:if test="${!empty item.filename}">
-		<div class="align-center">
-		<ul>
-			<%-- 사진 미리보기 --%>
-      <li>
-         <c:if test="${empty item.filename}">
+		<li>가격 : <fmt:formatNumber value="${item.price}" pattern="#,###"/></li>
+		<li><c:if test="${!empty board.modify_date}">
+			최근 수정일 : ${item.modify_date}		<%--수정일이 있으면 최근수정일 보이도록 --%>
+		</c:if>		
+		작성일 : ${item.reg_date}</li><br>
+		<li>
+		<div style="position:absolute; right:30%;bottom: 30%;">
+		<c:if test="${empty item.filename}">
          <img src="${pageContext.request.contextPath}/images/face.png" 
                width="200" height="200" class="my-file">
          </c:if>
@@ -69,25 +76,22 @@
          <img src="${pageContext.request.contextPath}/upload/${item.filename}"
                            width="200" height="200" class="my-file">
          </c:if>
-      </li>
-		</ul>
-			<%-- <img src="${pageContext.request.contextPath}/upload/${item.filename}" class="detail-img"> --%>
-		</div>
-	</c:if>
-	<p>
-		${item.content}
+         </div>
+         </li>
+	</ul>	
+	<hr size="1" noshade width="100%">
+	<p align="center">
+	 	${item.content}
 	</p>
-	<hr size="1" noshade="noshade" width="100%">
-	<div class="align-right">
-		<c:if test="${!empty board.modify_date}">
-			최근 수정일 : ${item.modify_date}		<%--수정일이 있으면 최근수정일 보이도록 --%>
-		</c:if>		
-		작성일 : ${item.reg_date}
-		
+	</form>
+	<div class="align-center">
+		<br>
 		<%--로그인한 회원번호와 작성자 회원번호가 일치해야 수정, 삭제 가능 --%>	
 		<c:if test="${user_num == item.mem_num }">	
-			<input type="button" value="수정" onclick="location.href='itemUpdateForm.do?item_num=${item.item_num}'">
-			<input type="button" value="삭제" id="delete_btn" onclick="location.href='itemDelete.do?item_num=${item.item_num}'">		
+			<input type="button" value="수정" onclick="location.href='itemUpdateForm.do?item_num=${item.item_num}'" style="background-color: #3DB7CC; color: white">
+			<input type="button" value="삭제" id="delete_btn" onclick="location.href='itemDelete.do?item_num=${item.item_num}'" style="background: red; color: white">
+			<p>
+				
 			<script type="text/javascript">
 				let delete_btn = document.getElementById('delete_btn');
 				//이벤트 연결
@@ -100,44 +104,9 @@
 					}
 				};
 			</script>	
-		</c:if>	
-		<input type="button" value="목록" onclick="location.href='saleList.do'">	
+		</c:if>
+		<input type="button" value="목록" onclick="location.href='saleList.do'" style="background-color:green; color:white; width:20%; height: 30px;">
 	</div>
-	
-	<!-- 댓글시작 -->
-	<div id="reply_div">
-		<span class="re_title">댓글 달기</span>
-		<form id="re_form">	<!-- ajax방식이기때문에 action이 없다. -->	<!-- value는 부모글번호  -->
-			<input type="hidden" name="item_num" value="${item.item_num }" id="item_num">
-			
-			<textarea rows="3" cols="50" name="re_content" id="re_content" class="rep-content"
-			<c:if test="${empty user_num}">disabled="disabled"</c:if>
-			><c:if test="${empty user_num }">로그인해야 작성할 수 있습니다.</c:if></textarea>
-			<!-- textarea태그 사이의 공백은 모두 데이터로 인식하기때문에, 공백을 넣으면안됨 -->
-			
-			
-			<c:if test="${!empty user_num }">
-				<div id="re_first">
-					<span class="letter-count">300/300</span>
-				</div>
-				<div id="re_second" class="align-right">
-					<input type="submit" value="댓글 등록">
-				</div>
-			</c:if>
-		</form>
-	</div>
-			<!-- 댓글목록 출력시작 -->
-			<div id="output"></div>
-			<div class="paging-button" style="display:none;">
-				<input type="button" value="다음댓글 보기">
-			</div>
-			<div id="loading" style="display:none;">
-				<img src="${pageContext.request.contextPath}/images/ajax-loader.gif">
-			</div>
-			<!-- 댓글목록 출력 끝  -->
-		
-	<!-- 댓글 끝 -->	
-	
 	</div>
 	</body>
 </html>

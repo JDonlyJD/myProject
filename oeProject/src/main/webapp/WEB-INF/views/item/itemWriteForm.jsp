@@ -71,8 +71,8 @@
 </head>
 <body>
 <div class="page-main">
-   <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-   <h2>판매 상품 등록</h2>
+   <jsp:include page="/WEB-INF/views/common/header.jsp"/><br>
+   <h2 align="center"><img alt="oi" src="${pageContext.request.contextPath}/images/oi.png" width="40" height="40">판매 상품 등록</h2><br>
    <form action="itemWrite.do" method="post" enctype="multipart/form-data" id="write_form">
    <!-- <input type="hidden" name="mem_num" value="${member.mem_num}">  -->
    <ul>
@@ -88,11 +88,13 @@
          <label for="price">가격</label>
          <input type="number" name="price" id="price" min="1" max="9999999">            
       </li>
+      <br>
       <li>
          <label for="filename">판매상품 사진</label>
          <input type="file" name="filename" id="filename" 
                            accept="image/gif,image/png,image/jpeg">            
       </li>
+      <br>
       <%-- 사진 미리보기 --%>
       <li>
          <c:if test="${empty item.filename}">
@@ -103,14 +105,15 @@
          <img src="${pageContext.request.contextPath}/upload/${item.filename}"
                            width="200" height="200" class="my-file">
          </c:if>
-      </li>
-      <li>
-         <label for="content">내용</label>
-         <textarea name="content" id="content" rows="5" cols="30"></textarea>         
-      </li>
-   </ul>
+         <br><br>
+         <!-- <label for="content">상품설명</label> -->
+         <textarea name="content" id="content" rows="5" cols="70" placeholder="상품 내용 작성란입니다. 내용을 입력하세요."></textarea>
+		</li>
+   </ul>            
    <div class="align-center">
-      <input type="submit" value="등록">
+      <br>
+      <input type="submit" value="상품등록" style="background-color:green; color:white; width:50%; height: 30px;">
+      <!-- <input type="submit" value="등록"> -->
       <!-- <input type="button" value="목록으로" onclick="location.href='salelist.do'"> -->
    </div>
    </form>
