@@ -14,7 +14,7 @@
 <div class="page-main">
 	<div>
 		<h3>메인 화면</h3>   
-		<ul>
+		<ul>  
 			<li>리스트 </li>
 			<li>리스트 </li>
 			<li>리스트 </li>

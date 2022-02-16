@@ -56,6 +56,6 @@
 			<p><b>주소</b> 서울 특별시 마포구 월드컵북로 21 2층 풍성빌딩&nbsp;<b>사업자 등록번호</b>&nbsp;375-89-000000</p>
 			<p>Copyright(C) 2020 SSangyong Institute of System Technology, All Right Reserved.</p><br>
 			<p>
-		</div>
+		</div> 
 			
 

@@ -17,7 +17,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 <div class="header">
 	<header id="main_header" >
-	
+	 
 <%-- ===첫번째 메뉴=== --%>
 	<%-- **로고 --%>
 		<div class="logo-img">
