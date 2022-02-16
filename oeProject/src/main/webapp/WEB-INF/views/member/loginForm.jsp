@@ -46,7 +46,7 @@
 		<div class="align-center">
 			<input type="submit" value="시작하기" style="background-color:green; color:white; width:50%; height: 30px;"><br>
 			<p>
-			
+			 
 			<a href="${pageContext.request.contextPath}/main/main.do"><img alt="홈으로" src="${pageContext.request.contextPath}/images/home.jpg" width="30px" height="30px"></a>
 			<%-- <input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'""> --%>
 			<%-- <input type="button" value="ID찾기" onclick="location.href='${pageContext.request.contextPath}/member/findIdForm.do'"> --%>

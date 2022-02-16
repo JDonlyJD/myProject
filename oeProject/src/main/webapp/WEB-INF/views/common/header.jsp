@@ -29,7 +29,7 @@
 			<a href="${pageContext.request.contextPath}/main/main.do">
 			<h2><b id="logo_text">52MARKET</b></h2></a>
 		</div>
-		
+		 
 	<%-- **검색창 --%>
  		<form class="navbar-form navbar-right">
             <div class="form-group">
