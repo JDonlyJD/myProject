@@ -27,22 +27,36 @@
 <body>
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<h2>로그인</h2>
 	<form id="login_form" action="login.do" method="post">
+		<div class="align-center">
+		<h2>중고 직거래 사이트 오이마켓</h2>
+			<img alt="oi" src="${pageContext.request.contextPath}/images/oi.png" width="90" height="90">
+			<h4><font size="5" color="green">오</font>늘은 <font size="5" color="green">이</font>거 어때요? <br> 지금 지구를 위해 오이를 시작해보세요!</h4>	
 		<ul>
 			<li>
-				<label for="id">아이디</label>
-				<input type="text" name="id" id="id" maxlength="12">
+				<!--<label for="id" >id</label>  -->
+				<input type="text" name="id" id="id" maxlength="12" placeholder="UserID">
 			</li>
 			<li>
-				<label for="passwd">비밀번호</label>
-				<input type="password" name="passwd" id="passwd" maxlength="12">
+				<!--<label for="passwd" >비밀번호</label>  -->
+				<input type="password" name="passwd" id="passwd" maxlength="12" placeholder="PassWord">
 			</li>
 		</ul>
+		</div>
 		<div class="align-center">
-			<input type="submit" value="로그인">
-			<input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
-			<input type="button" value="ID찾기" onclick="location.href='${pageContext.request.contextPath}/member/findIdForm.do'">
+			<input type="submit" value="시작하기" style="background-color:green; color:white; width:50%; height: 30px;"><br>
+			<p>
+			
+			<a href="${pageContext.request.contextPath}/main/main.do"><img alt="홈으로" src="${pageContext.request.contextPath}/images/home.jpg" width="30px" height="30px"></a>
+			<%-- <input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'""> --%>
+			<%-- <input type="button" value="ID찾기" onclick="location.href='${pageContext.request.contextPath}/member/findIdForm.do'"> --%>
+		</div>
+		<br>
+		<div class="align-left">
+			<font size="3" color="gray">아직 계정이 없으신가요?</font> <a href="joinForm.do">회원가입</a>
+			<font size="3" color="gray">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			아이디를 잊으셨나요?</font><a href="${pageContext.request.contextPath}/member/findIdForm.do">id찾기</a>
 		</div>
 	</form>
 </div>

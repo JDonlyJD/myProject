@@ -63,33 +63,35 @@
 <body>
 <div class="page-main"> 
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<h2>비밀번호 수정</h2>
 	<form action="modifyPassword.do" method="post" id="password_form">
+	<h2 align="center"><img alt="oi" src="${pageContext.request.contextPath}/images/oi.png" width="40" height="40">
+						<font color="green">오이</font>마켓 나의 PW수정하기</h2><br>
 	<ul>
 		<li>
 			<label for="id">아이디</label>
-			<input type="text" name="id" id="id" value="${member.mem_nick}" maxlength="18">
+			<input type="text" name="id" id="id" value="${member.mem_nick}" maxlength="18" placeholder="id를 입력하세요.">
 		</li>
 		<li>
 			<label for="origin_passwd">현재 비밀번호</label>
-			<input type="password" name="origin_passwd" id="origin_passwd" maxlength="18">
+			<input type="password" name="origin_passwd" id="origin_passwd" maxlength="18" placeholder="현재 비밀번호를 입력하세요.">
 		</li>
 		<li>
 			<label for="passwd">새 비밀번호</label>
-			<input type="password" name="passwd" id="passwd" maxlength="18">
+			<input type="password" name="passwd" id="passwd" maxlength="18" placeholder="변경할 비밀번호를 입력하세요.">
 		</li>		
 		<li>
 			<label for="cpasswd">새 비밀번호 확인</label>
-			<input type="password" name="cpasswd" id="cpasswd" maxlength="18">
+			<input type="password" name="cpasswd" id="cpasswd" maxlength="18" placeholder="변경할 비밀번호를 확인하세요.">
 			<!-- 전송은 되는데 처리는 안할 것 -->
 			<span id="message_cpasswd"></span>
 		</li>
 	</ul>
-	
-	
+	<br>
 	<div class="align-center">
-		<input type="submit" value="비밀번호 수정">
-		<input type="button" value="MyPage" onclick="location.href='myPage.do'">
+		<input type="submit" value="수정" style="background-color:green; color:white; width:40%; height: 30px;"><br><br>
+		<input type="button" value="MyPage" onclick="location.href='myPage.do'" style="background-color:#FFD228; color:white; width:30%; height: 30px;">
+		<!-- <input type="submit" value="비밀번호 수정"> --><br><br>
+		<!-- <input type="button" value="MyPage" onclick="location.href='myPage.do'"> -->
 	</div>
 	</form>
 </div>

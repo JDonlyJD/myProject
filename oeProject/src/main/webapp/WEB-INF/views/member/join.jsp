@@ -10,13 +10,14 @@
 <body>
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<h2>회원가입 완료</h2>
 	<div class="result-display">
 		<div class="align-center">
-			회원가입이 완료되었습니다.
-			<p>
-			<input type="button" value="홈으로" 
-			onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
+			52marcket 회원가입이 완료되었습니다.
+			<br>
+			<br>
+			<%-- <input type="button" value="홈으로" 
+			onclick="location.href='${pageContext.request.contextPath}/main/main.do'"> --%>
+			<a href="${pageContext.request.contextPath}/main/main.do"><img alt="홈으로" src="${pageContext.request.contextPath}/images/home.jpg" width="30px" height="30px"></a>
 		</div>
 	</div>
 </div>

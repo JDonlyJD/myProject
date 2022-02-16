@@ -122,7 +122,7 @@
 		//비밀번호와 비밀번호 확인일치 여부 체크
 		$('#cpasswd').keyup(function(){
 			if($('#passwd').val()==$('#cpasswd').val()){
-				$('#message_cpasswd').text('비밀번호와 비밀번호 확인 일치');
+				$('#message_cpasswd').text('비밀번호 일치!');
 			}else{
 				$('#message_cpasswd').text(''); //비어있게 처리
 			}
@@ -133,53 +133,57 @@
 <body>
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<h2>회원가입</h2>
 	<form id="register_form" action="join.do" method="post">
+	<div class="align-center">
+	<h2><img alt="oi" src="${pageContext.request.contextPath}/images/oi.png" width="50" height="40"><font color="green">오이</font>마켓 가입하기</h2>
+	</div>
 		<ul>
 			<li>
-				<label for="id">id</label>
-				<input type="text" name="id" id="id" maxlength="12">
+				<label for="id">아이디</label>
+				<input type="text" name="id" id="id" maxlength="12" placeholder="ID를 입력하세요.">
 				<input type="button" value="ID중복체크" id="id_check">
 				<span id="message_id"></span>
 			</li>
 			<li>
 				<label for="name">이름</label>
-				<input type="text" name="name" id="name" maxlength="10">
+				<input type="text" name="name" id="name" maxlength="10" placeholder="이름을 입력하세요.">
 			</li>
 			<li>
 				<label for="passwd">비밀번호</label>
-				<input type="password" name="passwd" id="passwd" maxlength="12">
+				<input type="password" name="passwd" id="passwd" maxlength="12" placeholder="비밀번호를 입력하세요.">
 			</li>
 			<li>
 				<label for="cpasswd">비밀번호 확인</label>
-				<input type="password" name="cpasswd" id="cpasswd" maxlength="12">
+				<input type="password" name="cpasswd" id="cpasswd" maxlength="12" placeholder="비밀번호 확인">
 				<span id="message_cpasswd"></span>
 			</li>
 			<li>
 				<label for="phone">전화번호</label>
-				<input type="text" name="phone" id="phone" maxlength="15">
+				<input type="text" name="phone" id="phone" maxlength="15" placeholder="ex)01011112222">
 			</li>
 			<li>
 				<label for="email">이메일</label>
-				<input type="email" name="email" id="email" maxlength="50">
+				<input type="email" name="email" id="email" maxlength="50" placeholder="oimacket.naver.com">
 			</li>
 			<li>
 				<label for="zipcode">우편번호</label>
-				<input type="text" name="zipcode" id="zipcode" maxlength="5">
+				<input type="text" name="zipcode" id="zipcode" maxlength="5" placeholder="클릭->">
 				<input type="button" onclick="sample2_execDaumPostcode()" value="우편번호 찾기">
 			</li>
 			<li>
 				<label for="address1">주소</label>
-				<input type="text" name="address1" id="address1" maxlength="30">
+				<input type="text" name="address1" id="address1" maxlength="30" placeholder="주소를 입력하세요.">
 			</li>
 			<li>
-				<label for="address2">나머지 주소</label>
-				<input type="text" name="address2" id="address2" maxlength="30">
+				<label for="address2"><font color="white">나머지주소</font></label>
+				<input type="text" name="address2" id="address2" maxlength="30" placeholder="상세주소를 입력하세요.">
 			</li>
 		</ul>
 		<div class="align-center">
-			<input type="submit" value="등록">
-			<input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
+			<input type="submit" value="회원가입" style="background-color:green; color:white; width:80%; height: 30px;"><p>
+			<%-- <input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'" 
+			style="width:50%; height: 30px;"> --%>
+			<a href="${pageContext.request.contextPath}/main/main.do"><img alt="홈으로" src="${pageContext.request.contextPath}/images/home.jpg" width="30px" height="30px"></a>
 		</div>
 	</form>
 	

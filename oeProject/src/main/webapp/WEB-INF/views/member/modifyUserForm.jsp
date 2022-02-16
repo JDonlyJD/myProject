@@ -6,6 +6,11 @@
 <meta charset="UTF-8">
 <title>회원정보수정</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css">
+<style type="text/css">
+div{
+	margin: 0 auto;
+}
+</style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$(function(){
@@ -46,8 +51,10 @@
 </head>
 <body class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<h2>회원정보수정</h2>
 	<form action="modifyUser.do" method="post" id="modify_form">
+	<div class="align-center">
+	<h2><img alt="oi" src="${pageContext.request.contextPath}/images/oi.png" width="40" height="40">회원정보수정</h2>
+	</div>	
 		<ul>
 			<li>
 				<label for="name">이름</label>
@@ -83,8 +90,8 @@
 			</li>
 		</ul>
 		<div class="align-center">
-			<input type="submit" value="수정">
-			<input type="button" value="MyPage" onclick="location.href='myPage.do'">
+			<input type="submit" value="수정" style="background-color:green; color:white; width:50%; height: 30px;"><br><br>
+			<input type="button" value="MyPage" onclick="location.href='myPage.do'" style="background-color:#FFD228; color:white; width:20%; height: 30px;">
 		</div>
 	</form>
 <!-- 우편번호 스크립트 시작 -->
