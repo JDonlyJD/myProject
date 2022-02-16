@@ -1,6 +1,6 @@
 package kr.item;
 
-import java.sql.Connection;
+import java.sql.Connection;  
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ import kr.util.DBUtil;
 import kr.util.DurationFromNow;
 import kr.util.StringUtil;
 
-public class OItemDAO { 
+public class OItemDAO {
 	//싱글턴 패턴
 	private static OItemDAO instance = new OItemDAO();
 	
@@ -65,23 +65,23 @@ public class OItemDAO {
 			 //커넥션풀로부터 커넥션 할당
 			 conn = DBUtil.getConnection();
 			 
-			 if(item.getFilename() != null) {
-				 sub_sql = ",filename=?";
-			 }
+			 if(item.getFilename() != null) sub_sql = ",filename=?";
+			 
 			 sql = "UPDATE oitem SET cate_num=?, title=?, price=?, content=?, modify_date=SYSDATE" 
 				     + sub_sql + " WHERE item_num=?";
+			 
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(++cnt, item.getCate_num());
-			pstmt.setString(++cnt, item.getTitle());
-			pstmt.setInt(++cnt, item.getPrice());
-			pstmt.setString(++cnt, item.getContent());
+			pstmt.setInt(++cnt, item.getCate_num());	//카테
+			pstmt.setString(++cnt, item.getTitle());	//제목
+			pstmt.setInt(++cnt, item.getPrice());		//가격
+			pstmt.setString(++cnt, item.getContent());	//내용
 			 if(item.getFilename()!=null) {
-				pstmt.setString(++cnt, item.getFilename());
+				pstmt.setString(++cnt, item.getFilename());	//파일명
 			 }
-			pstmt.setInt(++cnt, item.getItem_num());
+			pstmt.setInt(++cnt, item.getItem_num());	//item_num
 			 
 			 //SQL문 실행
 			 pstmt.executeUpdate();
@@ -120,6 +120,7 @@ public class OItemDAO {
 				DBUtil.executeClose(null, pstmt, conn);
 			}
 		}
+		
 		
 		//판매 상품 삭제(delete)
 		 public void deleteItem(int item_num)throws Exception{
@@ -464,7 +465,96 @@ public class OItemDAO {
 		return item;
 	}	
 	
-//------------------댓글(Reply)_DAO------------------
+	
+	
+	
+	
+	
+	//찬미 : 구매내역 보기(리스트)
+		//주문정보 가져오기
+		public List<OItemOrderVO> getBuyList(int startRow, int endRow, int mem_num) throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql = null;
+			List<OItemOrderVO> orderList = new ArrayList<OItemOrderVO>();
+			
+			try {
+				//커넥션풀로부터 커넥션 할당
+				conn = DBUtil.getConnection();
+				//sql문 작성
+				//OITEM과 OITEM_ORDER테이블 먼저 조인
+				sql = "SELECT * FROM(SELECT a.*, rownum rnum FROM(SELECT order_num,title, m.mem_nick byuer_id, price, o.reg_date "
+						+ "FROM oitem_order o JOIN oitem i ON o.item_num=i.item_num JOIN omember_detail m  "
+						+ "ON i.mem_num=m.mem_num WHERE o.mem_num = ? ORDER BY o.reg_date DESC)a) "
+						+ "WHERE rnum >= ? AND rnum <= ?";
+				
+				//preparedStatement객체 생성
+				pstmt = conn.prepareStatement(sql);
+				//?에 데이터 바인딩..?
+				pstmt.setInt(1, mem_num);
+				pstmt.setInt(2, startRow);
+				pstmt.setInt(3, endRow);
+				//sql문 실행하여 결과행을 rs에 담아 반환
+				rs = pstmt.executeQuery();
+				while(rs.next()) { //판매자도 명시해야함(omember->mem_num? / omember->nick / oitem_order->order_num / oitem_order->reg_date )
+					OItemOrderVO order = new OItemOrderVO();
+					order.setOrder_num(rs.getInt("order_num"));
+					order.setReg_date(rs.getDate("reg_date"));
+					order.setPrice(rs.getInt("price"));
+					order.setTitle(rs.getString("title"));
+					order.setBuyer_id(rs.getString("byuer_id"));
+					
+					orderList.add(order);
+				}
+			} catch (Exception e) {
+				throw new Exception(e);
+			}finally {
+				//자원정리
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+			return orderList;
+		}//end of getBuyList()
+		
+		//찬미 ) 총 레코드 수
+		public int getBuyListItemCount(int mem_num)throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql = null;
+			//String sub_sql = "";
+			int count = 0;
+					
+			try {
+				//커넥션 풀로부터 커넥션 할당받기
+				conn = DBUtil.getConnection();
+				
+				//SQL문 작성
+				sql = "SELECT COUNT(*) FROM oitem_order o JOIN oitem i ON o.item_num=i.item_num JOIN omember_detail m  ON i.mem_num=m.mem_num WHERE o.mem_num = ?";
+						
+				//PreparedStatement객체 생성
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, mem_num);
+				
+				//SQL문을 실행하고 결과행을 resultSet에 담음
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					count = rs.getInt(1);
+				}
+						
+				}catch (Exception e) {
+					throw new Exception();
+						
+				}finally {
+					//자원정리
+					DBUtil.executeClose(rs, pstmt, conn);
+				}
+					
+					return count;
+				}
+		
+	
+	
 	
 	//[ 댓글메서드1. 댓글등록 : insertReplyItem() ]
 	public void insertReplyItem(OItemReplyVO itemReply)throws Exception{
@@ -551,6 +641,7 @@ public class OItemDAO {
 					+ "JOIN omember m USING(mem_num) WHERE r.item_num=? "
 					+ "ORDER BY r.re_num DESC)a) "
 					+ "WHERE rnum>=? AND rnum<= ?";
+			
 			//3. psmt객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//4. ?에 데이터바인딩
@@ -564,12 +655,12 @@ public class OItemDAO {
 				OItemReplyVO reply = new OItemReplyVO();
 				reply.setRe_num(rs.getInt("re_num"));
 				
-				//날짜 -> 1분전, 1시간전, 1일전 형식의 문자열로 변환 (DurationFromNow에는 null에대한 처리없음)
+				//날짜 -> 1분전, 1시간전, 1일전 형식의 문자열로 변환
 				reply.setRe_date(DurationFromNow.getTimeDiffLabel(rs.getString("re_date")));
 				if(rs.getString("re_modifydate")!=null) {	//수정날짜가 null이 아닐경우 변환작업 시작
 					reply.setRe_modifydate(DurationFromNow.getTimeDiffLabel(rs.getString("re_modifydate")));
 				}
-				reply.setRe_content(StringUtil.useBrNoHtml(rs.getString("re_content")));	//댓글내용에 줄바꿈은 인정하면서 html태그 불인정
+				reply.setRe_content(StringUtil.useBrNoHtml(rs.getString("re_content")));	//댓글내용에 html태그인정하지 않음
 				reply.setItem_num(rs.getInt("item_num"));
 				reply.setMem_num(rs.getInt("mem_num"));
 				reply.setId(rs.getString("mem_id"));
@@ -609,7 +700,7 @@ public class OItemDAO {
 				reply.setRe_num(rs.getInt("re_num"));
 				reply.setItem_num(rs.getInt("item_num"));
 				reply.setMem_num(rs.getInt("mem_num"));
-				reply.setId(rs.getString("mem_id")); //oitem_reply테이블에는 id없는데 VO에 추가했음
+				reply.setId(rs.getString("mem_id"));
 			}
 		}catch(Exception e) {
 			throw new Exception(e);
@@ -674,5 +765,6 @@ public class OItemDAO {
 	
 	
 	
+	
+	
 }
-
