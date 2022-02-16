@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>채팅하기</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/chat.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/chat.js"></script>
 </head>

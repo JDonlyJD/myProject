@@ -37,7 +37,7 @@
 		
 		//* ajax통신
 		$.ajax({
-			type:'post',		  //board_num은 detail.jsp의 댓글달기form에 hidden으로 들어가있음
+			type:'post',		  //board_num은 form에 hidden으로 들어가있음
 			data:{pageNum:pageNum, item_num:$('#item_num').val()},	//pageNum의 데이터와 item_num의 데이터를 넘겨줌
 			url:'listReply.do',
 			dataType:'json',
@@ -106,7 +106,7 @@
 	
 	//10. ** 페이지처리 이벤트 연결(다음댓글 보기 버튼 클릭시, 데이터 추가) : $('paging-button input').click(function(){}
 	$('.paging-button input').click(function(){
-		selectData(currentPage + 1); //원래있던 데이터에 데이터를 읽어와서 붙인다.
+		selectData(currentPage + 1);
 	});	
 	
 	
@@ -120,7 +120,7 @@
 			return false;
 		}	
 		//* form이하의 태그에 입력한 데이터를 모두 읽어옴
-		let form_data = $(this).serialize(); //serialize():쿼리문자열로 해서 한번에 다읽어올 수 있는 메서드
+		let form_data = $(this).serialize();
 		
 		//* 데이터전송(by.ajax통신)
 		$.ajax({
@@ -181,77 +181,60 @@
 	
 	
 	//13. ** 댓글 수정버튼 클릭시 수정폼 노출 : $(document).on('click','.modify-btn',function(){}
-/*		
- *중요한건 댓글번호를 읽어오는 건데 버튼에 넣어놨기 때문에 (74라인) 버튼으로 부터 읽어오면 된다(custom data속성을 이용해서 거기에 저장을 했었음)
- * 댓글번호는 댓글의 프라이머리키이기 떄문에 가져와서 update를 한다.
- */	
- 	$(document).on('click','.modify-btn',function(){
-		//댓글번호
-		let re_num = $(this).attr('data-renum'); //버튼을 눌렀을 떄 이벤트가 발생, 버튼에 접근해서 속성중에 'data-renum'지정한곳에 접근
-
-/*
- *댓글번호도 필요하고 댓글내용도 필요한데 댓글내용은 
- *re_num을 이용해서 다시 ajax통신을 해서 한건의 레코드를 읽어와서 수정할 떄 활용하거나 or 화면에있는 걸 그대로 읽어오거나
- *화면에있는건 <p>태그로 감싸서 명시했었다.(63라인-output += '<p>'+item.re_content +'</p>';)p태그에 접근만 하면 되는데
- *버튼에서 이벤트가 발생했끼 때문에 그 이벤트가 발생한 태그로부터의 부모태그에 접근을 한다.
- *버튼의 부모태그는 (61라인-output += '<div class = "sub-item">';)
-*/	
-
-		//버튼의 부모태그(.sub-item)로부터(접근해서) p태그를 찾는다 . br태그가보이기때문에 \n으로 바꾼다 replace가 br을 찾는다()
-		//댓글내용
-		let content = $(this).parent().find('p').html().replace(/<br>/gi,'\n');
-														//옵션값g:지정문자열 모두,  옵션값i:대소문자 무시
-														
-		//이 데이터들을 이용해서 댓글 수정폼 ui 만들기
-		let modifyUI =  '<form id = "mre_form">'; //수정할 때의 id는 mre_form으로 쓰자.
-		//HTML태그가 많다보니까 ()부모태그 자식태그)가독성 생기도록 앞에 공백을 넣어서 사용해도됨
-			modifyUI += '  <input type="hidden" name="re_num" id="mre_num" value="'+re_num+'">'; //노출이 안되도록 hidden으로 작업, id는 달라야함
-			modifyUI += '  <textarea rows="3" cols="50" name="re_content" id="mre_content" class="rep-content">'+content+'</textarea>';
+	$(document).on('click','.modify-btn',function(){	//수정버튼을 눌렀을때 발생하는 이벤트
+		//* 댓글번호
+		let re_num = $(this).attr('data-renum');
+		
+		//버튼의 태그는 output += '<p>' + item.re_content + '</p>'; ==> p태그이다.
+		//p태그를 찾을 때는 부모태그와 함께 명시해야한다.
+		//.parent().find('p') : 부모태그(sub-item)에 접근해서 'p'태그를 찾아라
+		//* 댓글 내용										g:지정문자열 모두 찾아라. i:대소문자 무시
+		let content = $(this).parent().find('p').html().replace(/<br>/gi, '\n');
+													//br태그 대소문자 무시하고 모두 찾아서 \n으로 바꿔라	
+													//이렇게하지않으면 <br>태그가 그대로 명시됨
+		//* 댓글 수정폼 UI
+		let modifyUI = '<form id="mre_form">';
+			modifyUI += '  <input type="hidden" name="re_num" id="mre_num" value="' + re_num + '">';	//name과 id의 값이 다름
+			modifyUI += '  <textarea rows="3" cols="50" name="re_content" id="mre_content" class="rep-content">'+ content +'</textarea>';
 			modifyUI += '  <div id="mre_first"><span class="letter-count">300/300</span></div>';
-			modifyUI += '  <div id="mre_second" class="align-right">';
-			modifyUI += '    <input type="submit" value="수정">';
-			modifyUI += '    <input type="button" value="취소" class="re-reset">'; //취소는 폼을 안보여지게 처리하는 것
+			modifyUI += '  <div id="mre_second" class="align-center">';
+			modifyUI += '	  <input type="submit" value="수정">';
+			modifyUI += '	  <input type="button" value="취소" class="re-reset">';
 			modifyUI += '  </div>';
 			modifyUI += '  <hr size="1" noshade width="96%">';
 			modifyUI += '</form>';
-			
-/*
- *이전에 이미 수정하고있는 댓글이 있을 경우 다른 수정버튼을 클릭했을 때 숨기고 원상복귀시킨다
- *id만 남기고 수정하고있던sub-item(숨겨져있던거)을 환원시키고 수정폼을 초기화함
- *이 초기화하는 작업을 해주는 함수를 만들어준다.> initModifyForm()
- */	
+		
+		//* 이미 수정중인 댓글이 있을경우(수정버튼을 눌렀을 경우), 다른 수정버튼을 눌렀을 때 이전에 누른 수정버튼은 숨김
+		//sub-item을 환원시키고, 수정폼을 초기화함
 		initModifyForm();
 		
-		//지금 클릭해서 수정하고자 하는 데이터는 감추기
-		$(this).parent().hide();
-		//수정폼을 수정하고자 하는 데이터가 있는 div에 노출
-		$(this).parents('.item').append(modifyUI); //parents:부모들을 복수로 받아서 지정가능. 버튼의 여러 부모들 중에 지정한 부모로 접근
+		//* 지금 클릭해서 수정하고자 하는 데이터는 감추기
+		//수정버튼을 감싸고 있는 div(sub-item)을 감추기
+		$(this).parent().hide();	
+		//* 수정폼을 수정하고자 하는 데이터가 있는 div에 노출(hide시켰으니까 우리가 만든 form을 붙여줘야함)
+		$(this).parents('.item').append(modifyUI);	//버튼의 여러부모들 중에서 원하는 부모(item)를 지정 ???? 2/10,09:37,00:33
 		
-		//글자수를 보여지게 할 건데 이미 글자가 입력되 있으므로 카운트해서 조정해야한다. 
-		//입력한 글자수 셋팅
+		//* 입력한 글자수 셋팅
 		let inputLength = $('#mre_content').val().length;
 		let remain = 300 - inputLength;
 		remain += '/300';
 		
-		//문서 객체에 반영
-		$('#mre_first .letter-count').text(remain); //후손선택자를 사용하므로 중간에 공백있음
-		
-	});
-
-		
+		//* 문서객체에 반영
+		$('#mre_first .letter-count').text(remain);
+	});	
+	
 	
 	//** 수정폼에서 취소버튼 클릭시 수정폼 초기화 (취소버튼은 댓글이 생성된 후에 생기는 미래의 태그 => document.on) : $(document).on('click','.re-reset',function(){}
 	$(document).on('click','.re-reset',function(){
-		initModifyForm(); //아까만들었던 initModifyForm();를 사용해서 초기화방법을 사용
-	});		
+		initModifyForm();		
+	});			
 			
 			
 	//** 댓글 수정폼 초기화 : function initModifyForm(){}
 	function initModifyForm(){
-		$('.sub-item').show();
-		//폼은 id를 명시하기에 숨기면 중복되서 안돼고 지워야한다(필요할때 다시만든다.)
-		$('#mre_form').remove();
-	} 	
+		$('.sub-item').show();	//안보여지고있던걸 보여지게 함
+		$('#mre_form').remove(); //form에서는 id를 명시하고잇었기때문에, hide시키면안되고 아예 remove시켜야한다.(id가 중복될 수 있기 때문)
+	};	 	
 	
 	
 	//** 댓글 수정 : $(document).on('submit','#mre_form',function(event){}
@@ -312,7 +295,7 @@
 
 
 	//** 댓글 삭제 : 댓글이 생성되어야 삭제버튼이 보임 = 미래의 태그 => document.on : $(document).on('click','.delete-btn',function(){}
-	
+	/*
 	$(document).on('click','.delete-btn',function(){
 		//댓글 번호
 		let re_num = $(this).attr('data-renum');
@@ -341,8 +324,7 @@
 			}
 		});
 	});
-	
-	
+	*/	
 	//2. ** 초기 데이터(목록) 호출
 	selectData(1);	//1페이지 목록정보를 읽어옴
 	
