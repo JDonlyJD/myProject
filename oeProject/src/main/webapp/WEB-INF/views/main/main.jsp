@@ -7,12 +7,28 @@
 <title>메인</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css">
 </head>
+
 <body>
-<div class="page-main">
     <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+    
+<div class="page-main">
 	<div>
 		<h3>메인 화면</h3>   
+		<ul>
+			<li>리스트 </li>
+			<li>리스트 </li>
+			<li>리스트 </li>
+			<li>리스트 </li>
+			<li>리스트 </li>
+			<li>리스트 </li>
+			<li>리스트 </li>
+			<li>리스트 </li>
+			
+		</ul>
 	</div>
 </div>
+
+
+    <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>
