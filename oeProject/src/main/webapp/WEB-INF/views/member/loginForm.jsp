@@ -25,8 +25,9 @@
 </script>
 </head>
 <body>
-<div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+
+<div class="page-main">
 	<form id="login_form" action="login.do" method="post">
 		<div class="align-center">
 		<h2>중고 직거래 사이트 오이마켓</h2>
@@ -60,5 +61,7 @@
 		</div>
 	</form>
 </div>
+
+	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

@@ -159,6 +159,18 @@ form#mre_form{
 	margin:5px;
 }
 
+/*-------------------------------*/
+/*회원가입*/
+div.page-main{
+	padding-top: 170px;
+}
+div.page-main *{
+	padding:3px;
+}
+
+
+
+
 
 
 
