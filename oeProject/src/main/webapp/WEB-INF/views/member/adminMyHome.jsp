@@ -91,8 +91,8 @@
 
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
-   <jsp:include page="/WEB-INF/views/common/header.jsp"/>
    <h2>MY HOME(Admin)</h2>
    <div class="mypage-div">
        <h3>프로필 사진</h3>
@@ -129,5 +129,6 @@
 
    </div>
 </div>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

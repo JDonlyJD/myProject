@@ -47,8 +47,8 @@
 </script>
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<h2>${member.mem_id}의 정보 수정(관리자 전용)</h2>
 	<form action="adminDetailUser.do" method="post" id="detail_form">
 		<input type="hidden" name="mem_num" value="${member.mem_num}">
@@ -203,5 +203,6 @@
 </script>
 <!-- 우편번호 스크립트 끝 -->	
 </div>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

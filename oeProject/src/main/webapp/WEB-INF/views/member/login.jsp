@@ -13,6 +13,8 @@
 	</head>
 	<body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+<br>
+<br>
 	<div class="page-main">
 		<div class="result-display">
 			<div class="align-center">

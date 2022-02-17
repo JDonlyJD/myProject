@@ -91,8 +91,8 @@
 
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
-   <jsp:include page="/WEB-INF/views/common/header.jsp"/>
    <h2>관리자정보</h2>
    <div class="mypage-div">
        <h3>프로필 사진</h3>
@@ -157,9 +157,8 @@
                <input type="button" value="myhome" 
                onclick="location.href='${pageContext.request.contextPath}/member/myHome.do'">
       </li>
-   </ul>
-   
-   
+   </ul>   
 </div>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>
