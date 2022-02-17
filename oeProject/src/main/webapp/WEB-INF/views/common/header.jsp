@@ -104,13 +104,13 @@
 		      
 	<%-- **문의게시판 --%>			
 		       	<c:if test="${!empty user_num }"><%--로그인 했을 때--%>
-		        	<li ><a href="${pageContext.request.contextPath}/board/list.do">문의 게시판</a></li>
+		        	<li ><a href="${pageContext.request.contextPath}/board/oList.do">문의 게시판</a></li>
 		        </c:if>	
 		        
 	<%-- **채팅목록 --%>			
 		        <%-- active로 기본적으로 보이게한다 --%>
 		        <c:if test="${!empty user_num }"><%--로그인 했을 때 --%>
-		        	<li><a href="#">채팅목록</a></li>
+		        	<li><a href="${pageContext.request.contextPath}/chatting/chattingListForBuyer.do">채팅목록</a></li>
 		        </c:if>
 		        
 	<%-- **상품등록 --%>			
@@ -125,4 +125,4 @@
      
 </div>	
 </body>
-</html>
+</html>  
