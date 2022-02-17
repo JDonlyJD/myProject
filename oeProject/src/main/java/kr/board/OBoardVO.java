@@ -17,8 +17,6 @@ public class OBoardVO {
 	private int mem_num; //회원번호
 	private String id;	
 
-	private int state; //답변상태(0:대기중/1답변완료/default 0)
-	private int kind; //질문분류(0신고/1상품문의/2광고문의)
 	public int getBoard_num() {
 		return board_num;
 	}
@@ -79,17 +77,4 @@ public class OBoardVO {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public int getState() {
-		return state;
-	}
-	public void setState(int state) {
-		this.state = state;
-	}
-	public int getKind() {
-		return kind;
-	}
-	public void setKind(int kind) {
-		this.kind = kind;
-	}
-	
 }
