@@ -70,8 +70,9 @@
 </script>
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
-   <jsp:include page="/WEB-INF/views/common/header.jsp"/><br>
+   <br>
    <h2 align="center"><img alt="oi" src="${pageContext.request.contextPath}/images/oi.png" width="40" height="40">판매 상품 등록</h2><br>
    <form action="itemWrite.do" method="post" enctype="multipart/form-data" id="write_form">
    <!-- <input type="hidden" name="mem_num" value="${member.mem_num}">  -->
@@ -117,6 +118,7 @@
       <!-- <input type="button" value="목록으로" onclick="location.href='salelist.do'"> -->
    </div>
    </form>
-</div>   
+</div> 
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>  
 </body>
 </html>

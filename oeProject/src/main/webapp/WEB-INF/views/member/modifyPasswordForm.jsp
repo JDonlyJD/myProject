@@ -61,8 +61,8 @@
 </script>
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main"> 
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<form action="modifyPassword.do" method="post" id="password_form">
 	<h2 align="center"><img alt="oi" src="${pageContext.request.contextPath}/images/oi.png" width="40" height="40">
 						<font color="green">오이</font>마켓 나의 PW수정하기</h2><br>
@@ -95,5 +95,6 @@
 	</div>
 	</form>
 </div>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

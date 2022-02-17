@@ -5,6 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>회원탈퇴</title>
+<style type="text/css">
+	
+</style>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
@@ -51,9 +54,9 @@
 </script>
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<h2>회원탈퇴</h2>
+<h2>회원탈퇴</h2>
 	<form action="deleteUser.do" method="post" id="delete_form">
 		<ul>
 			<li>
@@ -76,5 +79,6 @@
 		</div>
 	</form>
 </div>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

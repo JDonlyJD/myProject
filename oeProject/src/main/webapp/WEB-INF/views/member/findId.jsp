@@ -28,8 +28,8 @@
 		
 		</head>
 		<body>
+		<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 			<div class="page-main">
-				<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 				<h2> 회원 ID </h2>
 				<div class="result-display">
 					<div class="align-center">
@@ -39,6 +39,7 @@
 					</div>
 				</div>
 			</div>
+			<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 		</body>
 		</html>
 	</c:otherwise>	

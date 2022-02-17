@@ -131,8 +131,9 @@
 </script>
 </head>
 <body>
-<div class="page-main">
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+
+<div class="page-main" >
 	<form id="register_form" action="join.do" method="post">
 	<div class="align-center">
 	<h2><img alt="oi" src="${pageContext.request.contextPath}/images/oi.png" width="50" height="40"><font color="green">오이</font>마켓 가입하기</h2>
@@ -285,5 +286,7 @@
 </script>
 <!-- 우편번호 스크립트 끝 -->
 </div>
+
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

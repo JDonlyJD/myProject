@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>My Page</title>
+<title>My Home</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css">
 <style type="text/css">
 input{
@@ -99,9 +99,8 @@ input{
 
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<h2 align="center">MY HOME</h2>
 	<div class="mypage-div">
 		<ul>
 			<li>
@@ -142,5 +141,6 @@ input{
 		</div>
 	</div>
 </div>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>
