@@ -1,5 +1,5 @@
 package kr.board.action;
 
-public class ListReplyAction {
+public class oUpdateAction {
 
 }

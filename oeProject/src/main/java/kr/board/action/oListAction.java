@@ -1,5 +1,5 @@
 package kr.board.action;
 
-public class AskDeleteAction {
+public class oListAction {
 
 }
