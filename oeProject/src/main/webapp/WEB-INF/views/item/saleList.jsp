@@ -22,10 +22,11 @@
 </script> -->
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<div class="page-main">
-		<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 		<h2>판매 내역</h2>
 		<form action="saleList.do" method="get" id="search_form">
+			<div class="align-center">
 			<ul class="search">
 				<li>
 					<select name="keyfield">
@@ -33,12 +34,11 @@
 					</select>
 				</li>
 				<li>
-					<input type="search" size="16" name="keyword" id="keyword" value="${param.keyword }"> <!-- value = 검색을 했다면 검색한것이 남아있게함 선택사항임 -->
-				</li>
-				<li>
+					<input type="search" size="16" name="keyword" id="keyword" value="${param.keyword }"><br><!-- value = 검색을 했다면 검색한것이 남아있게함 선택사항임 -->
 					<input type="submit" value="검색">
 				</li>
 			</ul>
+			</div>
 		</form>
 		<%-- <div class="list-space align-right">
 			<input type="button" value="글쓰기" 
@@ -64,7 +64,7 @@
 				<c:forEach var="item" items="${list }">
 					<tr>
 						<td>${item.item_num }</td>
-						<td><a href="itemDetail.do?item_num=${item.item_num}">${item.title }</a></td>
+						<td><a href="itemDetail.do?item_num=${item.item_num}" style="color: black;">${item.title }</a></td>
 						<td>
 							<c:if test="${item.state == 0 }">판매중</c:if>
 							<c:if test="${item.state == 1 }">예약중</c:if>
@@ -86,5 +86,6 @@
 			</div>
 		</c:if>
 	</div>
+	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

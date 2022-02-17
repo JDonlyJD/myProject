@@ -10,8 +10,8 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<h2>구매내역</h2>
 	<form action="buyList.do" method="post" id="buylist_form">
 		<table border="1">
@@ -43,5 +43,6 @@
       ${pagingHtml}
    </div>
 </div>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

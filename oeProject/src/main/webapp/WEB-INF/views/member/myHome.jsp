@@ -101,7 +101,7 @@ input{
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
-	<div class="mypage-div">
+	<div class="mypage-div1">
 		<ul>
 			<li>
 				<c:if test="${empty member.mem_photo}">
@@ -114,7 +114,7 @@ input{
 				</c:if>
 				<img alt="oi" src="${pageContext.request.contextPath}/images/oi.png" width="38" height="38">
 				
-			<b>${member.mem_nick}(${member.mem_id})님의 <font color="green">MY HOME</font></b><br>
+			<b>${member.mem_nick}(${member.mem_id})님의 <font color="green">MY HOME</font></b>입니다.<br>
 			<a href='${pageContext.request.contextPath}/member/myPage.do' style="color: blue">회원정보 수정</a>
 			</li>
 		</ul>

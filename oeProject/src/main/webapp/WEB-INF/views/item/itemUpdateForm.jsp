@@ -59,8 +59,8 @@ $(function(){
 </script>
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<h2>게시판 글수정</h2>
 	<form action="itemUpdate.do" method="post" enctype="multipart/form-data" id="update_form">
 		<input type="hidden" name="item_num" value="${item.item_num}"> 
@@ -92,7 +92,7 @@ $(function(){
                		width="200" height="200" class="my-file">
          		</c:if>
      
-      		</li>
+      		
 				<c:if test="${!empty item.filename}">
 				<img src="${pageContext.request.contextPath}/upload/${item.filename}"
                            		width="200" height="200" class="my-file">
@@ -134,15 +134,15 @@ $(function(){
 		});
 	});
 </script>
-				</c:if>                    
-			</li>
+				</c:if>
+				</li>                    
 		</ul>   
 		<div class="align-center">
 			<input type="submit" value="수정">
 			<input type="button" value="목록" onclick="location.href='saleList.do'">
 		</div>                                                    
 	</form>
-	
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>	
 </div>
 </body>
 </html>
