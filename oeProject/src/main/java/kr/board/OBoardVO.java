@@ -76,5 +76,5 @@ public class OBoardVO {
 	}
 	public void setId(String id) {
 		this.id = id;
-	}
+	}	
 }
