@@ -175,6 +175,7 @@ div.page-main *{
 /*-- 채팅리스트 --*/
 div.page-main-chat{
 	padding-top: 200px;
+	padding-bottom:100px;
 	/* padding:400px auto auto 30px; */
 }
  /* 상 우 하 좌/상 좌우 하/상하 좌우 */
@@ -190,6 +191,12 @@ div.page-main-chat *{
 
 form#chatting_form{
 	margin:30px auto;
+}
+
+/*chattingListForBuyer*/
+div.page-main-chat#main-chat{
+	padding-top: 200px;
+	padding-bottom:400px;	
 }
 
 
