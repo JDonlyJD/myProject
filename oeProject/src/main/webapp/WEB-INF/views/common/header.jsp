@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 <%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css"> --%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css" type="text/css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_footer.css">
 
 </head>
 
@@ -62,7 +62,7 @@
 			<img src="${pageContext.request.contextPath}/upload/${user_photo}" width="25" height="25" class="my-photo">
 		</c:if>
 		<c:if test="${!empty user_num && empty user_photo}"> <%--회원, 사진X--%>
-			<img src="${pageContext.request.contextPath}/images/cucumber.png" width="30" height="25" class="my-photo">
+			<img src="${pageContext.request.contextPath}/images/oi.png" width="30" height="25" class="my-photo">
 		</c:if>
 		<c:if test="${!empty user_num}">
 			<c:if test="${!empty user_num && user_auth < 2}"> <%--회원일 경우--%>
