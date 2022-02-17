@@ -11,6 +11,7 @@ public class OBoard_ReplyVO {
 	private String id;
 	
 	
+	
 	public int getRe_num() {
 		return re_num;
 	}
