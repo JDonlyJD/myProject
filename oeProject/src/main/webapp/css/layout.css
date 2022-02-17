@@ -1,5 +1,7 @@
 @charset "UTF-8";
- 
+/* outline:1px dotted red;  */
+/* padding-top: 170px;(header#main_header + nav.nav2 ) */
+
 .page-main{
 	width:900px;
 	margin:0 auto;
@@ -160,7 +162,8 @@ form#mre_form{
 }
 
 /*-------------------------------*/
-/*회원가입*/
+/*-- page-main default,
+회원가입,채팅리스트 --*/
 div.page-main{
 	padding-top: 170px;
 }
@@ -168,9 +171,16 @@ div.page-main *{
 	padding:3px;
 }
 
+/*-- 채팅리스트 --*/
+div.page-main-chat{
+	padding-top: 170px;
+	padding:170px 10px 40px 10px;
+}
+ /* 상 우 하 좌/상 좌우 하/상하 좌우 */
 
-
-
+div.page-main-chat *{
+	padding:5px;
+}
 
 
 
