@@ -40,8 +40,8 @@
 </script>
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<h2>판매상품 글상세 </h2>
 	<ul>
 		<li>제목 : ${item.title}</li>
@@ -135,5 +135,6 @@
 		
 	<!-- 댓글 끝 -->
 	</div>	
+	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 	</body>
 </html>
