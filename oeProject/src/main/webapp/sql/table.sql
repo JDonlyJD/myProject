@@ -106,8 +106,8 @@ create table ocategory(
    cate_status number(1)
 );
 
-
-/*질문 문의(ask) 테이블 영역*/
+/*********************************게시판 시작*************************************/
+/*질문 문의(ask) 테이블 영역 //삭제하시고 새로 만드세요 ! 시퀀스도 !!
 CREATE TABLE oask(
    ask_num number not null,
    mem_num number not null,
@@ -122,8 +122,27 @@ CREATE TABLE oask(
    constraint oask_fk foreign key(mem_num) references omember (mem_num)
 );
 create sequence oask_seq;
+*/
+/*질문 문의(ask) 테이블 영역  :  OASK -> OBOARD */ 
+CREATE TABLE oboard(
+   board_num number not null,
+   title varchar2(90) not null, 
+   content clob not null,
+   hit number(5) default 0 not null,	/*hit는 조회수*/
+   reg_date date default sysdate not null,
+   modify_date date,
+   filename varchar2(150),
+   ip varchar2(40) not null,
+   mem_num number not null,
+   
+   constraint oboard_pk primary key(board_num),
+   constraint oboard_fk foreign key(mem_num) references omember (mem_num)
+);
+create sequence oboard_seq;
 
-/*답변(oanswer) 테이블*/
+
+
+/*답변(oanswer) 테이블		삭제하고 다시 = > oboard_reply
 CREATE TABLE oanswer(
    answer_num number not null,
    ask_num number not null,
@@ -136,6 +155,24 @@ CREATE TABLE oanswer(
    constraint oanswer_fk foreign key(ask_num) references oask(ask_num),
    constraint oanswer_fk2 foreign key(mem_num) references omember(mem_num)
 );
+*/
+create table oboard_reply(
+  re_num number not null,
+  re_content varchar2(900) not null,
+  re_date date default sysdate not null,
+  re_modifydate date,
+  re_ip varchar2(40) not null,
+  board_num number not null,
+  mem_num number not null,
+  constraint oreply_pk primary key (re_num),
+  constraint oreply_fk1 foreign key (board_num) references oboard (board_num),
+  constraint oeply_fk2 foreign key (mem_num) references omember (mem_num)
+);
+create sequence oboardreply_seq;
+
+
+/*********************************게시판 끝 ************************************/
+
 
 
 
