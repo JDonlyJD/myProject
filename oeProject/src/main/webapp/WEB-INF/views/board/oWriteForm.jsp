@@ -29,8 +29,8 @@
 </script>
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
-   <jsp:include page="/WEB-INF/views/common/header.jsp"/>
    <h2>1:1문의게시판</h2>
    <form id="write_form" action="oWrite.do" method="post" enctype="multipart/form-data">
       <ul>
@@ -62,5 +62,6 @@
       </div>
    </form>
 </div>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

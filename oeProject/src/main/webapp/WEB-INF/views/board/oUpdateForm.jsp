@@ -10,8 +10,8 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
-   <jsp:include page="/WEB-INF/views/common/header.jsp"/>
    <h2>게시판 글수정</h2>
    <form action="oUpdate.do" method="post" enctype="multipart/form-data" 
                                                            id="update_form">
@@ -78,5 +78,6 @@
       </div>                                                    
    </form>
 </div>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

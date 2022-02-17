@@ -21,8 +21,9 @@
 </script>
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
-   <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+  
    <h2>게시판 목록</h2>
    <form id="search_form" action="oList.do" method="get">
       <ul class="search">
@@ -78,5 +79,6 @@
    </div>
    </c:if>
 </div>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

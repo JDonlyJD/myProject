@@ -9,11 +9,10 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/layout.css"> <%--css스타일 경로--%>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/board-reply.js"></script>
-
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<h2>게시판 글상세</h2>
 	<ul>
 		<li>글번호 : ${board.board_num}</li>
@@ -90,6 +89,6 @@
 		<!-- 댓글목록 출력 끝  -->
 <!-- 댓글 끝 -->
 </div>
-		
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>		
 </body>
 </html>
