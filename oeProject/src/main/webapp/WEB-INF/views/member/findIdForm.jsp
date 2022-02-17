@@ -26,8 +26,8 @@
 </script>
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<h2>ID찾기</h2>
 	<form id="find_form" action="findId.do" method="post">
 		<ul>
@@ -46,5 +46,6 @@
 		</div>
 	</form>
 </div>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

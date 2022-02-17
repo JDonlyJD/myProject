@@ -25,8 +25,7 @@
 </script>
 </head>
 <body>
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
 	<form id="login_form" action="login.do" method="post">
 		<div class="align-center">
@@ -45,6 +44,7 @@
 		</ul>
 		</div>
 		<div class="align-center">
+			<p>
 			<input type="submit" value="시작하기" style="background-color:green; color:white; width:50%; height: 30px;"><br>
 			<p>
 			 
@@ -54,14 +54,13 @@
 		</div>
 		<br>
 		<div class="align-left">
-			<font size="3" color="gray">아직 계정이 없으신가요?</font> <a href="joinForm.do">회원가입</a>
+			<font size="3" color="gray">아직 계정이 없으신가요?</font> <a href="joinForm.do" style="color: black"><b>회원가입</b></a>
 			<font size="3" color="gray">
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			아이디를 잊으셨나요?</font><a href="${pageContext.request.contextPath}/member/findIdForm.do">id찾기</a>
+			아이디를 잊으셨나요?</font><a href="${pageContext.request.contextPath}/member/findIdForm.do" style="color: black"><b>&nbsp;id찾기</b></a>
 		</div>
 	</form>
 </div>
-
-	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

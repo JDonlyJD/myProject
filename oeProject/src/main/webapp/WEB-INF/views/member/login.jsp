@@ -12,9 +12,8 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css">
 	</head>
 	<body>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<div class="page-main">
-		<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-		<h2>회원정보</h2>
 		<div class="result-display">
 			<div class="align-center">
 				탈퇴된 계정입니다.
@@ -24,6 +23,7 @@
 			</div>
 		</div>
 	</div>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 	</body>
 	</html>
 	</c:when>
