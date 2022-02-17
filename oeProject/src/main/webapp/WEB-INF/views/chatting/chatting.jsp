@@ -9,6 +9,7 @@
 <%--
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/chat.css" type="text/css">
  --%>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css" type="text/css">
 <style type="text/css">
    #chatting_message{
       border:1px solid black;
@@ -150,31 +151,37 @@
 </script>
 </head>
 <body>
-<!-- 중앙 컨텐츠 시작 -->
-<div class="page-main">
    <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-   <c:if test="${user_num != item.mem_num}">
-   <h2>${item.title}의 작성자 <small>${item.mem_id}</small>님과 채팅</h2>
-   </c:if>
-   <c:if test="${user_num == item.mem_num}">
-   <h2>${trans_num}과의 대화</h2>
-   </c:if>
-   <div id="chatting_message"></div>
-   <form method="post" id="chatting_form">
-      <input type="hidden" name="item_num" value="${item.item_num}">
-      <c:if test="${user_num != item.mem_num}">
-      <input type="hidden" name="to_num" value="${item.mem_num}">
-      </c:if>
-      <c:if test="${user_num == item.mem_num}">
-      <input type="hidden" name="to_num" value="${trans_num}">
-      </c:if>
-      <ul>
-         <li>   
-             <label for="content">내용</label>
-             <textarea rows="5" cols="40" name="content" id="content"></textarea>
-             <input type="submit" value="전송">
-         </li>
-      </ul>
-   </form>
-</div>
+   
+<!-- 중앙 컨텐츠 시작 -->
+	<div class="page-main-chat">
+	   <c:if test="${user_num != item.mem_num}">
+	   	<h2>${item.title}의 작성자 <small>${item.mem_id}</small>님과 채팅</h2>
+	   </c:if>
+	   <c:if test="${user_num == item.mem_num}">
+	   	<h2>${trans_num}과의 대화</h2>
+	   </c:if>
+	  
+	   <div id="chatting_message"></div>
+	   
+	   <form method="post" id="chatting_form">
+	      <input type="hidden" name="item_num" value="${item.item_num}">
+	      <c:if test="${user_num != item.mem_num}">
+	      	<input type="hidden" name="to_num" value="${item.mem_num}">
+	      </c:if>
+	      <c:if test="${user_num == item.mem_num}">
+	     	 <input type="hidden" name="to_num" value="${trans_num}">
+	      </c:if>
+	      <ul>
+	         <li>   
+	             <label for="content">내용</label>
+	             <textarea rows="5" cols="40" name="content" id="content"></textarea>
+	             <input type="submit" value="전송">
+	         </li>
+	      </ul>
+	   </form>
+	</div>
+
+   <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+
 </body>

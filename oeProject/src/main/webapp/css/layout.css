@@ -163,9 +163,10 @@ form#mre_form{
 
 /*-------------------------------*/
 /*-- page-main default,
-회원가입,채팅리스트 --*/
+회원가입, --*/
 div.page-main{
 	padding-top: 170px;
+	
 }
 div.page-main *{
 	padding:3px;
@@ -173,16 +174,26 @@ div.page-main *{
 
 /*-- 채팅리스트 --*/
 div.page-main-chat{
-	padding-top: 170px;
-	padding:170px 10px 40px 10px;
+	padding-top: 200px;
+	/* padding:400px auto auto 30px; */
 }
  /* 상 우 하 좌/상 좌우 하/상하 좌우 */
+ 
+div.page-main-chat h2{ /* ~ 과의 대화,~님의 채팅목록 */
+	padding-left: 50px;
+}
 
 div.page-main-chat *{
+/* 	outline:1px dotted red; */
 	padding:5px;
 }
 
+form#chatting_form{
+	margin:30px auto;
+}
 
+
+/* outline:1px dotted red;  */
 
 
 
