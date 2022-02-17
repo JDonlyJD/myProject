@@ -22,7 +22,7 @@
 	<%-- **로고 --%>
 		<div class="logo-img">
 			<a href="${pageContext.request.contextPath}/main/main.do">
-				<img src="${pageContext.request.contextPath}/images/cucumber.png" width="65" height="60" class="logo-img">
+				<img src="${pageContext.request.contextPath}/images/oi.png" width="65" height="60" class="logo-img">
 			</a>
 		</div>
 		<div class="logo-txt">
@@ -89,15 +89,18 @@
           	<ul class="nav navbar-nav">
 	<%-- **카테고리 --%>			
 		      	<li class="dropdown ">
-		        	<a href="#" class="dropdown-toggle text-black(dark) " data-toggle="dropdown">카테고리<b class="caret"></b></a>
+		        	<a href="#" class="dropdown-toggle" data-toggle="dropdown">카테고리 </a>
 		        	<ul class="dropdown-menu">
 				        <li><a class="dropdown" href="#">Cloth</a></li>
 				        <li><a class="dropdown" href="#">Beauty</a></li>
 			        	<li><a class="dropdown" href="#">Tech</a></li>
 				        <li><a class="dropdown" href="#">Food</a></li>
+				        
 				        <li><a class="dropdown" href="#">Ect</a></li>
 			        </ul>
 		      	</li>
+		      	
+				
 		      
 	<%-- **문의게시판 --%>			
 		       	<c:if test="${!empty user_num }"><%--로그인 했을 때--%>

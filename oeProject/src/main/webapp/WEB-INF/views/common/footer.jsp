@@ -36,8 +36,8 @@
 						<li><a class="foot" href="#">개인정보 처리방침</a></li>
 						<li><a class="foot" href="#">위치기반 서비스 이용약관</a></li>
 						<li><a class="foot" href="#">Today at 52</a></li>
-						<li><a class="foot" href="#">오이 플리마켓</a></li>
-						<li><a class="foot" href="#">Apple Store</a></li>
+						<li><a class="foot" href="#">52 플리마켓</a></li>
+						<li><a class="foot" href="#">52 Store</a></li>
 					</ul>
 				</div>
 				<div class="foot04">
@@ -48,14 +48,13 @@
 					</ul>
 				</div>
 			</div>
-		</footer>
-		 
+			<hr><br>
 		<div class="footer-end">
-			<br><hr size = "2" noshade = "noshade" width="100%">
 			<p><b>고객 문의</b>&nbsp;cs@oh!eservice.com&nbsp;&nbsp;<b>제휴 문의</b>&nbsp;contact@oh!e.com</p>
 			<p><b>주소</b> 서울 특별시 마포구 월드컵북로 21 2층 풍성빌딩&nbsp;<b>사업자 등록번호</b>&nbsp;375-89-000000</p>
 			<p>Copyright(C) 2020 SSangyong Institute of System Technology, All Right Reserved.</p><br>
-			<p>
 		</div> 
+		</footer>
+		 
 			
 

@@ -8,6 +8,12 @@
 	font-family: 'Noto Sans KR', sans-serif, "굴림";
 	} 
 
+a:hover{
+	text-decoration:underline;
+	color:#999999;
+	text-shadow: 0px 2px 7px #bdf4e1;
+}
+
 header#main_header{
 	width:100%;height:120px;
 	display:flex;
@@ -44,28 +50,29 @@ span#menu_logout{
 	color:white;
 }
 
-.btn-search{
+header#main_header .btn-search{
 background-color:#18BC9C;/* 오이그린 */
 color:white;
 color:#18BC9C;
 }
-button#search_btn{
+
+header#main_header button#search_btn{
 	margin:0 40px 0 0; /* 상우하좌 */
 }
 
-a:link{
+div.header a:link{
 	text-decoration:none;
 	color:#ffffff;
 }
-a:visited{
+div.header a.dropdown:link{
 	text-decoration:none;
-	color:#ffffff;
+	color:#000000;
 }
-a:hover{
-	text-decoration:underline;
-	color:#999999;
-}
-nav.nav2{
+
+
+
+
+div.header nav.nav2{
 	padding-top: 120px;
 	background:#32C4A7;
 	color:white;
@@ -74,7 +81,7 @@ nav.nav2{
 	height:40px;
 	position:fixed;  
 }
-nav#second_menu{
+div.header nav#second_menu{
 	padding-top: 120px;
 	width:100%;
 	background-color:#18BC9C !important;
@@ -82,7 +89,7 @@ nav#second_menu{
 	/* color:#18BC9C; */
 	/* text-align:center; */
 	z-index:999;
-	color:white;
+	/* color:white; */
 	position:fixed; 
 }
 .navbar-nav {
@@ -100,20 +107,13 @@ nav#second_menu{
 		display:inline-block;
 		vertical-align: middle;
 		text-align:center;}	
-		
-	nav.nav2{
-		padding-top: 50px;
-		height:10px;
-		background:#18BC9C; /*오이그린*
-		color:white;
-		font-size:10pt;
-		font-weight:580;}
-	
-	nav.nav2 li{
-		list-style:none; /* 리스트 점제거 */
-		margin:0 20px 0 0; /* 상우하좌 */
-		display:inline; /* 리스트를 가로형태로 만듦 */
-	}
+
+
+/* 	nav.nav2 li{
+		list-style:none; 리스트 점제거
+		margin:0 20px 0 0; 상우하좌
+		display:inline; 리스트를 가로형태로 만듦
+	} */
 
 /* ----------------메인----------------- */
 	section.main a:hover{
@@ -147,17 +147,9 @@ footer#page_footer {
 /* 	outline:2px dotted yellow; */
 	margin:100px 0 0 0;
 	background-color:#18BC9C;/* 오이그린 */
+	background: linear-gradient( #18BC9C,#18BC9C, white);
 	clear:both;
-	height:250px;
-}
-
-#page_footer nav{
-	font-family:Arial;
-	width:90%;
-	background-color:#f2f2f2;
-	/* margin:auto auto; */
-	margin:30% 50%;
-	padding: 100px 0 100px 0; /* 상우하좌 */
+	height:340px;
 }
 
 .rounded {
@@ -273,13 +265,17 @@ display:inline-block;
 .footer-end p{
 	text-align:center;
 }
- 
 
-div.page-main{
-	padding-top:300px;
-	padding: 50 auto;
+footer#page_footer hr{
+	color:"red";
+	width:98%; margin:0px auto;
 }
 
+div.header a:visited{
+	text-decoration:none;
+	color:black;
+	color:#ffffff;
+}
 
 
 

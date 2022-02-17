@@ -46,10 +46,13 @@ $(function(){
 </script>
 </head>
 <body>
-<div class="page-main">
    <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+   
+<div class="page-main">
    <h2>${item.title}의 작성자 <small>${item.mem_id}</small>님의 채팅 목록</h2>
    <div id="output"></div>
 </div>
+
+   <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>
