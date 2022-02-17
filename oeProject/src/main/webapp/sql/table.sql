@@ -144,7 +144,7 @@ CREATE TABLE ochatting(
    chat_num number not null, --채팅번호
    to_num number not null, --메시지수신번호(판매자회원번호)
    from_num number not null, --메시지발신번호(구매자회원번호)
-   chatstate_num number(1) default 0 not null, --읽기상태(0읽지 않음, 1 읽음)
+   chatstate_num number(1) default 1 not null, --읽기상태(0읽지 않음, 1 읽음)
    content varchar2(4000) not null,
    item_num number not null,
    reg_date date default SYSDATE not null,

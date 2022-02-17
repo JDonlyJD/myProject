@@ -67,8 +67,12 @@
 	</p>
 	
 	<hr size="1" noshade="noshade" width="100%">
-	<input type="button" value="채팅" onclick="location.href='${pageContext.request.contextPath}/chatting/chatting.do?item_num=${item.item_num}'">
-	
+	<c:if test="${!empty user_num && user_num == item.mem_num}">
+      <input type="button" value="채팅하기" onclick="location.href='${pageContext.request.contextPath}/chatting/chattingListForBuyer.do?item_num=${item.item_num}'">
+      </c:if>
+      <c:if test="${!empty user_num && user_num != item.mem_num}">
+      <input type="button" value="채팅하기" onclick="location.href='${pageContext.request.contextPath}/chatting/chatting.do?item_num=${item.item_num}&trans_num=${item.mem_num}'">
+      </c:if>
 	
 	<div class="align-right">
 		<c:if test="${!empty board.modify_date}">
