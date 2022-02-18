@@ -97,6 +97,6 @@ div li select,input[type="search"],input[type="submit"]{
    </div>
    </c:if>
 </div>
-<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>  
 </body>
 </html>
