@@ -8,11 +8,12 @@
 <title>My Home</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css">
 <style type="text/css">
-input{
+div ul li input{
 	background-color: #3DB7CC;
 	color: white;
 	width: 72px;
 	height: 55px;
+	border:none;
 }
 </style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
@@ -100,8 +101,9 @@ input{
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-<div class="page-main">
-	<div class="mypage-div1">
+<div class="page-main" style="padding: 15% 0 0 0; margin: 0 auto; width: 880px; height: 500px;">
+	<div class="mypage-div">
+	<h2>MY HOME</h2>
 		<ul>
 			<li>
 				<c:if test="${empty member.mem_photo}">

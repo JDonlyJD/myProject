@@ -202,24 +202,6 @@ div.page-main-chat#main-chat{
 
 /* outline:1px dotted red;  */
 
-/*myhome*/
-div.page-main-mypage-div1{
-	width:400px;
-	height:200px;
-	/*정중앙에 div를 배치하기 위한 설정*/
-	position:absolute;
-	top:50%;
-	left:50%;
-	transform:translate(-50%,-50%);
-	border:1px solid #000;
-	display:flex;
-	/*세로 정렬*/
-	align-items:center;
-	/*가로 정렬*/
-	justify-content:center;
-}
-
-
 /*상품*/
 .item-space .horizontal-area{
 	margin:2px;
