@@ -1,6 +1,6 @@
 package kr.item;
 
-import java.sql.Connection;  
+import java.sql.Connection;   
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -126,7 +126,7 @@ public class OItemDAO {
 		 public void deleteItem(int item_num)throws Exception{
 			 Connection conn = null;
 			 PreparedStatement pstmt = null;
-			 //PreparedStatement pstmt2 = null; (reply)
+			 PreparedStatement pstmt2 = null; 
 			 String sql = null;
 			 
 			try {
@@ -135,21 +135,23 @@ public class OItemDAO {
 				//오토커밋 해제
 				conn.setAutoCommit(false);
 				 
-	/*			//댓글 삭제
+				//댓글 삭제
 				sql = "DELETE FROM oitem_reply WHERE item_num=?";
 				//PreparedStatement 객체 생성
 				 pstmt = conn.prepareStatement(sql);
 				 //?에 데이터 바인딩
 				 pstmt.setInt(1, item_num); 
 				 //SQL문 실행
-	*/			
+				 pstmt.executeUpdate();
+				 
+				 
 				//부모글 삭제 
 				sql = "DELETE FROM oitem WHERE item_num=?";
 				//PrepardStatement 객체 생성
-				 pstmt = conn.prepareStatement(sql); //댓글 삭제 주석풀면 pstmt2로 변경
+				 pstmt2 = conn.prepareStatement(sql); //댓글 삭제 주석풀면 pstmt2로 변경
 				 //?에 데이터 바인딩
-				 pstmt.setInt(1, item_num);
-				 pstmt.executeUpdate();
+				 pstmt2.setInt(1, item_num);
+				 pstmt2.executeUpdate();
 				 
 				 //정상적으로 모든 SQL문을 실행
 				 conn.commit();
@@ -159,12 +161,12 @@ public class OItemDAO {
 				 throw new Exception(e);
 			 }finally {
 				 //자원정리
-				 DBUtil.executeClose(null, pstmt, conn);
-				 //DBUtil.executeClose(null, pstmt2, conn);
-				 //DBUtil.executeClose(null, pstmt, null);
+				 DBUtil.executeClose(null, pstmt, null);
+				 DBUtil.executeClose(null, pstmt2, conn);
+				
 			 }
 		 }
-	/*
+	/*	 
 	//전체 상품 갯수/검색 상품 갯수
 	public int getItemCount(String keyfield, String keyword, int status)throws Exception{
 		Connection conn = null;
