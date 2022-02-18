@@ -384,6 +384,77 @@ public class OItemDAO {
 			
 			return list;
 		}
+		
+		// itemList를 불러올 때 stsate값이 필요하다면 이 메서드를 쓰세요.
+		public List<OItemVO> getListItemState(int startRow, int endRow, 
+				String keyfield, String keyword, int state)throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			List<OItemVO> list = null;
+			String sql = null;
+			String sub_sql = "";
+			int cnt = 0;
+			
+			try {										//state(0:판매중/1:예약중/2:판매완료)
+				//커넥션풀로부터 커넥션 할당
+				conn = DBUtil.getConnection();
+				
+				//2. sub_SQL문 작성
+				if(keyword != null && !"".equals(keyword)) {
+					if(keyfield.equals("1")) sub_sql = "AND i.title LIKE ?";
+					else if(keyfield.equals("2")) sub_sql = "AND m.id LIKE ?";
+					else if(keyfield.equals("3")) sub_sql = "AND i.content LIKE ?";
+				}
+								// i:oitem / m:omember
+				//3. SQL문 작성
+				sql ="SELECT * FROM (SELECT a.*, rownum rnum FROM"
+					+ "(SELECT * FROM oitem i JOIN omember m USING(mem_num)"
+					+ sub_sql + " WHERE state = ? "	//state값은 >아니라 =으로 줬어요 (main에서 조절해서 쓰세요)
+					+ " ORDER BY item_num DESC)a)"
+					+ " WHERE rnum >= ? AND rnum <= ?";	
+					
+				//4. PreparedStatement 객체 생성 + ?에 데이터 바인딩
+				pstmt = conn.prepareStatement(sql);
+
+				if(keyword != null && !"".equals(keyword)) {
+					pstmt.setString(++cnt, "%"+keyword+"%");
+				}
+				pstmt.setInt(++cnt, state);
+				pstmt.setInt(++cnt, startRow);
+				pstmt.setInt(++cnt, endRow);
+				
+				//SQL문 실행해서 결과행을 ResultSet에 담음
+				rs = pstmt.executeQuery();
+				list = new ArrayList<OItemVO>();
+				while(rs.next()) {
+					OItemVO item = new OItemVO();
+					item.setItem_num(rs.getInt("item_num"));
+					item.setMem_num(rs.getInt("mem_num"));
+					item.setCate_num(rs.getInt("cate_num"));
+					item.setTitle(rs.getString("title"));
+					item.setPrice(rs.getInt("price"));
+					item.setState(rs.getInt("state"));
+					item.setContent(rs.getString("content"));
+					item.setFilename(rs.getString("filename"));
+					item.setHit(rs.getInt("hit"));
+					item.setReg_date(rs.getDate("reg_date"));
+					item.setModify_date(rs.getDate("modify_date"));
+					item.setMem_id("mem_id");
+					
+					//자바빈(VO)를 ArrayList에 저장
+					list.add(item);
+				}
+				
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+			return list;
+		}	
+	
+		
 
 	//다원
 	//상품Detail 부분(1) 조회수 증가메서드
