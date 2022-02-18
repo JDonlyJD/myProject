@@ -110,7 +110,7 @@
 	<%-- **채팅목록 --%>			
 		        <%-- active로 기본적으로 보이게한다 --%>
 		        <c:if test="${!empty user_num }"><%--로그인 했을 때 --%>
-		        	<li><a href="${pageContext.request.contextPath}/chatting/chattingListForBuyer.do">채팅목록</a></li>
+		        	<li><a href="${pageContext.request.contextPath}/chatting/chattingListForBuyer.do?item_num=${item.mem_num}">채팅목록</a></li>
 		        </c:if>
 		        
 	<%-- **상품등록 --%>			

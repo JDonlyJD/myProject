@@ -92,7 +92,7 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-<div class="page-main">
+<div class="page-main" style="padding-top: 200px; height: 600px;">
    <h2>관리자정보</h2>
    <div class="mypage-div">
        <h3>프로필 사진</h3>
@@ -127,7 +127,7 @@
    </div>
    <div class="mypage-div">
    <!-- 변경해야함 -->
-      <h3>연락처</h3>
+      <h3>회원정보확인/수정</h3>
       <ul>
          <li>이름 : ${member.mem_nick}</li>
          <li>전화번호 : ${member.mem_phone}</li>
@@ -139,7 +139,7 @@
          	<li>최근 정보 수정일 : ${member.mem_modifydate}</li>
          </c:if>
          <li>
-            <input type="button" value="연락처 수정" onclick="location.href='modifyUserForm.do'">
+            <input type="button" value="수정하기" onclick="location.href='modifyUserForm.do'">
          </li>
       </ul>
       <h3>비밀번호 수정</h3>

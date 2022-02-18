@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원가입</title>  
+<title>회원가입</title>   
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
@@ -133,7 +133,7 @@
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
-<div class="page-main" >
+<div class="page-main" style="padding: 16%; margin: 15 auto; width: 1000px; height: 680px;">
 	<form id="register_form" action="join.do" method="post">
 	<div class="align-center">
 	<h2><img alt="oi" src="${pageContext.request.contextPath}/images/oi.png" width="50" height="40"><font color="green">오이</font>마켓 가입하기</h2>
@@ -181,7 +181,7 @@
 			</li>
 		</ul>
 		<div class="align-center">
-			<input type="submit" value="회원가입" style="background-color:green; color:white; width:80%; height: 30px;"><p>
+			<input type="submit" value="회원가입" style="background-color:green; color:white; width:80%; height: 30px;"><br><br>
 			<%-- <input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'" 
 			style="width:50%; height: 30px;"> --%>
 			<a href="${pageContext.request.contextPath}/main/main.do"><img alt="홈으로" src="${pageContext.request.contextPath}/images/home.jpg" width="30px" height="30px"></a>

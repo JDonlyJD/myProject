@@ -101,7 +101,7 @@ div ul li input{
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-<div class="page-main" style="padding: 15% 0 0 0; margin: 0 auto; width: 880px; height: 500px;">
+<div class="page-main" style="padding: 16%; margin: 0 auto; width: 1300px; height: 500px;">
 	<div class="mypage-div">
 	<h2>MY HOME</h2>
 		<ul>
