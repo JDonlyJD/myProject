@@ -62,7 +62,7 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-<div class="page-main"> 
+<div class="page-main" style="padding: 16%; margin: 15 auto; width: 1000px; height: 570px;"> 
 	<form action="modifyPassword.do" method="post" id="password_form">
 	<h2 align="center"><img alt="oi" src="${pageContext.request.contextPath}/images/oi.png" width="40" height="40">
 						<font color="green">오이</font>마켓 나의 PW수정하기</h2><br>

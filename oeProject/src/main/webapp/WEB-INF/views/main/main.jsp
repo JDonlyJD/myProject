@@ -16,7 +16,7 @@
 <div class="page-main">
 		<!-- include태그 위치 저기 맞아 ? -->
 	<div>
-		<h3> OE 판매 상품 </h3>   
+		<h3> 실시간 OE 판매 상품 </h3>   
 		<div class="item-space">
 			<c:forEach var="item" items="${itemList }">
 			<div class="horizontal-area">

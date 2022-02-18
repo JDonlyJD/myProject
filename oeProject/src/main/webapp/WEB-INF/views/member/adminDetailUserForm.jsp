@@ -6,6 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>회원정보수정(관리자 전용)</title>
+<style type="text/css">
+
+</style>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
@@ -48,8 +51,8 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-<div class="page-main">
-	<h2>${member.mem_id}의 정보 수정(관리자 전용)</h2>
+<div class="page-main" style="padding: 15%; margin: 15 auto; width: 1000px; height: 600px;">
+	<h2>${member.mem_id}님의 정보 수정(관리자 전용)</h2><br>
 	<form action="adminDetailUser.do" method="post" id="detail_form">
 		<input type="hidden" name="mem_num" value="${member.mem_num}">
 		<ul>
@@ -63,6 +66,7 @@
 				<input type="radio" name="auth" value="2" id="auth3" checked>관리
 				</c:if>
 			</li>
+			<br>
 			<li>
 				<label for="name">이름</label>
 				<input type="text" name="name" id="name" value="${member.mem_nick}"

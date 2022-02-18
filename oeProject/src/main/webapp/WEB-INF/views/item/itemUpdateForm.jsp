@@ -60,7 +60,7 @@ $(function(){
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-<div class="page-main" style="padding-top: 220px; margin: 0 auto;">
+<div class="page-main" style="padding: 15%; margin: 15 auto; width: 1000px; height: 800px;">
 	<h2>게시판 글수정</h2>
 	<form action="itemUpdate.do" method="post" enctype="multipart/form-data" id="update_form">
 		<input type="hidden" name="item_num" value="${item.item_num}"> 
@@ -142,7 +142,8 @@ $(function(){
 			<input type="button" value="목록" onclick="location.href='saleList.do'">
 		</div>                                                    
 	</form>
-<jsp:include page="/WEB-INF/views/common/footer.jsp"/>	
 </div>
+
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>	
 </body>
 </html>
