@@ -364,6 +364,7 @@ public class OItemDAO {
 					item.setState(rs.getInt("state")); //판매상태(0판매중/1예약중/2판매완료) (default 0)
 					item.setPrice(rs.getInt("price")); //상품가격
 					item.setReg_date(rs.getDate("reg_date")); //상품등록일
+					item.setFilename(rs.getString("filename"));
 					//board.setMem_num(rs.getInt("mem_num")); 
 					//item.setHit(rs.getInt("hit"));
 					

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,23 +14,27 @@
     <jsp:include page="/WEB-INF/views/common/header.jsp"/>
     
 <div class="page-main">
+		<!-- include태그 위치 저기 맞아 ? -->
 	<div>
-		<h3>메인 화면</h3>   
-		<ul>   
-			<li>리스트 </li>
-			<li>리스트 </li>
-			<li>리스트 </li>
-			<li>리스트 </li>
-			<li>리스트 </li>
-			<li>리스트 </li>
-			<li>리스트 </li>
-			<li>리스트 </li>
-			
-		</ul>
+		<h3> OE 판매 상품 </h3>   
+		<div class="item-space">
+			<c:forEach var="item" items="${itemList }">
+			<div class="horizontal-area">
+				<a href="${pageContext.request.contextPath }/item/itemDetail.do?item_num=${item.item_num}">
+					<img src="${pageContext.request.contextPath}/upload/${item.filename}" >
+					<span>${item.title }
+					<br>
+					<b><fmt:formatNumber value="${item.price }"/>원</b>
+					</span>
+				</a>
+			</div>
+			</c:forEach>
+			<div class="float-clear">
+				<hr width="100%" size="1" noshade="noshade">
+			</div>
+		</div>	
 	</div>
 </div>
-
-
     <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>
