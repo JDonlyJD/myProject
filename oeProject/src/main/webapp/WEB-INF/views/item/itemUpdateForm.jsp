@@ -60,7 +60,7 @@ $(function(){
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-<div class="page-main">
+<div class="page-main" style="padding-top: 220px; margin: 0 auto;">
 	<h2>게시판 글수정</h2>
 	<form action="itemUpdate.do" method="post" enctype="multipart/form-data" id="update_form">
 		<input type="hidden" name="item_num" value="${item.item_num}"> 

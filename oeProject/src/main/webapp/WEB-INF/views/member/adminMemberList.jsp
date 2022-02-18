@@ -7,7 +7,11 @@
 <meta charset="UTF-8">
 <title>회원목록</title>
 <style type="text/css">
-
+div li select,input[type="search"],input[type="submit"]{
+	list-style-type: none;
+	float: left;
+	margin-left: 1px;
+}
 </style>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
@@ -38,10 +42,13 @@
          </li>
          <li>
             <input type="search" size="16" name="keyword" id="keyword">
-            <input type="submit" value="찾기">
+         </li>
+         <li>
+         	<input type="submit" value="찾기">
          </li>
       </ul>
    </form>
+   <br><br>
    <div class="list-space align-right">
       <input type="button" value="목록" onclick="location.href='adminMemberList.do'">
       <input type="button" value="홈으로" 

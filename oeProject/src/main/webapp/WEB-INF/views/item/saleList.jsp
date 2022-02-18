@@ -7,6 +7,19 @@
 <head>
 <meta charset="UTF-8">
 <title>판매 내역</title>
+<style type="text/css">
+div li select,input[type="search"],input[type="submit"]{
+	list-style-type: none;
+	float: left;
+	margin-left: 2px;
+}
+input[type="search"]{
+	width: 150px;
+}
+input[type="submit"]{
+	width: 40px;
+}
+</style>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/layout.css">
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-3.6.0.min.js">/* 컨텍스트경로부터 명시해야 에러안남 */</script>
 <!-- <script type="text/javascript">
@@ -23,7 +36,7 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<div class="page-main" style="padding-top: 220px; margin: 0 auto;">
+	<div class="page-main" style="padding-top: 220px; margin: 0 auto; height: 500px;">
 		<h2>판매 내역</h2>
 		<form action="saleList.do" method="get" id="search_form">
 			<div class="align-center">
@@ -34,8 +47,10 @@
 					</select>
 				</li>
 				<li>
-					<input type="search" size="16" name="keyword" id="keyword" value="${param.keyword }"><br><!-- value = 검색을 했다면 검색한것이 남아있게함 선택사항임 -->
-					<input type="submit" value="검색">
+					<input type="search" size="16" name="keyword" id="keyword" value="${param.keyword }"><!-- value = 검색을 했다면 검색한것이 남아있게함 선택사항임 -->
+				</li>
+				<li>
+					<input type="submit" value="검색" ><br><br>
 				</li>
 			</ul>
 			</div>
@@ -82,7 +97,7 @@
 			</table>
 			<div class="align-center">
 				<br><a href="${pageContext.request.contextPath}/main/main.do"><img alt="홈으로" src="${pageContext.request.contextPath}/images/home.jpg" width="30px" height="30px"></a>
-				<br><br><br>${pagingHtml}
+				<br><br>${pagingHtml}
 			</div>
 		</c:if>
 	</div>
