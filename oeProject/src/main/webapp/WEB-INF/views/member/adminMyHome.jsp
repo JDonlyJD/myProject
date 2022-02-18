@@ -124,7 +124,7 @@ div ul li input{
             onclick="location.href='adminMemberList.do'">
         
             <input type="button" value="문의게시판" 
-            onclick="location.href='${pageContext.request.contextPath}/board/askList.do'">
+            onclick="location.href='${pageContext.request.contextPath}/board/oList.do'">
       
             <input type="button" value="카테고리관리" 
             onclick="location.href='adminCate.do'">

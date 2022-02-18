@@ -6,6 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>회원목록</title>
+<style type="text/css">
+
+</style>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
@@ -22,7 +25,7 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-<div class="page-main">
+<div class="page-main" style="padding-top: 220px; margin: 0 auto;">
    <h2>회원목록(관리자 전용)</h2>
    <form id="search_form" action="adminMemberList.do" method="get">
       <ul class="search">
@@ -35,8 +38,6 @@
          </li>
          <li>
             <input type="search" size="16" name="keyword" id="keyword">
-         </li>
-         <li>
             <input type="submit" value="찾기">
          </li>
       </ul>

@@ -23,7 +23,7 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<div class="page-main">
+	<div class="page-main" style="padding-top: 220px; margin: 0 auto;">
 		<h2>판매 내역</h2>
 		<form action="saleList.do" method="get" id="search_form">
 			<div class="align-center">
