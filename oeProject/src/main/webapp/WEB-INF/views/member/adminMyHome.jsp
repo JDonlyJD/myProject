@@ -5,7 +5,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>My Home(Admin)</title>
+<title>My MANAGEMENT(Admin)</title>
+<style type="text/css">
+div ul li input{
+	background-color: #3DB7CC;
+	color: white;
+	width: 83px;
+	height: 55px;
+	border:none;
+}
+</style>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 
@@ -92,9 +101,9 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-<div class="page-main">
-   <h2>MY HOME(Admin)</h2>
-   <div class="mypage-div">
+<div class="page-main" style="padding: 12%; margin: 15 auto; width: 1000px; height: 500px;">
+   <h2>MY MANAGEMENT(Admin)</h2>
+   <div class="mypage-div3">
        <h3>프로필 사진</h3>
       <ul>
          <li>
@@ -107,20 +116,16 @@
                  width="100" height="100" class="my-photo"> 
             </c:if>
          </li>
-         <li>${member.mem_nick}(${member.mem_id})님의 MY HOME입니다.</li>
-         <li><a href='${pageContext.request.contextPath}/member/adminMyPage.do'>회원정보 수정</a></li>
-         
+         <li><b>${member.mem_nick}(${member.mem_id})님의 <font color="green">MANAGER HOME</font></b>입니다.<br></li>
+         <li><a href='${pageContext.request.contextPath}/member/adminMyPage.do' style="color: blue;">회원정보 수정</a></li>
+         <br>
          <li>
             <input type="button" value="회원목록" 
             onclick="location.href='adminMemberList.do'">
-         </li>
-          <p>
-         <li>
+        
             <input type="button" value="문의게시판" 
             onclick="location.href='${pageContext.request.contextPath}/board/askList.do'">
-         </li> 
-         <p>
-         <li>
+      
             <input type="button" value="카테고리관리" 
             onclick="location.href='adminCate.do'">
          </li>
