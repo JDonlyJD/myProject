@@ -249,20 +249,63 @@ label[for="order_quantity"]{
 	color:red;
 }
 
-/*myHome*/
+/*====myHome====*/ /* 상 우 하 좌/상 좌우 하/상하 좌우 */
 div.page-main-home{
-	padding: 16%; 
-	margin: 0 auto; 
-	width: 2000px; 
-	height: 500px;
+	/* background-color:green; */
+	/* padding-top: 500px; */
+ 	/* padding: 16%; */ 
+	margin: 0px auto 100px;
+	padding:300px 200px 100px 300px; /*상우하좌*/
+	width: 1920px; 
+	height: 1080px;
 }
-div.page-main-home div ul li{
+div.page-main-home p{
+	font-size:50px;
+	}
+div.page-main-home div.mypage-div{
+/* 	outline:1px dotted red; */
+	margin:0px  0px;
+	padding:50px 0px 0px 140px;
+	width: 100%
+	/* padding-top: 300px; */
+}
+		div.mypage-div-2{
+		/* outline:1px dotted yellow; */
+		float: left; width: 20%;
+		padding-left:70px;
+		}	
+		div.mypage-div-3{
+		/* outline:1px dotted yellow; */
+		float: left; width: 50%;	
+		padding-top:60px;
+		font-size:30px;
+		}
+
+div.align-center-home{
+	/* outline:1px dotted red; */
+	margin: 250px 30px 30px 200px;
+}
+div.align-center-home ul li{
+	/* outline:1px dotted blue; */
+	width:1000px;
+	/* padding:100px 500px 5px 500px;	 */
+	/* margin: 100px 30px 30px 200px; */
+	/* padding-top:100px; */
+}
+
+div.page-main-home div ul li input{
 	/* outline:1px dotted yellow; */
-	width:600px;
-	padding:100px 10% 5px 10%;	
-	margin: 0 auto;
-}
-b#my_home_b{
-	outline:1px dotted red;
-	width:200px;
+	background-color: #19BC9C;
+	padding:0;
+	margin:0 50px 0 0; /* 상우하좌 */
+	color: white;
+	width: 100px;
+	height: 60px;
+	font-size:20px;
+	border-color: gray;
+	border-style:solid;
+	border-radius: 5px 29px 40px 35px;
+	/*top-left-radius/top-right-radius/bottom-right-radius/bottom-left-radius*/
+
+
 }

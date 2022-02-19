@@ -7,15 +7,6 @@
 <meta charset="UTF-8">
 <title>My Home</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css">
-<style type="text/css">
-div ul li input{
-	background-color: #3DB7CC;
-	color: white;
-	width: 72px;
-	height: 55px;
-	border:none;
-}
-</style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 
 <script type="text/javascript">
@@ -101,47 +92,47 @@ div ul li input{
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+
 <div class="page-main-home" >
+	<p>MY HOME</p>
 	<div class="mypage-div">
-	<h2>MY HOME</h2>
-		<ul>
-			<li >
-				<c:if test="${empty member.mem_photo}">
-					<img src="${pageContext.request.contextPath}/images/face.png" 
-					     width="100" height="100" class="my-photo">
-				</c:if>
-				<c:if test="${!empty member.mem_photo}">
-					<img src="${pageContext.request.contextPath}/upload/${member.mem_photo}"
-					     width="100" height="100" class="my-photo"> 
-				</c:if>
-				<img alt="oi" src="${pageContext.request.contextPath}/images/oi.png" width="38" height="38">
-				
-				<b id="my_home_b">${member.mem_nick}(${member.mem_id})님의 <font color="green">MY HOME</font></b>입니다.<br>
-				<a href='${pageContext.request.contextPath}/member/myPage.do' style="color: blue">회원정보 수정</a>
-			</li>
-		</ul>
-		<br>
-		
-		<div class="align-center">
+		<div class="mypage-div-2">
+			<c:if test="${empty member.mem_photo}">
+				<img src="${pageContext.request.contextPath}/images/face.png" 
+				     width="150" height="150" class="my-photo">
+			</c:if>
+			<c:if test="${!empty member.mem_photo}">
+				<img src="${pageContext.request.contextPath}/upload/${member.mem_photo}"
+				     width="150" height="150" class="my-photo"> 
+			</c:if>
+		</div>
+		<div class="mypage-div-3">
+			<img alt="oi" src="${pageContext.request.contextPath}/images/oi.png" width="38" height="35">
+			<b id="my_home_b">${member.mem_nick}(${member.mem_id})님의 <font color="green">MY HOME</font></b>입니다.<br>
+			<a href='${pageContext.request.contextPath}/member/myPage.do' style="color: blue">회원정보 수정</a>
+		</div>
+	<br>
+	</div>
+	
+	<div class="align-center-home">
 		<ul>	
 			<li>
 				<input type="button" value="판매내역" 
 				onclick="location.href='${pageContext.request.contextPath}/item/saleList.do'">
-
+	
 				<input type="button" value="구매내역" 
 				onclick="location.href='${pageContext.request.contextPath}/item/buyListForm.do'">
-
+	
 				<input type="button" value="채팅목록" 
 				onclick="location.href='${pageContext.request.contextPath}/chatting/chattingListForBuyer.do'">
-
+	
 				<input type="button" value="관심목록" 
 				onclick="location.href='${pageContext.request.contextPath}/item/saleList.do'">
-
+	
 				<input type="button" value="1:1문의" 
 				onclick="location.href='${pageContext.request.contextPath}/board/oList.do'">
 			</li>
 		</ul>
-		</div>
 	</div>
 </div>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
