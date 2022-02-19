@@ -85,21 +85,26 @@ ul.search li{
 .list-space{
 	margin-bottom:10px;
 }
+/*테이블 디자인*/
 table{
-	width:100%;
-	border:1px solid #000;
-	border-collapse:collapse;
-	margin-top:5px;
+    width: 100%;
+    border-top: none solid #444444;
+    border-collapse: collapse;
 }
-table td, table th{
-	border:1px solid #000;
-	padding:5px;
+table th,table td{
+   border-bottom: none solid #444444;
+   padding: 10px;
+   text-align: center;
 }
-/*My Page*/
-.mypage-div{
-	width:48%;
-	float:left;
-	padding:5px;
+thead tr{
+   background-color: #2C3E50;
+   color: #ffffff;
+}
+tbody tr:nth-child(2n) {
+   background-color: #18BC9C;
+}
+tbody tr:nth-child(2n+1) {
+   background-color: #e3f2fd;
 }
 .my-photo{
 	object-fit:cover;
