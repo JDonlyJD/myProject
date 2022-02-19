@@ -1,6 +1,6 @@
 package kr.item;
 
-import java.sql.Connection;   
+import java.sql.Connection;  
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -123,50 +123,72 @@ public class OItemDAO {
 		
 		
 		//판매 상품 삭제(delete)
-		 public void deleteItem(int item_num)throws Exception{
-			 Connection conn = null;
-			 PreparedStatement pstmt = null;
-			 PreparedStatement pstmt2 = null; 
-			 String sql = null;
-			 
-			try {
-				//커넥션풀로부터 커넥션 할당
-				conn = DBUtil.getConnection();
-				//오토커밋 해제
-				conn.setAutoCommit(false);
-				 
-				//댓글 삭제
-				sql = "DELETE FROM oitem_reply WHERE item_num=?";
-				//PreparedStatement 객체 생성
-				 pstmt = conn.prepareStatement(sql);
-				 //?에 데이터 바인딩
-				 pstmt.setInt(1, item_num); 
-				 //SQL문 실행
-				 pstmt.executeUpdate();
-				 
-				 
-				//부모글 삭제 
-				sql = "DELETE FROM oitem WHERE item_num=?";
-				//PrepardStatement 객체 생성
-				 pstmt2 = conn.prepareStatement(sql); //댓글 삭제 주석풀면 pstmt2로 변경
-				 //?에 데이터 바인딩
-				 pstmt2.setInt(1, item_num);
-				 pstmt2.executeUpdate();
-				 
-				 //정상적으로 모든 SQL문을 실행
-				 conn.commit();
-			 }catch(Exception e) {
-				 //SQL문이 하나라도 실패하면
-				 conn.rollback();
-				 throw new Exception(e);
-			 }finally {
-				 //자원정리
-				 DBUtil.executeClose(null, pstmt, null);
-				 DBUtil.executeClose(null, pstmt2, conn);
-				
-			 }
-		 }
-	/*	 
+	       public void deleteItem(int item_num)throws Exception{
+	          Connection conn = null;
+	          PreparedStatement pstmt = null;
+	          PreparedStatement pstmt2 = null; 
+	          PreparedStatement pstmt3 = null;
+	          PreparedStatement pstmt4 = null;
+	          String sql = null;
+	          
+	         try {
+	            //커넥션풀로부터 커넥션 할당
+	            conn = DBUtil.getConnection();
+	            //오토커밋 해제
+	            conn.setAutoCommit(false);
+	             
+	            //댓글 삭제
+	            sql = "DELETE FROM oitem_reply WHERE item_num=?";
+	            //PreparedStatement 객체 생성
+	            pstmt = conn.prepareStatement(sql);
+	            //?에 데이터 바인딩
+	            pstmt.setInt(1, item_num); 
+	            //SQL문 실행
+	            pstmt.executeUpdate();
+	             
+	            //삭제하고자 하는 상품이 찜하기에 담겨있으면 찜하기에 저장된 상품 삭제
+	            sql = "DELETE FROM olike WHERE item_num=?";
+	            //PreparedStatement 객체 생성
+	            pstmt2 = conn.prepareStatement(sql);
+	            //?에 데이터 바인딩
+	            pstmt2.setInt(1, item_num);
+	            //SQL문 실행
+	            pstmt2.executeUpdate();
+	            
+	            //삭제하고자 하는 상품이 채팅중이면 채팅내용 삭제
+	            sql = "DELETE FROM ochatting WHERE item_num=?";
+	            //PreparedStatement 객체 생성
+	            pstmt3 = conn.prepareStatement(sql);
+	            //?에 데이터 바인딩
+	            pstmt3.setInt(1, item_num);
+	            //SQL문 실행
+	            pstmt3.executeUpdate();
+	             
+	            //부모글 삭제 
+	            sql = "DELETE FROM oitem WHERE item_num=?";
+	            //PrepardStatement 객체 생성
+	            pstmt4 = conn.prepareStatement(sql); //댓글 삭제 주석풀면 pstmt2로 변경
+	            //?에 데이터 바인딩
+	            pstmt4.setInt(1, item_num);
+	            pstmt4.executeUpdate();
+	             
+	            //정상적으로 모든 SQL문을 실행
+	            conn.commit();
+	         }catch(Exception e) {
+	            //SQL문이 하나라도 실패하면
+	            conn.rollback();
+	            throw new Exception(e);
+	          }finally {
+	             //자원정리
+	             DBUtil.executeClose(null, pstmt, null);
+	             DBUtil.executeClose(null, pstmt2, null);
+	             DBUtil.executeClose(null, pstmt3, null);
+	             DBUtil.executeClose(null, pstmt4, conn);
+	            
+	          }
+	       }
+
+		 
 	//전체 상품 갯수/검색 상품 갯수
 	public int getItemCount(String keyfield, String keyword, int status)throws Exception{
 		Connection conn = null;
@@ -210,9 +232,10 @@ public class OItemDAO {
 		}
 		return count;
 	}
-	//판매상품 목록/검색 목록
-		public List<OItemVO> getListItem(int startRow, int endRow, 
-								int state)throws Exception{
+	
+	// ItemList를 뽑아오고싶을 때 - State를 사용하고싶을 때는 이걸 ! 판매상품 목록/검색 목록
+		public List<OItemVO> getListItemState(int startRow, int endRow, 
+				String keyfield, String keyword, int state)throws Exception{
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
@@ -221,35 +244,51 @@ public class OItemDAO {
 			String sub_sql = "";
 			int cnt = 0;
 			
-			try {
+			try {										//state(0:판매중/1:예약중/2:판매완료)
 				//커넥션풀로부터 커넥션 할당
 				conn = DBUtil.getConnection();
-				//SQL문 작성
+				
+				//2. sub_SQL문 작성
+				if(keyword != null && !"".equals(keyword)) {
+					if(keyfield.equals("1")) sub_sql = "AND i.title LIKE ?";
+					else if(keyfield.equals("2")) sub_sql = "AND m.id LIKE ?";
+					else if(keyfield.equals("3")) sub_sql = "AND i.content LIKE ?";
+				}
+								// i:oitem / m:omember
+				//3. SQL문 작성
 				sql ="SELECT * FROM (SELECT a.*, rownum rnum FROM"
-					+ "(SELECT * FROM oitem WHERE state > ? " + sub_sql
-					+ " ORDER BY item_num DESC)a) WHERE rnum >= ? AND rnum <= ?";	
+					+ "(SELECT * FROM oitem i JOIN omember m USING(mem_num)"
+					+ sub_sql + " WHERE state = ? "
+					+ " ORDER BY item_num DESC)a)"
+					+ " WHERE rnum >= ? AND rnum <= ?";	
 					
-				//PreparedStatement 객체 생성
+				//4. PreparedStatement 객체 생성 + ?에 데이터 바인딩
 				pstmt = conn.prepareStatement(sql);
-				//?에 데이터 바인딩
-				pstmt.setInt(1, state);
-				pstmt.setInt(2, startRow);
-				pstmt.setInt(3, endRow);
+
+				if(keyword != null && !"".equals(keyword)) {
+					pstmt.setString(++cnt, "%"+keyword+"%");
+				}
+				pstmt.setInt(++cnt, state);
+				pstmt.setInt(++cnt, startRow);
+				pstmt.setInt(++cnt, endRow);
+				
 				//SQL문 실행해서 결과행을 ResultSet에 담음
 				rs = pstmt.executeQuery();
-
 				list = new ArrayList<OItemVO>();
 				while(rs.next()) {
 					OItemVO item = new OItemVO();
 					item.setItem_num(rs.getInt("item_num"));
-					item.setName(rs.getString("name"));
+					item.setMem_num(rs.getInt("mem_num"));
+					item.setCate_num(rs.getInt("cate_num"));
+					item.setTitle(rs.getString("title"));
 					item.setPrice(rs.getInt("price"));
-					item.setQuantity(rs.getInt("quantity"));
-					item.setPhoto1(rs.getString("photo1"));
-					item.setPhoto2(rs.getString("photo2"));
+					item.setState(rs.getInt("state"));
+					item.setContent(rs.getString("content"));
+					item.setFilename(rs.getString("filename"));
+					item.setHit(rs.getInt("hit"));
 					item.setReg_date(rs.getDate("reg_date"));
 					item.setModify_date(rs.getDate("modify_date"));
-					item.setStatus(rs.getInt("status"));
+					item.setMem_id("mem_id");
 					
 					//자바빈(VO)를 ArrayList에 저장
 					list.add(item);
@@ -262,8 +301,8 @@ public class OItemDAO {
 			}
 			return list;
 		}
-*/	
-
+	
+	
 	//민정
 	//총 레코드 수 (검색 레코드 수) 
 		//키워드를 통해서 검색을 할지 총갯수를 통해서 검색을 할지
@@ -317,7 +356,7 @@ public class OItemDAO {
 		
 		
 	//민정 판매목록
-	//글 목록
+
 		public List<OItemVO> getListItem(int startRow, int endRow, String keyfield, String keyword) throws Exception{
 			Connection conn = null;
 			PreparedStatement pstmt = null;
@@ -384,78 +423,7 @@ public class OItemDAO {
 			
 			return list;
 		}
-		
-		// itemList를 불러올 때 stsate값이 필요하다면 이 메서드를 쓰세요.
-		public List<OItemVO> getListItemState(int startRow, int endRow, 
-				String keyfield, String keyword, int state)throws Exception{
-			Connection conn = null;
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
-			List<OItemVO> list = null;
-			String sql = null;
-			String sub_sql = "";
-			int cnt = 0;
-			
-			try {										//state(0:판매중/1:예약중/2:판매완료)
-				//커넥션풀로부터 커넥션 할당
-				conn = DBUtil.getConnection();
-				
-				//2. sub_SQL문 작성
-				if(keyword != null && !"".equals(keyword)) {
-					if(keyfield.equals("1")) sub_sql = "AND i.title LIKE ?";
-					else if(keyfield.equals("2")) sub_sql = "AND m.id LIKE ?";
-					else if(keyfield.equals("3")) sub_sql = "AND i.content LIKE ?";
-				}
-								// i:oitem / m:omember
-				//3. SQL문 작성
-				sql ="SELECT * FROM (SELECT a.*, rownum rnum FROM"
-					+ "(SELECT * FROM oitem i JOIN omember m USING(mem_num)"
-					+ sub_sql + " WHERE state = ? "	//state값은 >아니라 =으로 줬어요 (main에서 조절해서 쓰세요)
-					+ " ORDER BY item_num DESC)a)"
-					+ " WHERE rnum >= ? AND rnum <= ?";	
-					
-				//4. PreparedStatement 객체 생성 + ?에 데이터 바인딩
-				pstmt = conn.prepareStatement(sql);
-
-				if(keyword != null && !"".equals(keyword)) {
-					pstmt.setString(++cnt, "%"+keyword+"%");
-				}
-				pstmt.setInt(++cnt, state);
-				pstmt.setInt(++cnt, startRow);
-				pstmt.setInt(++cnt, endRow);
-				
-				//SQL문 실행해서 결과행을 ResultSet에 담음
-				rs = pstmt.executeQuery();
-				list = new ArrayList<OItemVO>();
-				while(rs.next()) {
-					OItemVO item = new OItemVO();
-					item.setItem_num(rs.getInt("item_num"));
-					item.setMem_num(rs.getInt("mem_num"));
-					item.setCate_num(rs.getInt("cate_num"));
-					item.setTitle(rs.getString("title"));
-					item.setPrice(rs.getInt("price"));
-					item.setState(rs.getInt("state"));
-					item.setContent(rs.getString("content"));
-					item.setFilename(rs.getString("filename"));
-					item.setHit(rs.getInt("hit"));
-					item.setReg_date(rs.getDate("reg_date"));
-					item.setModify_date(rs.getDate("modify_date"));
-					item.setMem_id("mem_id");
-					
-					//자바빈(VO)를 ArrayList에 저장
-					list.add(item);
-				}
-				
-			}catch(Exception e) {
-				throw new Exception(e);
-			}finally {
-				DBUtil.executeClose(rs, pstmt, conn);
-			}
-			return list;
-		}	
 	
-		
-
 	//다원
 	//상품Detail 부분(1) 조회수 증가메서드
 	public void updateReadcount(int item_num)throws Exception{
