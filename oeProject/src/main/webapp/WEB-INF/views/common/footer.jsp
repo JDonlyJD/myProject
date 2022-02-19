@@ -42,14 +42,17 @@
 					</ul>
 				</div>
 			</div>
-		</footer>
 		
 		<div class="footer-end">
-			<br><hr size = "2" noshade = "noshade" width="100%">
+			<br><br>
+			<hr size = "2" noshade = "noshade" width="100%">
+			<p>
 			<p><b>고객 문의</b>&nbsp;cs@oh!eservice.com&nbsp;&nbsp;<b>제휴 문의</b>&nbsp;contact@oh!e.com</p>
 			<p><b>주소</b> 서울 특별시 마포구 월드컵북로 21 2층 풍성빌딩&nbsp;<b>사업자 등록번호</b>&nbsp;375-89-000000</p>
 			<p>Copyright(C) 2020 SSangyong Institute of System Technology, All Right Reserved.</p><br>
 			<p>
 		</div>
 			
+		</footer>
+		
 

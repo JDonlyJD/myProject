@@ -249,5 +249,20 @@ label[for="order_quantity"]{
 	color:red;
 }
 
-
-
+/*myHome*/
+div.page-main-home{
+	padding: 16%; 
+	margin: 0 auto; 
+	width: 2000px; 
+	height: 500px;
+}
+div.page-main-home div ul li{
+	/* outline:1px dotted yellow; */
+	width:600px;
+	padding:100px 10% 5px 10%;	
+	margin: 0 auto;
+}
+b#my_home_b{
+	outline:1px dotted red;
+	width:200px;
+}
