@@ -120,6 +120,7 @@ create table ocategory(
    cate_status number(1) --(0미사용 1사용)
 );
 cate_name varchar2(30) not null
+create sequence ocategory_seq;
 
 /*********************************게시판 시작*************************************/
 /*질문 문의(ask) 테이블 영역 //삭제하시고 새로 만드세요 ! 시퀀스도 !!
