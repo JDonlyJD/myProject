@@ -5,13 +5,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>My MANAGEMENT(Admin)</title>
+<title>MANAGER HOME</title>  
 <style type="text/css">
 div ul li input{
 	background-color: #3DB7CC;
 	color: white;
-	width: 83px;
-	height: 55px;
+	height:60px;
 	border:none;
 }
 </style>
@@ -101,38 +100,41 @@ div ul li input{
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-<div class="page-main" style="padding: 16%; margin: 15 auto; width: 1300px; height: 550px;">
-   <h2>MY MANAGEMENT(Admin)</h2>
-   <div class="mypage-div3">
-       <h3>프로필 사진</h3>
-      <ul>
-         <li>
-            <c:if test="${empty member.mem_photo}">
-            <img src="${pageContext.request.contextPath}/images/face.png" 
-                 width="100" height="100" class="my-photo">
-            </c:if>
-            <c:if test="${!empty member.mem_photo}">
-            <img src="${pageContext.request.contextPath}/upload/${member.mem_photo}"
-                 width="100" height="100" class="my-photo"> 
-            </c:if>
-         </li>
-         <li><b>${member.mem_nick}(${member.mem_id})님의 <font color="green">MANAGER HOME</font></b>입니다.<br></li>
-         <li><a href='${pageContext.request.contextPath}/member/adminMyPage.do' style="color: blue;">회원정보 수정</a></li>
-         <br>
-         <li>
-            <input type="button" value="회원목록" 
-            onclick="location.href='adminMemberList.do'">
+<div class="page-main-home" >
+	<p>MANAGER HOME</p>
+	<div class="mypage-div">
+		<div class="mypage-div-2">
+			<c:if test="${empty member.mem_photo}">
+				<img src="${pageContext.request.contextPath}/images/face.png" 
+				     width="150" height="150" class="my-photo">
+			</c:if>
+			<c:if test="${!empty member.mem_photo}">
+				<img src="${pageContext.request.contextPath}/upload/${member.mem_photo}"
+				     width="150" height="150" class="my-photo"> 
+			</c:if>
+		</div>
+		<div class="mypage-div-3">
+			<img alt="oi" src="${pageContext.request.contextPath}/images/oi.png" width="38" height="35">
+			<b id="my_home_b">${member.mem_nick}(${member.mem_id})님의 <font color="green">MANAGER HOME</font></b>입니다.<br>
+			<a href='${pageContext.request.contextPath}/member/myPage.do' style="color: blue">회원정보 수정</a>
+		</div>
+	<br>
+	</div>
+	
+	<div class="align-center-home">
+		<ul>	
+			<li>
+			<input type="button" value="회원목록" 
+            onclick="location.href='adminMemberList.do'" style="width: 120px;">
         
             <input type="button" value="문의게시판" 
-            onclick="location.href='${pageContext.request.contextPath}/board/oList.do'">
+            onclick="location.href='${pageContext.request.contextPath}/board/oList.do'" style="width: 120px;">
       
             <input type="button" value="카테고리관리" 
-            onclick="location.href='adminCate.do'">
-         </li>
-         <p>
-      </ul>
-
-   </div>
+            onclick="location.href='adminCate.do'" style="width: 120px;">
+			</li>
+		</ul>
+	</div>
 </div>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
