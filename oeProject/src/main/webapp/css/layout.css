@@ -314,3 +314,23 @@ div.page-main-home div ul li input{
 
 
 }
+
+/*---------- 찜하기------------ */
+.item-space .like{
+	margin:2px;
+	padding:3px;
+	width:200px;
+	height:220px;
+	float:left;
+	overflow:visible;
+	text-align:center;
+	padding-bottom: 100px;
+}
+.item-space .like img{
+	object-fit:cover;
+	width:195px;
+	height:175px;
+}
+div .empty {
+	padding-top : 700px;
+}

@@ -7,8 +7,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
+import kr.item.OItemVO;
 import kr.item.OLikeDAO;
 import kr.item.OLikeVO;
+import kr.util.PagingUtil;
 
 public class LikeListAction implements Action{
 
@@ -19,9 +21,10 @@ public class LikeListAction implements Action{
       if(user_num == null) {//로그인이 되지 않은 경우
          return "redirect:/member/loginForm.do";
       }
-      
       OLikeDAO dao = OLikeDAO.getInstance();
+      
       List<OLikeVO> list = null;
+      
       list = dao.getListLike(user_num);
       
       request.setAttribute("list", list);

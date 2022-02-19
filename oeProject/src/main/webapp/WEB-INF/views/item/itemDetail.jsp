@@ -7,6 +7,11 @@
 <meta charset="UTF-8">
 <title>판매상품 글상세</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/layout.css"> <%--css스타일 경로--%>
+<style type="text/css">
+	#output_fav{
+		cursor:pointer;
+	}
+</style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/item-reply.js"></script>
 <script type="text/javascript">
@@ -36,7 +41,74 @@
            $('.my-file').attr('src',reader.result);
        	};
    	 });//end of change
- 	});
+   	//====================찜하기===============================
+  	   var status;
+  	   //좋아요 수 
+  	   function selectData(item_num){
+  	      $.ajax({
+  	         type:'post',
+  	         data:{item_num:item_num},
+  	         url:'getFav.do',
+  	         dataType:'json',
+  	         cache:false,
+  	         timeout:30000,
+  	         success:function(data){
+  	            if(data.result=='success'){
+  	               displayFav(data);
+  	            }else{
+  	               alert('좋아요 읽기 오류');
+  	            }
+  	         },
+  	         error:function(){
+  	            alert('네트워크 오류');
+  	         }
+  	      });
+  	   }
+  	   
+  	   //좋아요 등록
+  	   $('#output_fav').click(function(){   
+  	      $.ajax({
+  	         type:'post',
+  	         data:{item_num:${item.item_num}},
+  	         url:'writeFav.do',
+  	         dataType:'json',
+  	         cache:false,
+  	         timeout:30000,
+  	         success:function(data){
+  	            if(data.result=='logout'){
+  	               alert('로그인 후 좋아요를 눌러주세요!');
+  	            }else if(data.result=='success'){
+  	               displayFav(data);
+  	            }else{
+  	               alert('등록시 오류 발생!');
+  	            }
+  	         },
+  	         error:function(){
+  	            alert('네트워크 오류!');
+  	         }
+  	      });
+  	   });
+  	   
+  	   //좋아요 표시
+  	   function displayFav(data){
+  	      status = data.status;
+  	      var count = data.count;
+  	      var output;
+  	      if(status=='noFav'){
+  	         output = '../images/heart01.png';
+  	      }else{
+  	         output = '../images/heart02.png';
+  	      }         
+  	      //문서 객체에 추가
+  	      $('#output_fav').attr('src',output);
+  	      $('#output_fcount').text(count);
+  	   }
+  	   
+  	   
+  	   //초기 데이터(목록) 호출
+  	   selectData(${item.item_num});
+    	 
+   	});
 </script>
 </head>
 <body>
@@ -87,7 +159,7 @@
       </c:if>
       	
       <c:if test="${!empty user_num && user_num != item.mem_num && item.state != 2}">	<!-- state(2 : 판매완료)아니면 찜하기가 보임 -->
-      <input type="button" value="찜하기" onclick="location.href='${pageContext.request.contextPath}/item/likeWrite.do'">
+      <img id="output_fav" src="${pageContext.request.contextPath}/images/heart01.png"><span id="output_fcount"></span>
       </c:if>
 	
 	<input type="button" value="찜목록" onclick="location.href='${pageContext.request.contextPath}/item/likeList.do'">;
