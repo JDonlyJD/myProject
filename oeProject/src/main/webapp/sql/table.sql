@@ -116,9 +116,10 @@ create sequence oreply_seq;
 /*카테고리 테이블 영역 */
 create table ocategory(
    cate_num number not null primary key,
-   cate_name number(30) not null,
-   cate_status number(1)
+   cate_name varchar2(30) not null,
+   cate_status number(1) --(0미사용 1사용)
 );
+cate_name varchar2(30) not null
 
 /*********************************게시판 시작*************************************/
 /*질문 문의(ask) 테이블 영역 //삭제하시고 새로 만드세요 ! 시퀀스도 !!
