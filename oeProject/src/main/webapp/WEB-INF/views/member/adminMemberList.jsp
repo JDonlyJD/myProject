@@ -61,6 +61,7 @@ div li select,input[type="search"],input[type="submit"]{
    </c:if>
    <c:if test="${count > 0}">
    <table>
+   <thead>
       <tr>
          <th>회원번호</th>
          <th>회원ID</th>
@@ -70,6 +71,8 @@ div li select,input[type="search"],input[type="submit"]{
          <th>계정상태</th>
          <th>회원등급</th>
       </tr>
+      </thead>
+      <tbody>
       <c:forEach var="member" items="${list}">
       <tr>
          <td>${member.mem_num}</td>
@@ -91,7 +94,9 @@ div li select,input[type="search"],input[type="submit"]{
          <td>${member.mem_auth}</td>
       </tr>
       </c:forEach>
+      </tbody>
    </table>
+ <br>
    <div class="align-center">
       ${pagingHtml}
    </div>

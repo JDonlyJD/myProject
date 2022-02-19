@@ -69,6 +69,7 @@ input[type="submit"]{
 		</c:if>
 		<c:if test="${count > 0 }">
 			<table>
+			<thead>
 				<tr>
 					<th>상품번호</th>
 					<th>제목</th>
@@ -76,6 +77,8 @@ input[type="submit"]{
 					<th>상품가격</th>
 					<th>등록일</th>
 				</tr>
+			</thead>
+			<tbody>
 				<c:forEach var="item" items="${list }">
 					<tr>
 						<td>${item.item_num }</td>
@@ -94,6 +97,7 @@ input[type="submit"]{
 						</td> --%>						
 					</tr>
 				</c:forEach>
+				</tbody>
 			</table>
 			<div class="align-center">
 				<br><a href="${pageContext.request.contextPath}/main/main.do"><img alt="홈으로" src="${pageContext.request.contextPath}/images/home.jpg" width="30px" height="30px"></a>
