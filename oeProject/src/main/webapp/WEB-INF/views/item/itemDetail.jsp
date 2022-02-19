@@ -41,6 +41,14 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+
+<div class="no-line">	<!-- css로 line안보이게 -->
+<form id="item_like" action="${pageContext.request.contextPath}/item/likeWrite.do" method="post">
+	<input type="hidden" name="oitem_num" id="oitem_num" value="${item.item_num }"  >	<!-- 전송할 때 쓰려고 -->
+	<input type="hidden" name="oitem_price" id="oitem_price" value="${item.price }" >	<!-- 연산해서 총 금액 구하려고 -->
+</form>	
+</div>	
+
 <div class="page-main">
 	<h2>판매상품 글상세 </h2>
 	<ul>
@@ -55,6 +63,10 @@
 		<li>카테고리 : ${item.cate_num}</li>
 		<li>가격 : ${item.price}</li>
 	</ul>
+	
+	 
+	
+	 
 	<hr size="1" noshade width="100%">
 	<c:if test="${!empty item.filename}">
 		<div class="align-center">
@@ -70,9 +82,15 @@
 	<c:if test="${!empty user_num && user_num == item.mem_num}">
       <input type="button" value="채팅하기" onclick="location.href='${pageContext.request.contextPath}/chatting/chattingListForBuyer.do?item_num=${item.item_num}'">
       </c:if>
-      <c:if test="${!empty user_num && user_num != item.mem_num}">
+      <c:if test="${!empty user_num && user_num != item.mem_num && item.state != 2}">	<!-- state(2: 판매완료)아니면 채팅하기가 보임 -->
       <input type="button" value="채팅하기" onclick="location.href='${pageContext.request.contextPath}/chatting/chatting.do?item_num=${item.item_num}&trans_num=${item.mem_num}'">
       </c:if>
+      	
+      <c:if test="${!empty user_num && user_num != item.mem_num && item.state != 2}">	<!-- state(2 : 판매완료)아니면 찜하기가 보임 -->
+      <input type="button" value="찜하기" onclick="location.href='${pageContext.request.contextPath}/item/likeWrite.do'">
+      </c:if>
+	
+	<input type="button" value="찜목록" onclick="location.href='${pageContext.request.contextPath}/item/likeList.do'">;
 	
 	<div class="align-right">
 		<c:if test="${!empty board.modify_date}">

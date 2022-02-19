@@ -59,7 +59,7 @@ create sequence order_seq;
 
 
 
-/*상품 좋아요 테이블*/
+/*상품 좋아요 테이블  => 삭제하고 olike테이블만들기
 CREATE TABLE oitem_favorite(
    like_num number not null, 
    item_num number not null,
@@ -68,6 +68,20 @@ CREATE TABLE oitem_favorite(
    constraint oitem_favorite_fk foreign key(item_num) references oitem(item_num),
    constraint oitem_favorite_fk2 foreign key(mem_num) references omember(mem_num)
 );
+*/
+
+CREATE TABLE olike(
+   like_num number not null, 
+   item_num number not null,
+   mem_num number not null,
+   constraint oitem_favorite_pk primary key(like_num),
+   constraint oitem_favorite_fk foreign key(item_num) references oitem(item_num),
+   constraint oitem_favorite_fk2 foreign key(mem_num) references omember(mem_num)
+);
+create sequence olike_seq;
+
+
+
 
 /*상품 댓글
 create table oitem_reply(
@@ -191,3 +205,8 @@ CREATE TABLE ochatting(
     constraint ochatting_fk3 foreign key (item_num) references oitem (item_num)
 );
 CREATE SEQUENCE ochatting_seq;
+
+
+
+
+
