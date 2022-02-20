@@ -22,7 +22,7 @@
 			$.ajax({ //제이슨 문자열
 				url:'checkId.do',
 				type:'post',
-				data:{id:$('#id').val()},
+				data:{mem_id:$('#id').val()},
 				dataType:'json',
 				cache:false,
 				timeout:30000,
