@@ -59,7 +59,7 @@
             output += '		<div class = "sub-item">';
             output += '			<div class = "cate_num"><p>' + item.cate_num + '</p></div>';       
             output += '			<div class = "cate_name"><p>' + item.cate_name + '</p></div>';   
-            output += '			<div class = "cate_status">';                 
+            output += '			<div class = "cate_status">';         
             //조건체크 //radio는 name이 같으면 그룹으로묶음
 					if(item.cate_status == 1){
 						output += '<input type="radio" value="0" class="cate_status2" >미사용'
@@ -219,9 +219,11 @@
       //p태그를 찾을 때는 부모태그와 함께 명시해야한다.
       //.parent().find('p') : 부모태그(sub-item)에 접근해서 'p'태그를 찾아라
       //* 댓글 내용                              g:지정문자열 모두 찾아라. i:대소문자 무시
-      let content = $(this).parent().find('p').html().replace(/<br>/gi, '\n');
+      let content = $(this).parents().find('p').html().replace(/<br>/gi, '\n');
                                        //br태그 대소문자 무시하고 모두 찾아서 \n으로 바꿔라   
                                        //이렇게하지않으면 <br>태그가 그대로 명시됨
+	
+	  let cate_status = $(this).parents().find('.cate_status').val();
 
 
       //* 댓글 수정폼 UI
@@ -230,7 +232,13 @@
          modifyUI += '  <textarea rows="3" cols="50" name="re_content" id="mre_content" class="rep-content">'+ content +'</textarea>';
          modifyUI += '  <div id="mre_first"><span class="letter-count">10/10</span></div>';
 
-
+		if(cate_status == 1){
+			modifyUI += '<br><input type="radio" value="1">사용';
+			modifyUI += '<p>사용</p>';
+		}else{//(item.cate_status == 0)
+			modifyUI += '<br><input type="radio" value="0">미사용';
+			modifyUI += '<p>미사용</p>';
+		} 
 
          modifyUI += '  <div id="mre_second" class="align-center">';
          modifyUI += '     <input type="submit" value="수정">';
@@ -247,7 +255,7 @@
       //수정버튼을 감싸고 있는 div(sub-item)을 감추기
       $(this).parent().hide();   
       //* 수정폼을 수정하고자 하는 데이터가 있는 div에 노출(hide시켰으니까 우리가 만든 form을 붙여줘야함)
-      $(this).parents('.item').append(modifyUI);   //버튼의 여러부모들 중에서 원하는 부모(item)를 지정 ???? 2/10,09:37,00:33
+      $(this).parents('.catelist').append(modifyUI);
       
       //* 입력한 글자수 셋팅
       let inputLength = $('#mre_content').val().length;
