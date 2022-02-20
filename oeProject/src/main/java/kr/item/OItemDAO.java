@@ -807,6 +807,101 @@ public class OItemDAO {
 	
 	
 	
+	/* MAIN 검색어 관리 메서드 */
+	//*******메인 총 레코드 수 (검색 레코드 수) 	
+	public int getListMainCount(String keyword)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+
+		int count = 0;
+		
+		try {
+			//커넥션 풀로부터 커넥션 할당받기
+			conn = DBUtil.getConnection();
+			
+			//SQL문 작성
+			sql = "SELECT COUNT(*) FROM oitem i JOIN omember m USING(mem_num) "
+					+ "WHERE i.title LIKE ? OR i.content LIKE ?";
+			
+			//PreparedStatement객체 생성
+			pstmt = conn.prepareStatement(sql);
+			
+			if(keyword!= null && !"".equals(keyword)) {
+				pstmt.setString(1, "%"+keyword+"%");
+				pstmt.setString(2, "%"+keyword+"%");
+			}
+			
+			//SQL문을 실행하고 결과행을 resultSet에 담음
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				count = rs.getInt(1);
+			}			
+		} catch (Exception e) {
+			throw new Exception();				
+		} finally {
+			//자원정리
+			DBUtil.executeClose(rs, pstmt, conn);
+		}		
+		return count;
+	}
+	
+	
+	//(keyfield없는  Main에서 사용) getListMain
+	public List<OItemVO> getListMain(String keyword) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<OItemVO> list = null;
+		String sql = null;
+		
+		try {
+			//커넥션 풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			
+			//SQL문 작성
+			sql = "SELECT * FROM(SELECT a.*, rownum rnum FROM "
+					+ "(SELECT * FROM oitem i JOIN omember m USING(mem_num) "
+					+ "WHERE i.title LIKE ? OR i.content LIKE ?" + "ORDER BY i.state DESC)a) ";
+					
+			
+			//PreparedStatement객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//조건에 따라 ? 가 생기므로 조건체크				
+				pstmt.setString(1, "%"+keyword+"%");
+				pstmt.setString(2, "%"+keyword+"%");
+			
+			
+			//SQL문을 실행해서 결과행들을 ResultSet에 담음
+			rs = pstmt.executeQuery();
+			list = new ArrayList<OItemVO>();
+			while(rs.next()) { //다명시하지않고 표시할 것만 넣겠음
+				OItemVO item = new OItemVO();
+				item.setItem_num(rs.getInt("item_num")); //상품번호
+				item.setTitle(StringUtil.useNoHtml(rs.getString("title")));//HTML태그를 허용하지 않음
+				item.setState(rs.getInt("state")); //판매상태(0판매중/1예약중/2판매완료) (default 0)
+				item.setPrice(rs.getInt("price")); //상품가격
+				item.setReg_date(rs.getDate("reg_date")); //상품등록일
+				item.setFilename(rs.getString("filename"));
+				item.setMem_id(rs.getString("mem_id"));
+				//board.setMem_num(rs.getInt("mem_num")); 
+				//item.setHit(rs.getInt("hit"));
+				
+				//BoardVO 를 ArrayList에 저장
+				list.add(item);
+			}
+			
+		} catch (Exception e) {
+			throw new Exception(e);
+			
+		} finally {
+			//자원정리
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return list;
+	}		
 	
 	
 }

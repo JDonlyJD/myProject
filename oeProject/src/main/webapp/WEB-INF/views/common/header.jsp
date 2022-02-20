@@ -31,16 +31,14 @@
 		</div>
 		 
 	<%-- **검색창 --%>
- 		<form class="navbar-form navbar-right">
-            <div class="form-group">
-              <input type="text" class="form-control input-lg" placeholder="오늘은 이거 ? ! " />
+ 		<form class="navbar-form navbar-right" id="search_form" action="mainList.do" method="get">
+            <div class="form-group search">
+              <input type="search" name="keyword" id="keyword" class="form-control input-lg" placeholder="오늘은 이거 ? ! " />
             </div>
             <button type="submit" id="search_btn" class="btn btn-success btn-lg" >검색</button>
           </form>
 		
-		<!-- <a id="menu_search" href="#">
-			<input type="search" name="search" size="30" value="검색! 오이해보세요 ">
-		</a> -->
+
 	
 	<%-- **관리자)회원관리 --%>	
 		<c:if test="${!empty user_num && user_auth == 2}"> <%--관리자일 경우--%>
