@@ -478,3 +478,8 @@ th#cate_del{
 	padding:5px 10px 0 50px;
 	text-align: center;
 }
+
+/*메인화면 등록된 상품 사진 모서리 테스트*/
+div.horizontal-area img{
+	border-radius: 30px;
+}
