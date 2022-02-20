@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -133,7 +134,7 @@
 		</li>
 		<li>조회수 : ${item.hit}</li>
 		<li>카테고리 : ${item.cate_num}</li>
-		<li>가격 : ${item.price}</li>
+		<li>가격 : <fmt:formatNumber value="${item.price}" pattern="#,###"/></li>
 	</ul>
 	
 	 
@@ -158,6 +159,8 @@
       <c:if test="${!empty user_num && user_num != item.mem_num && item.state != 2}">	<!-- state(2: 판매완료)아니면 채팅하기가 보임 -->
       <input type="button" value="채팅하기" onclick="location.href='${pageContext.request.contextPath}/chatting/chatting.do?item_num=${item.item_num}&trans_num=${item.mem_num}'">
       </c:if>
+      
+      <input type="button" value="찜목록" onclick="location.href='${pageContext.request.contextPath}/item/likeList.do'">	
       
       <c:if test="${!empty user_num && user_num != item.mem_num && item.state != 2}">	<!-- state(2 : 판매완료)아니면 찜하기가 보임 -->
       <img id="output_fav" src="${pageContext.request.contextPath}/images/heart01.png"><span id="output_fcount"></span>
