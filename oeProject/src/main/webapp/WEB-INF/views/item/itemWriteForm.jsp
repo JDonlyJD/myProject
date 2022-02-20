@@ -108,13 +108,13 @@
          </c:if>
          <br><br>
          <!-- <label for="content">상품설명</label> -->
-         <textarea name="content" id="content" rows="5" cols="70" placeholder="상품 내용 작성란입니다. 내용을 입력하세요."></textarea>
+         <textarea name="content" id="content" rows="4" cols="50" placeholder="상품 내용 작성란입니다. 내용을 입력하세요."></textarea>
 		</li>
    </ul>            
    <div class="align-center">
       <br>
       <input type="submit" value="상품등록">
-      <input type="button" value="목록" onclick="location.href='${pageContext.request.contextPath}/item/saleList.do'" style="background-color:yellow; color:black;width:70px; height: 30px;">
+      <input type="button" value="목록" onclick="location.href='${pageContext.request.contextPath}/item/saleList.do'">
       <!-- <input type="submit" value="등록"> -->
       <!-- <input type="button" value="목록으로" onclick="location.href='salelist.do'"> -->
    </div>
