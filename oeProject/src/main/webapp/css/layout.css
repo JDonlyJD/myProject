@@ -87,26 +87,32 @@ ul.search li{
 .list-space{
 	margin-bottom:10px;
 }
-/*테이블 디자인*/
+/*---------테이블 디자인-----------*/
+
 table{
     width: 100%;
     border-top: none solid #444444;
     border-collapse: collapse;
+    border-style: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 table th,table td{
-   border-bottom: none solid #444444;
-   padding: 10px;
-   text-align: center;
+   padding: 12px 15px;
 }
 thead tr{
-   background-color: #2C3E50;
-   color: #ffffff;
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
 }
-tbody tr:nth-child(2n) {
-   background-color: #18BC9C;
+tbody tr {
+border-bottom: 1px solid #dddddd;
 }
-tbody tr:nth-child(2n+1) {
-   background-color: #e3f2fd;
+tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
 }
 .my-photo{
 	object-fit:cover;
