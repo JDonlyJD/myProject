@@ -86,54 +86,56 @@
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           	<ul class="nav navbar-nav">
 	<%-- **카테고리 --%>			
-		      	<li class="dropdown ">
+		      	<li class="dropdown " id="nav1">
 		        	<a href="#" class="dropdown-toggle" data-toggle="dropdown">카테고리 </a>
-		        	<ul class="dropdown-menu">
-				        <li><a class="dropdown" href="#">Cloth</a></li>
-				        <li><a class="dropdown" href="#">Beauty</a></li>
-			        	<li><a class="dropdown" href="#">Tech</a></li>
-				        <li><a class="dropdown" href="#">Food</a></li>
-				        
-				        <li><a class="dropdown" href="#">Ect</a></li>
-			        </ul>
+			        	<ul class="dropdown-menu">
+		    		 	<c:forEach var="cate" items="${cateName_list}">
+					        <li><a class="dropdown" id="cate_name_menu" href="#">${cate.cate_name}</a></li>
+		       			</c:forEach>
+				        </ul>
 		      	</li>
-		      	
 				
-		      
 	<%-- **상품등록 --%>			
 		        <c:if test="${!empty user_num }"><%--로그인 했을 때--%>
-		            <li><a href="${pageContext.request.contextPath}/item/itemWriteForm.do">상품등록</a></li>
+		            <li id="nav2">
+		            <a href="${pageContext.request.contextPath}/item/itemWriteForm.do">상품등록</a></li>
 	            </c:if>	 
 	 <%-- **상품목록 --%>			
 		        <c:if test="${!empty user_num }"><%--로그인 했을 때--%>
-		            <li><a href="${pageContext.request.contextPath}/item/saleList.do">상품목록</a></li>
+		            <li id="nav3">
+		            <a href="${pageContext.request.contextPath}/item/saleList.do">상품목록</a></li>
 	            </c:if>
 	 <%-- **찜 목록 --%>			
 		        <c:if test="${!empty user_num }"><%--로그인 했을 때--%>
-		            <li><a href="${pageContext.request.contextPath}/item/likeList.do">찜목록</a></li>
+		            <li id="nav4">
+		            <a href="${pageContext.request.contextPath}/item/likeList.do">찜목록</a></li>
 	            </c:if> 
 	 <%-- **채팅목록 --%>			
 		        <%-- active로 기본적으로 보이게한다 --%>
 		        <c:if test="${!empty user_num }"><%--로그인 했을 때 --%>
-		        	<li><a href="${pageContext.request.contextPath}/chatting/chattingListForBuyer.do?item_num=${item.mem_num}">채팅목록</a></li>
+		        	<li id="nav5">
+		        	<a href="${pageContext.request.contextPath}/chatting/chattingListForBuyer.do?item_num=${item.mem_num}">채팅목록</a></li>
 		        </c:if>            
 	            	      
 	 <%-- **문의게시판 --%>			
 		       	<c:if test="${!empty user_num }"><%--로그인 했을 때--%>
-		        	<li ><a href="${pageContext.request.contextPath}/board/oList.do">문의 게시판</a></li>
+		        	<li id="nav6">
+		        	<a href="${pageContext.request.contextPath}/board/oList.do">문의 게시판</a></li>
 		        </c:if>	         
    
     <%-- **카테고리 임시 테스트메뉴 --%> 
 	            <c:if test="${!empty user_num && user_auth == 2}"> <%--관리자일 경우--%>
-		            <li><a href="${pageContext.request.contextPath}/category/adminCate.do">카테고리테스트</a></li>
+		            <li id="nav7">
+		            <a href="${pageContext.request.contextPath}/category/adminCate.do">카테고리테스트</a></li>
 	            </c:if>
 		        
           </ul>
         </div>
-        
     </nav>
     </div>
      
 </div>	
+
+	
 </body>
 </html>  

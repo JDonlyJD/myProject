@@ -30,21 +30,6 @@ header#main_header a{
 	margin:0 30px 0 0; /* 상우하좌 */
 }
 
-/* header ul li{
-list-style: none;
-display:inline-block;li에 display: inline 가로정렬 
-font-size:20pt;
-vertical-align: middle;
-text-align:center;
-color:white;
-background-color:#2C3E50;
-} */
-/* header ul li :hover{
-background-color:#18BC9C;오이그린
-color:white;
-color:#18BC9C;
-} */
-
 
 span#menu_logout{
 	color:white;
@@ -64,13 +49,15 @@ div.header a:link{
 	text-decoration:none;
 	color:#ffffff;
 }
+div.second-menu a#cate_name_menu{
+	text-decoration:none;
+	color:#18BC9C;
+}
+
 div.header a.dropdown:link{
 	text-decoration:none;
 	color:#000000;
 }
-
-
-
 
 div.header nav.nav2{
 	padding-top: 120px;
@@ -108,12 +95,42 @@ div.header nav#second_menu{
 		vertical-align: middle;
 		text-align:center;}	
 
-
-/* 	nav.nav2 li{
-		list-style:none; 리스트 점제거
-		margin:0 20px 0 0; 상우하좌
-		display:inline; 리스트를 가로형태로 만듦
-	} */
+li#nav1{
+	/* outline:1px dotted red;  */
+	margin-left: 550px;
+	text-align:center;
+	width:100px;
+}
+li#nav2{
+	/* outline:1px dotted red;  */
+	margin-left: 30px;
+	text-align:center;
+	width:100px;
+}
+li#nav3{
+	/* outline:1px dotted red; */ 
+	margin-left: 30px;
+	text-align:center;
+	width:100px;
+}
+li#nav4{
+	/* outline:1px dotted red; */ 
+	margin-left: 30px;
+	text-align:center;
+	width:100px;
+}
+li#nav5{
+	/* outline:1px dotted red;  */
+	margin-left: 30px;
+	text-align:center;
+	width:100px;
+}
+li#nav6{
+	/* outline:1px dotted red;  */
+	margin-left: 30px;
+	text-align:center;
+	width:100px;
+}
 
 /* ----------------메인----------------- */
 	section.main a:hover{
@@ -147,7 +164,7 @@ footer#page_footer {
 /* 	outline:2px dotted yellow; */
 	margin:100px 0 0 0;
 	background-color:#18BC9C;/* 오이그린 */
-	background: linear-gradient( #18BC9C,#18BC9C, white);
+	background: linear-gradient( #18BC9C,#18BC9C,white);
 	clear:both;
 	height:340px;
 }
@@ -167,18 +184,22 @@ footer#page_footer {
 }
 
 footer div#footer_main{
-	/* outline:1px dotted red; */ 
-	padding: 40px 100px 100px 100px; 
+	/* outline:1px dotted red;  */
+	padding: 40px 50px 100px 200px; 
 	float: left; width: 30%;
 	/* margin: 100px 0 0 30%; */
+	margin: 0 100px 0 250px;
 	width:400px;
 	height:180px;
 	text-align:left;
 	vertical-align:center;
+	text-decoration:none;
+	
 	/* 상 우 하 좌 / 상 좌우 하 / 상하 좌우 */
 	
 }
-footer div#footer_main p {	 
+footer div#footer_main p {	
+	/* outline: 1px dotted red; */
 	font-size:18pt;
 	float:left;
 	color:#d2fc8d;
@@ -188,12 +209,13 @@ footer div#footer_main p {
 footer div#footer_main div{
 	/* outline:1px dotted red;  */
 	font-size:30pt;
-	font-style:bold;
+	font-weight:bold;
 	clear:both;
 	font-weight:bold;
 	color:white;
 	padding:0 0 0 0;
-	margin:0 40px 0 0;
+	margin:0 0 0 0;
+	width: 200px;
 	
 }
 div[class*=foot] ul{
@@ -203,7 +225,6 @@ div[class*=foot] ul{
 	}
 	a[class=foot]{
 	color:#1D1D1F;
-	
 	}
 	a[class=foot]:hover{
 	 	text-decoration: underline;
@@ -215,7 +236,7 @@ div[class*=foot] ul{
 	
 	div.foot01{	
 		/* outline:1px dotted red;  */
-	 	float: left; width: 70%;
+	 	/* float: left; width: 50%; */
 		
 		/* width:200px;
 		top:25%;
@@ -226,8 +247,8 @@ div[class*=foot] ul{
 	}
 	div.foot02 {	
 		/* outline:1px dotted red; */ 
-		float: left; width: 33%;
-		
+		float: left; width: 300px;
+		padding:0 100px 0 0;
 		/* width:200px;
 		top:13%;
 		float:left;
@@ -237,8 +258,8 @@ div[class*=foot] ul{
 	}
 	div.foot03{
 		/* outline:1px dotted red;  */
-		float: left; width: 33%;
-		
+		float: left; width: 300px;
+		padding:0 100px 0 0;
 		/* width:200px;
 		clear:both;
 		left:11%;
@@ -248,8 +269,9 @@ div[class*=foot] ul{
 		/* 상 우 하 좌/상 좌우 하/상하 좌우 */
 	}
 	div.foot04{
-		/* outline:1px dotted red; */ 
-		float: left; width: 10%;
+		/* outline:1px dotted red;  */
+		float: left; width: 300px;
+		padding:0 100px 0 0;
 		/*clear:both;
 		left:11%;
 		top:30%;
@@ -258,17 +280,7 @@ div[class*=foot] ul{
 		/* 상 우 하 좌/상 좌우 하/상하 좌우 */
 	} 
 div.foot01{
-	
 display:inline-block;
-}
-
-.footer-end p{
-	text-align:center;
-}
-
-footer#page_footer hr{
-	color:"red";
-	width:98%; margin:0px auto;
 }
 
 div.header a:visited{
@@ -277,7 +289,14 @@ div.header a:visited{
 	color:#ffffff;
 }
 
+footer#page_footer li{
+	padding:5px 0 10px 0;
+}
 
+div.footer-end p{
+	font-size: 11px;
+	text-align:center;
+}
 
 
 
