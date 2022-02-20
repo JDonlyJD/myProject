@@ -159,8 +159,6 @@
       <input type="button" value="채팅하기" onclick="location.href='${pageContext.request.contextPath}/chatting/chatting.do?item_num=${item.item_num}&trans_num=${item.mem_num}'">
       </c:if>
       
-      <input type="button" value="찜목록" onclick="location.href='${pageContext.request.contextPath}/item/likeList.do'">	
-      
       <c:if test="${!empty user_num && user_num != item.mem_num && item.state != 2}">	<!-- state(2 : 판매완료)아니면 찜하기가 보임 -->
       <img id="output_fav" src="${pageContext.request.contextPath}/images/heart01.png"><span id="output_fcount"></span>
       </c:if>
