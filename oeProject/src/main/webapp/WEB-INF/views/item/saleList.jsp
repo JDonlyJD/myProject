@@ -58,8 +58,6 @@ input[type="submit"]{
 		<div class="list-space align-right">
 			<input type="button" value="상품등록" 
 				onclick="location.href='itemWriteForm.do'" <c:if test="${empty user_num}">disabled="disabled"</c:if>>  <!-- 같은경로이기 떄문에 파일경로만 작성했음  -->
-			<input type="button" value="홈으로" 
-				onclick="location.herf='${pageContext.request.contextPath}/main/main.do'">
 		</div>
 		<br>
 		<c:if test="${count == 0 }">
