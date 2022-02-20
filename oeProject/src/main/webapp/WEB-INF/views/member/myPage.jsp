@@ -6,6 +6,20 @@
 <head>
 <meta charset="UTF-8">
 <title>MY PAGE</title>
+<style type="text/css">
+div{
+	border-radius: 30px;
+	border: none;
+}
+.image{
+	width: 100%;
+	height: 100%;
+	object-fit:cover;
+}
+div ul li b{
+	text-decoration: underline;
+}
+</style>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 
@@ -92,10 +106,11 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-<div class="page-main" style="padding-top: 200px; height: 700px;">
+<div class="page-main" style="padding-top: 200px; height: 1000px;">
    <h2>MY PAGE</h2><br>
    <div class="mypage-div">
-       <h3>프로필 사진</h3>
+   	   <div class="profile" align="center" style="border: 1px;width: 400px;height: 400px; background-color: #d9dadb;">
+       <h3 align="center">프로필 사진</h3>
       <ul>
          <li>
             <c:if test="${empty member.mem_photo}">
@@ -118,39 +133,43 @@
             </div>
          </li>
       </ul>
-	  <h3>회원탈퇴</h3>
-	  <ul>
-		  <li>
-		      <input type="button" value="회원탈퇴" onclick="location.href='deleteUserForm.do'">
-		  </li>
-	  </ul>
+      </div>
+     </div>
    </div>
-   <div class="mypage-div" style="position: absolute; top: 290px; right: 550px;">
+   <div class="mypage-div" align="center" style="position: absolute; top: 293px; right:450px; border: 1px;width: 400px;height: 320px;background-color: #d9dadb;">
    <!-- 변경해야함 -->
-      <h3>회원정보확인/수정</h3>
+      <h3>회원정보확인/수정</h3><br><br>
       <ul>
          <li>이름 : ${member.mem_nick}</li>
          <li>전화번호 : ${member.mem_phone}</li>
-         <li>이메일 : ${member.mem_email}</li> 
+         <li>이메일 : ${member.mem_email}</li>
          <li>우편번호 : ${member.mem_zipcode}</li>
          <li>주소 : ${member.mem_addr} ${member.mem_addr2}</li>
          <li>가입일 : ${member.mem_date}</li>
          <c:if test="${!empty member.mem_modifydate}">
-         	<li>최근 정보 수정일 : ${member.mem_modifydate}</li>
+         	<li>최근 정보 수정일 : ${member.mem_modifydate}</li><br>
          </c:if>
          <li>
             <input type="button" value="수정하기" onclick="location.href='modifyUserForm.do'">
          </li>
       </ul>
-      <h3>비밀번호 수정</h3>
+      </div>
+      <div class="pwbox" align="center" style="position: absolute; top: 650px; right:450px; border: 1px;width: 400px;height: 270px;background-color: #d9dadb;">
+      <h3>보안관리</h3>
+      <div style="padding-top: 60px;">
+      <font color="green">52MARCKET</font> 로그인 시 사용하는 비밀번호를 변경할 수 있습니다.
+      <br>주기적인 <b><font color="red">비밀번호 변경</font></b>으로 개인정보를 안전하게 보호하세요.<br><br>
       <ul>
          <li>
-            <input type="button" value="비밀번호 수정" onclick="location.href='modifyPasswordForm.do'">
+            <!-- 비밀번호&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="변경하기" onclick="location.href='modifyPasswordForm.do'"> -->
+            비밀번호&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="modifyPasswordForm.do"><b><font color="blue">변경하기</font></b></a>
          </li>
       </ul>
-
-   </div>
-</div>
+      </div>
+      </div>
+      <div class="image-box" align="center" style="position: absolute; top: 730px; left:400px; border: 1px;width: 400px;height: 190px; overflow: hidden;">
+  		<img class="image" src="${pageContext.request.contextPath}/images/gooi.png">
+      </div>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>
