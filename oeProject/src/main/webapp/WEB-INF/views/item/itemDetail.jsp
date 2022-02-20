@@ -154,16 +154,16 @@
 	<c:if test="${!empty user_num && user_num == item.mem_num}">
       <input type="button" value="채팅하기" onclick="location.href='${pageContext.request.contextPath}/chatting/chattingListForBuyer.do?item_num=${item.item_num}'">
       </c:if>
+      
       <c:if test="${!empty user_num && user_num != item.mem_num && item.state != 2}">	<!-- state(2: 판매완료)아니면 채팅하기가 보임 -->
       <input type="button" value="채팅하기" onclick="location.href='${pageContext.request.contextPath}/chatting/chatting.do?item_num=${item.item_num}&trans_num=${item.mem_num}'">
       </c:if>
-      	
+      
+      <input type="button" value="찜목록" onclick="location.href='${pageContext.request.contextPath}/item/likeList.do'">	
+      
       <c:if test="${!empty user_num && user_num != item.mem_num && item.state != 2}">	<!-- state(2 : 판매완료)아니면 찜하기가 보임 -->
       <img id="output_fav" src="${pageContext.request.contextPath}/images/heart01.png"><span id="output_fcount"></span>
       </c:if>
-	
-	<input type="button" value="찜목록" onclick="location.href='${pageContext.request.contextPath}/item/likeList.do'">;
-	
 	<div class="align-right">
 		<c:if test="${!empty board.modify_date}">
 			최근 수정일 : ${item.modify_date}		<%--수정일이 있으면 최근수정일 보이도록 --%>
