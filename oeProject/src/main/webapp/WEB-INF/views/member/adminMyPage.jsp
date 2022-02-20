@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>My Page(Admin)</title>
+<title>My Page_Admin</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 
@@ -93,7 +93,7 @@
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main" style="padding-top: 200px; height: 600px;">
-   <h2>관리자정보</h2>
+   <h2>MANAGER HOME</h2><br>
    <div class="mypage-div">
        <h3>프로필 사진</h3>
       <ul>
@@ -108,7 +108,7 @@
             </c:if>
          </li>
          <li>
-            <div class="align-center">
+            <div class="align-center2">
                <input type="button" value="수정" id="photo_btn">
             </div>
                <div id="photo_choice" style="display:none;">
@@ -125,7 +125,7 @@
 		         </li>
 		      </ul> -->
    </div>
-   <div class="mypage-div">
+   <div class="mypage-div" style="position: absolute; top: 290px; right: 550px;">
    <!-- 변경해야함 -->
       <h3>회원정보확인/수정</h3>
       <ul>

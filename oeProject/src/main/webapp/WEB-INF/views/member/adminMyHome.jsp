@@ -116,7 +116,7 @@ div ul li input{
 		<div class="mypage-div-3">
 			<img alt="oi" src="${pageContext.request.contextPath}/images/oi.png" width="38" height="35">
 			<b id="my_home_b">${member.mem_nick}(${member.mem_id})님의 <font color="green">MANAGER HOME</font></b>입니다.<br>
-			<a href='${pageContext.request.contextPath}/member/myPage.do' style="color: blue">회원정보 수정</a>
+			<a href='${pageContext.request.contextPath}/member/adminMyPage.do' style="color: blue">회원정보 수정</a>
 		</div>
 	<br>
 	</div>
