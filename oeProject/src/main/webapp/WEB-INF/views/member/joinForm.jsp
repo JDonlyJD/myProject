@@ -138,7 +138,7 @@
 	<div class="align-center">
 	<h2><img alt="oi" src="${pageContext.request.contextPath}/images/oi.png" width="50" height="40"><font color="green">오이</font>마켓 가입하기</h2>
 	</div>
-		<ul>
+		<ul style="padding: 0 0 0 100px;">
 			<li>
 				<label for="id">아이디</label>
 				<input type="text" name="id" id="id" maxlength="12" placeholder="ID를 입력하세요.">

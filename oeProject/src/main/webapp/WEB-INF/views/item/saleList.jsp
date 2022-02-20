@@ -11,13 +11,13 @@
 div li select,input[type="search"],input[type="submit"]{
 	list-style-type: none;
 	float: left;
-	margin-left: 2px;
+	margin-left: 3px;
 }
 input[type="search"]{
-	width: 150px;
+	width: 120px;
 }
 input[type="submit"]{
-	width: 40px;
+	width: 30px;
 }
 </style>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/layout.css">

@@ -64,7 +64,7 @@ $(function(){
 	<h2>게시판 글수정</h2>
 	<form action="itemUpdate.do" method="post" enctype="multipart/form-data" id="update_form">
 		<input type="hidden" name="item_num" value="${item.item_num}"> 
-		<ul>
+		<ul style="padding: 0 0 0 100px;">
 			<li>
 			<label for="cate">카테고리</label>
 			<input type="number" name="cate" id="cate" value="${item.cate_num}" min="1" max="9999999">				

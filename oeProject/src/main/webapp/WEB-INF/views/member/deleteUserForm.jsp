@@ -58,7 +58,7 @@
 <div class="page-main">
 <h2>회원탈퇴</h2>
 	<form action="deleteUser.do" method="post" id="delete_form">
-		<ul>
+		<ul style="padding: 0 0 0 100px;">
 			<li>
 				<label for="id">아이디</label>
 				<input type="text" name="id" id="id" maxlength="12">

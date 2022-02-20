@@ -53,7 +53,7 @@
 	<div class="align-center">
 	<h2><img alt="oi" src="${pageContext.request.contextPath}/images/oi.png" width="40" height="40">회원정보수정</h2>
 	</div>	
-		<ul>
+		<ul style="padding: 0 0 0 100px;">
 			<li>
 				<label for="name">이름</label>
 				<input type="text" name="name" id="name" value="${member.mem_nick}"
@@ -88,8 +88,8 @@
 			</li>
 		</ul>
 		<div class="align-center">
-			<input type="submit" value="수정" style="background-color:green; color:white; width:50%; height: 30px;"><br><br>
-			<input type="button" value="MyPage" onclick="location.href='myPage.do'" style="background-color:#FFD228; color:white; width:20%; height: 30px;">
+			<input type="submit" value="수정" style="background-color:green; color:white; width:50%; height: 30px;">
+			<input type="button" value="MyPage" onclick="location.href='myPage.do'">
 		</div>
 	</form>
 </div>	

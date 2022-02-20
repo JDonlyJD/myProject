@@ -55,7 +55,7 @@
 	<h2>${member.mem_id}님의 정보 수정(관리자 전용)</h2><br>
 	<form action="adminDetailUser.do" method="post" id="detail_form">
 		<input type="hidden" name="mem_num" value="${member.mem_num}">
-		<ul>
+		<ul style="padding: 0 0 0 100px;">
 			<li>
 				<label>등급</label>
 				<c:if test="${member.mem_auth != 2}">

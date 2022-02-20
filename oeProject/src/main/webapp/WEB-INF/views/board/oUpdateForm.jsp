@@ -16,7 +16,7 @@
    <form action="oUpdate.do" method="post" enctype="multipart/form-data" 
                                                            id="update_form">
       <input type="hidden" name="board_num" value="${board.board_num}"> 
-<ul>
+	  <ul style="padding: 0 0 0 75px;">
          <li>
             <label for="title">제목</label>
             <input type="text" name="title" id="title" 

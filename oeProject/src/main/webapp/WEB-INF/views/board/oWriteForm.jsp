@@ -33,7 +33,7 @@
 <div class="page-main">
    <h2>1:1문의게시판</h2>
    <form id="write_form" action="oWrite.do" method="post" enctype="multipart/form-data">
-      <ul>
+      <ul style="padding: 0 0 0 75px;">
          <!-- <li>
             <label for="kind">질문분류</label>
             <select name="kind">

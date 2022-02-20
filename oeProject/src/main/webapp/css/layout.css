@@ -14,7 +14,7 @@
 	top:50%;
 	left:50%;
 	transform:translate(-50%,-50%);
-	border:1px solid #000;
+	border:1px solid green;
 	display:flex;
 	/*세로 정렬*/
 	align-items:center;
@@ -48,7 +48,7 @@ form{
 	width:600px;
 	margin:0 auto;
 	padding:10px 10px 10px 30px;
-	border:1px solid #000;
+	border:1px solid green;
 }
 ul{
 	list-style:none;
@@ -114,6 +114,73 @@ tbody tr:nth-of-type(even) {
 tbody tr:last-of-type {
     border-bottom: 2px solid #009879;
 }
+/*------------버튼--------------*/
+input[type=button] {
+	display: inline-block;
+	outline: 0;
+	cursor: pointer;
+	border: 1px solid #007a5a;
+	color: #007a5a;
+	font-weight: 700;
+	background: #fff;
+	font-size: 13px;
+	border-radius: 4px;
+	height: 29px;
+	width:55px;
+	transition: all 80ms linear;
+}
+
+input[type=button]:hover {
+	box-shadow: 0 1px 3px 0 rgb(0 0 0/ 8%);
+	background: rgba(248, 248, 248, 1);
+}
+
+input[type=submit]  {
+	display: inline-block;
+	outline: 0;
+	cursor: pointer;
+	border: 1px solid #007a5a;
+	color: #007a5a;
+	font-weight: 700;
+	background: #fff;
+	width:55px;
+	font-size: 13px;
+	border-radius: 4px;
+	height: 29px;
+	transition: all 80ms linear;
+}
+input[type=submit]:hover {
+	box-shadow: 0 1px 3px 0 rgb(0 0 0/ 8%);
+	background: rgba(248, 248, 248, 1);
+}
+
+.btn-chat{
+	display: inline-block;
+	outline: none;
+	cursor: pointer;
+	font-size: 14px;
+	line-height: 1;
+	border-radius: 500px;
+	transition-property: background-color, border-color, color, box-shadow,filter;
+	transition-duration: .3s;
+	border: 1px solid transparent;
+	letter-spacing: 2px;
+	min-width: 100px;
+	text-transform: uppercase;
+	white-space: normal;
+	font-weight: 700;
+	text-align: center;
+	padding: 16px 14px 18px;
+	color: #fff;
+	background-color: #15883e;
+	height: 45px;
+	margin-left: auto;
+	display: block;
+	}
+.btn-chat:hover {
+	 box-shadow: 0 1px 4px rgb(0 0 0 / 30%);
+}	
+/*------사진---------*/
 .my-photo{
 	object-fit:cover;
 	/*정사각형이 아니라 직사각형일 경우 원 안에 보여지게 할 중심 이미지의 위치를 지정*/

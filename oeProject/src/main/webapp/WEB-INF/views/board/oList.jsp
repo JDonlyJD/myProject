@@ -6,6 +6,19 @@
 <head>
 <meta charset="UTF-8">
 <title>게시판 목록</title>
+<style type="text/css">
+div li select,input[type="search"],input[type="submit"]{
+	list-style-type: none;
+	float: left;
+	margin-left: 3px;
+}
+input[type="search"]{
+	width: 120px;
+}
+input[type="submit"]{
+	width: 30px;
+}
+</style>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">

@@ -66,7 +66,7 @@
 	<form action="modifyPassword.do" method="post" id="password_form">
 	<h2 align="center"><img alt="oi" src="${pageContext.request.contextPath}/images/oi.png" width="40" height="40">
 						<font color="green">오이</font>마켓 나의 PW수정하기</h2><br>
-	<ul>
+	<ul style="padding: 0 0 0 100px;">
 		<li>
 			<label for="id">아이디</label>
 			<input type="text" name="id" id="id" value="${member.mem_nick}" maxlength="18" placeholder="id를 입력하세요.">
@@ -88,8 +88,8 @@
 	</ul>
 	<br>
 	<div class="align-center">
-		<input type="submit" value="수정" style="background-color:green; color:white; width:40%; height: 30px;"><br><br>
-		<input type="button" value="MyPage" onclick="location.href='myPage.do'" style="background-color:#FFD228; color:white; width:30%; height: 30px;">
+		<input type="submit" value="수정" style="background-color:green; color:white; width:10%;">
+		<input type="button" value="MyPage" onclick="location.href='myPage.do'">
 		<!-- <input type="submit" value="비밀번호 수정"> --><br><br>
 		<!-- <input type="button" value="MyPage" onclick="location.href='myPage.do'"> -->
 	</div>

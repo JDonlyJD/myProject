@@ -12,12 +12,16 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css" type="text/css">
 <style type="text/css">
    #chatting_message{
-      border:1px solid black;
+      background-color:#f5efe6;
+      border:1px solid #999;
+      border-radius:5px;
       width:660px;
       height:300px;
       margin:0 auto;
       padding:10px;
       overflow:auto;
+      font-size:13px; 
+      color:#333;
    }
    .item{
       
@@ -27,16 +31,19 @@
       margin:10px 0 10px 330px;
    }
    .from-position .item{
-      background-color:yellow;
+      border-radius:10px;
+      background-color:#90b494;
       padding:10px;
-      height:50px;      
+      height:50px;   
+      display: block;      
    }
    .to-position{
       width:300px;
       margin:10px 0 10px 0;
    }
    .to-position .item{
-      background-color:pink;
+   	  border-radius:10px;
+      background-color:#ffd891;
       padding:10px;
       height:50px;
    }
@@ -175,8 +182,8 @@
 	      <ul>
 	         <li>   
 	             <label for="content">내용</label>
-	             <textarea rows="5" cols="40" name="content" id="content"></textarea>
-	             <input type="submit" value="전송">
+	             <textarea rows="7" cols="50" name="content" id="content" style="border-radius:5px; "></textarea>
+	             <button type="submit" value="전송" class="btn-chat" >전송</button>
 	         </li>
 	      </ul>
 	   </form>

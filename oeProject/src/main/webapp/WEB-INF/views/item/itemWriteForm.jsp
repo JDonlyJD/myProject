@@ -76,7 +76,7 @@
    <h2 align="center"><img alt="oi" src="${pageContext.request.contextPath}/images/oi.png" width="40" height="40">판매 상품 등록</h2><br>
    <form action="itemWrite.do" method="post" enctype="multipart/form-data" id="write_form">
    <!-- <input type="hidden" name="mem_num" value="${member.mem_num}">  -->
-   <ul>
+   <ul style="padding: 0 0 0 100px;">
       <li>
          <label>카테고리 여부</label>
          <input type="number" name="cate_num" id="cate_num">
@@ -113,7 +113,7 @@
    </ul>            
    <div class="align-center">
       <br>
-      <input type="submit" value="상품등록" style="background-color:green; color:white;width:100px; height: 30px;">
+      <input type="submit" value="상품등록">
       <input type="button" value="목록" onclick="location.href='${pageContext.request.contextPath}/item/saleList.do'" style="background-color:yellow; color:black;width:70px; height: 30px;">
       <!-- <input type="submit" value="등록"> -->
       <!-- <input type="button" value="목록으로" onclick="location.href='salelist.do'"> -->
