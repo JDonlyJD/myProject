@@ -483,3 +483,8 @@ th#cate_del{
 div.horizontal-area img{
 	border-radius: 30px;
 }
+
+/*찜목록 리스트 상품 사진 모서리 테스트*/
+div.like img{
+	border-radius: 30px;
+}
