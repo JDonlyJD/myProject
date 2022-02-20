@@ -75,8 +75,8 @@
             output += '			</div>';                 
 
             output += '			<div class = "cate_button">';                 
-            output += '				<input type="button" data-status="'+item.cate_status+'" value="수정" class="modify-btn">';
-            output += '				<input type="button" data-status="'+item.cate_num+'" value="삭제" class="delete-btn">';//??
+            output += '				<input type="button" data-renum="'+item.cate_num+'" value="수정" class="modify-btn">';
+            output += '				<input type="button" data-renum="'+item.cate_num+'" value="삭제" class="delete-btn">';
             output += '			</div>';
             
                      //item.re_num은 custom데이터 속성임. data-renum에 댓글작성번호를 넣어서, 해당데이터로 수정 및 삭제를 편리하게 할 수 있다.
