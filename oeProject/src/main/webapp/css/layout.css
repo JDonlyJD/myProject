@@ -10,7 +10,7 @@
 	width:400px;
 	height:200px;
 	/*정중앙에 div를 배치하기 위한 설정*/
-	position:absolute;
+	/* position:absolute; */
 	top:50%;
 	left:50%;
 	transform:translate(-50%,-50%);
@@ -20,6 +20,8 @@
 	align-items:center;
 	/*가로 정렬*/
 	justify-content:center;
+	padding:5px;
+	margin:300px 30% 200px 50%;
 }
 .align-center{
 	text-align:center;
