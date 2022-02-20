@@ -171,7 +171,7 @@
 	  
 	   <div id="chatting_message"></div>
 	   
-	   <form method="post" id="chatting_form">
+	   <form method="post" id="chatting_form" style=" width:660px; background-color: #d8e3d9;  border:1px solid #999; border-radius:5px;">
 	      <input type="hidden" name="item_num" value="${item.item_num}">
 	      <c:if test="${user_num != item.mem_num}">
 	      	<input type="hidden" name="to_num" value="${item.mem_num}">
