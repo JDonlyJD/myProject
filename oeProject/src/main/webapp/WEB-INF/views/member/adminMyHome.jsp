@@ -131,7 +131,7 @@ div ul li input{
             onclick="location.href='${pageContext.request.contextPath}/board/oList.do'" style="width: 120px;">
       
             <input type="button" value="카테고리관리" 
-            onclick="location.href='adminCate.do'" style="width: 120px;">
+            onclick="location.href='${pageContext.request.contextPath}/category/adminCate.do'" style="width: 120px;">
 			</li>
 		</ul>
 	</div>
