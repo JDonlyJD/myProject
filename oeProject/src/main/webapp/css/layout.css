@@ -342,3 +342,72 @@ div.page-main-home div ul li input{
 div .empty {
 	padding-top : 700px;
 }
+
+/*-------카테고리 리스트 (category.js)--------*/
+/* 상 우 하 좌/상 좌우 하/상하 좌우 */
+div.catelist{
+		/* outline:1px solid red; */
+		/* background-color:green; */
+		height:60px;
+		text-align:center;
+		margin:0 0 0 0;
+		padding:2px 0 0 0;
+}
+
+div.sub-item{
+padding:5px 0 30px 0px;
+
+	/* padding:50px 0px 0px 140px; */
+	/* width: 100% */
+}
+	div.cate_num{
+		/* outline:1px dotted yellow; */
+		float: left; width: 15%;
+		padding:5px 0 0 0;
+		font-size:15px;
+		text-align:center;
+	}
+	div.cate_name{
+		/* outline:1px dotted yellow; */
+		float: left; width: 40%;
+		padding:5px 10px 0 0;
+		/* padding-left:70px; */
+		font-size:15px;
+	}
+	div.cate_status{
+		/* outline:1px dotted yellow; */
+		float: left; width: 20%;
+		padding:5px 20px 0 0;
+		/* padding-left:70px; */
+		font-size:15px;
+	}
+	div.cate_button{
+		/* outline:1px dotted yellow; */
+		float: left; width: 20%;
+		padding:5px 10px 0 70px;
+		/* padding-left:70px; */
+		font-size:10px;
+	}
+/*-------카테고리 리스트 (adminCate.jsp)--------*/
+tr#cate_tr{
+	height:40px;
+
+}
+th#cate_num{
+	float: left; width: 20%;
+	padding:5px 0 0 0px;
+}
+th#cate_name{
+	float: left; width: 35%;
+	padding:5px 10px 0 90px;
+	text-align: left;
+}
+th#cate_status{
+	float: left; width: 20%;
+	padding:5px 20px 0 0;
+}
+th#cate_del{
+	float: left; width: 20%;
+	padding:5px 10px 0 50px;
+	text-align: center;
+}
