@@ -100,25 +100,28 @@
 		      	
 				
 		      
-	<%-- **문의게시판 --%>			
-		       	<c:if test="${!empty user_num }"><%--로그인 했을 때--%>
-		        	<li ><a href="${pageContext.request.contextPath}/board/oList.do">문의 게시판</a></li>
-		        </c:if>	
-		        
-	<%-- **채팅목록 --%>			
-		        <%-- active로 기본적으로 보이게한다 --%>
-		        <c:if test="${!empty user_num }"><%--로그인 했을 때 --%>
-		        	<li><a href="${pageContext.request.contextPath}/chatting/chattingListForBuyer.do?item_num=${item.mem_num}">채팅목록</a></li>
-		        </c:if>
-		        
 	<%-- **상품등록 --%>			
 		        <c:if test="${!empty user_num }"><%--로그인 했을 때--%>
 		            <li><a href="${pageContext.request.contextPath}/item/itemWriteForm.do">상품등록</a></li>
+	            </c:if>	 
+	 <%-- **상품목록 --%>			
+		        <c:if test="${!empty user_num }"><%--로그인 했을 때--%>
+		            <li><a href="${pageContext.request.contextPath}/item/saleList.do">상품목록</a></li>
 	            </c:if>
 	 <%-- **찜 목록 --%>			
 		        <c:if test="${!empty user_num }"><%--로그인 했을 때--%>
 		            <li><a href="${pageContext.request.contextPath}/item/likeList.do">찜목록</a></li>
-	            </c:if>             
+	            </c:if> 
+	 <%-- **채팅목록 --%>			
+		        <%-- active로 기본적으로 보이게한다 --%>
+		        <c:if test="${!empty user_num }"><%--로그인 했을 때 --%>
+		        	<li><a href="${pageContext.request.contextPath}/chatting/chattingListForBuyer.do?item_num=${item.mem_num}">채팅목록</a></li>
+		        </c:if>            
+	            	      
+	 <%-- **문의게시판 --%>			
+		       	<c:if test="${!empty user_num }"><%--로그인 했을 때--%>
+		        	<li ><a href="${pageContext.request.contextPath}/board/oList.do">문의 게시판</a></li>
+		        </c:if>	          
           </ul>
         </div>
         

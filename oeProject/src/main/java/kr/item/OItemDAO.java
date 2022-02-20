@@ -401,6 +401,7 @@ public class OItemDAO {
 				while(rs.next()) { //다명시하지않고 표시할 것만 넣겠음
 					OItemVO item = new OItemVO();
 					item.setItem_num(rs.getInt("item_num")); //상품번호
+					item.setMem_id(rs.getString("mem_id")); //회원아이디
 					item.setTitle(StringUtil.useNoHtml(rs.getString("title")));//HTML태그를 허용하지 않음
 					item.setState(rs.getInt("state")); //판매상태(0판매중/1예약중/2판매완료) (default 0)
 					item.setPrice(rs.getInt("price")); //상품가격

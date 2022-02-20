@@ -72,6 +72,7 @@ input[type="submit"]{
 			<thead>
 				<tr>
 					<th>상품번호</th>
+					<th>아이디</th>
 					<th>제목</th>
 					<th>판매상태</th>
 					<th>상품가격</th>
@@ -82,6 +83,7 @@ input[type="submit"]{
 				<c:forEach var="item" items="${list }">
 					<tr>
 						<td>${item.item_num }</td>
+						<td>${item.mem_id}</td>
 						<td><a href="itemDetail.do?item_num=${item.item_num}" style="color: black;">${item.title }</a></td>
 						<td>
 							<c:if test="${item.state == 0 }">판매중</c:if>

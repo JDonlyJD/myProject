@@ -126,10 +126,10 @@
 				<input type="button" value="채팅목록" 
 				onclick="location.href='${pageContext.request.contextPath}/chatting/chattingListForBuyer.do'">
 	
-				<input type="button" value="관심목록" 
-				onclick="location.href='${pageContext.request.contextPath}/item/saleList.do'">
+				<input type="button" value="찜목록" 
+				onclick="location.href='${pageContext.request.contextPath}/item/likeList.do'">
 	
-				<input type="button" value="1:1문의" 
+				<input type="button" value="문의게시판" 
 				onclick="location.href='${pageContext.request.contextPath}/board/oList.do'">
 			</li>
 		</ul>
