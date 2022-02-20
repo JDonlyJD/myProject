@@ -115,6 +115,10 @@
 		        <c:if test="${!empty user_num }"><%--로그인 했을 때--%>
 		            <li><a href="${pageContext.request.contextPath}/item/itemWriteForm.do">상품등록</a></li>
 	            </c:if>
+	 <%-- **찜 목록 --%>			
+		        <c:if test="${!empty user_num }"><%--로그인 했을 때--%>
+		            <li><a href="${pageContext.request.contextPath}/item/likeList.do">찜목록</a></li>
+	            </c:if>             
           </ul>
         </div>
         

@@ -114,7 +114,7 @@
    <div class="align-center">
       <br>
       <input type="submit" value="상품등록" style="background-color:green; color:white;width:100px; height: 30px;">
-      <input type="button" value="목록" onclick="location.href='${pageContext.request.contextPath}/item/saleList.do'" style="background-color:yellow; color:white;width:70px; height: 30px;">
+      <input type="button" value="목록" onclick="location.href='${pageContext.request.contextPath}/item/saleList.do'" style="background-color:yellow; color:black;width:70px; height: 30px;">
       <!-- <input type="submit" value="등록"> -->
       <!-- <input type="button" value="목록으로" onclick="location.href='salelist.do'"> -->
    </div>
