@@ -26,8 +26,7 @@
    let rowCount;
    
    
-   
- //9. ** 댓글목록 관련 : function selectData(pageNum){}
+  /* ===============================================카테목록========================================================== */ 
  function selectData(pageNum){   //pageNum을 넘겨주면 currentPage로 지정
       //* 현재 페이지 지정 (for, paging처리)
       currentPage = pageNum;
@@ -50,9 +49,8 @@
             count = param.count;
             rowCount = param.rowCount;
             
-            if(pageNum==1){
-               //처음 호출시는 해당 ID의 div의 내부 내용물을 제거
-               $('#output').empty();
+            if(pageNum==1){     
+               $('#output').empty();//처음 호출시는 해당 ID의 div의 내부 내용물을 제거
             }
             
             $(param.list).each(function(index,item){   
@@ -120,6 +118,8 @@
       selectData(currentPage + 1);
    });   
    
+
+/* ===============================================카테등록========================================================== */ 
 /*---- 화면에 댓글처럼 등록되는 카테고리 */
    //5. ** 댓글 등록 : $('#re_form').submit(function(event){}   //아직목록작업을 하지않았기때문에, 정상적으로 등록되었는지 확인은 sql에서 
    $('#re_form').submit(function(event){         
@@ -152,8 +152,6 @@
       $.ajax({
          url:'adminWriteCate.do',
          type:'post',
-         //data:form_data,
-         //data:{cate_status : $('#cate_status').val() },
          data:send,
          dataType:'json',
          cache:false,
@@ -179,6 +177,7 @@
       //* 기본이벤트 제거
       event.preventDefault();
    });
+
 
 
    //4. ** 댓글 작성 폼 초기화 : function initForm(){}
@@ -208,12 +207,13 @@
          }
       }
    });   
-   
-   
+
+
+/* ===============================================카테 수정폼========================================================== */   
    //13. ** 댓글 수정버튼 클릭시 수정폼 노출 : $(document).on('click','.modify-btn',function(){}
    $(document).on('click','.modify-btn',function(){   //수정버튼을 눌렀을때 발생하는 이벤트
       //* 댓글번호
-      let re_num = $(this).attr('data-renum');
+      let cate_num = $(this).attr('data-renum');
       
       //버튼의 태그는 output += '<p>' + item.re_content + '</p>'; ==> p태그이다.
       //p태그를 찾을 때는 부모태그와 함께 명시해야한다.
@@ -222,11 +222,16 @@
       let content = $(this).parent().find('p').html().replace(/<br>/gi, '\n');
                                        //br태그 대소문자 무시하고 모두 찾아서 \n으로 바꿔라   
                                        //이렇게하지않으면 <br>태그가 그대로 명시됨
+
+
       //* 댓글 수정폼 UI
       let modifyUI = '<form id="mre_form">';
-         modifyUI += '  <input type="hidden" name="re_num" id="mre_num" value="' + re_num + '">';   //name과 id의 값이 다름
+         modifyUI += '  <input type="hidden" name="cate_num" id="mcate_num" value="' + cate_num + '">';   //name과 id의 값이 다름
          modifyUI += '  <textarea rows="3" cols="50" name="re_content" id="mre_content" class="rep-content">'+ content +'</textarea>';
          modifyUI += '  <div id="mre_first"><span class="letter-count">10/10</span></div>';
+
+
+
          modifyUI += '  <div id="mre_second" class="align-center">';
          modifyUI += '     <input type="submit" value="수정">';
          modifyUI += '     <input type="button" value="취소" class="re-reset">';
@@ -266,7 +271,9 @@
       $('#mre_form').remove(); //form에서는 id를 명시하고잇었기때문에, hide시키면안되고 아예 remove시켜야한다.(id가 중복될 수 있기 때문)
    };       
    
-   
+ 
+
+/* ===============================================카테 수정========================================================== */   
    //** 댓글 수정 : $(document).on('submit','#mre_form',function(event){}
 /*submit 이벤트가 발생하면 action에 명시한대로 페이지가 이동하지만,액션을 명시하지도 않았고 페이지 이동하면 안된다.
  *( 이벤트를 제거하지 않는이상 )submit이벤트 발생 시 기본이벤트가 있기 떄문에 액션을 명시하지않을 경우에는 자기자신을 호출
@@ -281,9 +288,10 @@
       }
       //폼에 입력한 데이터 반환
       let form_data = $(this).serialize(); //serialize()이용해서 쿼리문자열로 해서 한번에 다읽어올 수 있는 메서드
-      //서버와 통신
+      
+	  //서버와 통신
       $.ajax({
-         url:'updateReply.do',
+         url:'adminUpdateCate.do',
          type:'post',
          data:form_data,
          dataType:'json',
@@ -304,7 +312,7 @@
  */                  
                //부모태그로올라가서 p태그 find하고 거기에 넣어준다.
                $('#mre_form').parent().find('p').html($('#mre_content').val().replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>'));
-               $('#mre_form').parent().find('.modify-date').text('최근 수정일 : 방금 전');
+              
                
                //데이터처리가 됐으니, 수정폼 삭제 및 초기화
                initModifyForm();
@@ -324,16 +332,18 @@
    });
 
 
+
+/* ===============================================카테 삭제========================================================== */ 
    //** 댓글 삭제 : 댓글이 생성되어야 삭제버튼이 보임 = 미래의 태그 => document.on : $(document).on('click','.delete-btn',function(){}
    
    $(document).on('click','.delete-btn',function(){
       //댓글 번호
-      let re_num = $(this).attr('data-renum');
+      let cate_num = $(this).attr('data-renum');
       
       $.ajax({
-         url:'deleteReply.do',
+         url:'adminDeleteCate.do',
          type:'post',
-         data:{re_num:re_num},//{key:value(위에 변수)}
+         data:{cate_num:cate_num},//{key:value(위에 변수)}
          dataType:'json',
          cache:false,
          timeout:30000,

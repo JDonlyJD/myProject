@@ -181,4 +181,58 @@ public class OCategoryDAO {
    }   
    
    
+   /* 카테고리 삭제 */
+   public void deleteCate(int cate_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+	
+		try {
+			//1. 커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//2. sql문장 작성
+			sql = "DELETE FROM OCATEGORY WHERE cate_num=?";
+			//3. pstmt객체 생성 
+			pstmt = conn.prepareStatement(sql);
+			//4. ?에 데이터 바인딩
+			pstmt.setInt(1, cate_num);
+			//5. sql문 실행
+			pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			//자원정리
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+   
+   /*카테고리 수정*/
+   public void updateCate(OCategoryVO cate)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			//1. ConnectionPool로부터 Connection할당
+			conn = DBUtil.getConnection();
+			//2. sql문 작성
+			sql="UPDATE OCATEGORY SET cate_name=?, cate_status=? WHERE cate_num=?";
+			//3. pstmt객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//4. ?에 데이터 바인딩
+			pstmt.setString(1, cate.getCate_name());
+			pstmt.setInt(2, cate.getCate_status());
+			pstmt.setInt(3, cate.getCate_num());
+			//5. sql문 실행
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.getConnection();
+		}
+   }
+   
+   
+   
 }
