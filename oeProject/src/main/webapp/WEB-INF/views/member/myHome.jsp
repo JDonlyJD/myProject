@@ -118,7 +118,7 @@
 		<ul>	
 			<li>
 				<input type="button" value="판매내역" 
-				onclick="location.href='${pageContext.request.contextPath}/item/saleList.do'">
+				onclick="location.href='${pageContext.request.contextPath}/item/mySaleList.do'">
 	
 				<input type="button" value="구매내역" 
 				onclick="location.href='${pageContext.request.contextPath}/item/buyListForm.do'">

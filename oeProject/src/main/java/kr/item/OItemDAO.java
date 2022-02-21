@@ -293,6 +293,74 @@ public class OItemDAO {
 		}
 		return count;
 	}
+	//내 판매목록
+			public List<OItemVO>getListItemByMem_num(int startRow, int endRow, 
+								String keyfield, String keyword, int mem_num)throws Exception{
+				Connection conn = null;
+				PreparedStatement pstmt = null;
+				ResultSet rs = null;
+				List<OItemVO> list = null;
+				String sql = null;
+				String sub_sql = "";
+				int cnt = 0;
+				
+				
+				try {
+					//커넥션 풀로부터 커넥션 할당받기
+					conn = DBUtil.getConnection();
+					
+					if(keyword != null && !"".equals(keyword)) {
+						if(keyfield.equals("1")) sub_sql = "AND item_num = ?";
+						else if(keyfield.equals("2")) sub_sql = "AND title LIKE ?";
+						else if(keyfield.equals("3")) sub_sql = "AND i.content LIKE ?";
+					}
+					
+					//SQL문 작성
+					//sql ="SELECT COUNT(*) FROM oitem WHERE mem_num=? ORDER BY item_num DESC";
+					sql ="SELECT * FROM (SELECT a.*, rownum rnum FROM "
+							+ "(SELECT * FROM oitem WHERE mem_num =? " + sub_sql
+							+ " ORDER BY item_num DESC)a) "
+							+ " WHERE rnum >= ? AND rnum <= ?";	
+					
+					pstmt = conn.prepareStatement(sql);
+					//?에 데이터를 바인딩
+					pstmt.setInt(++cnt, mem_num);
+					if(keyword != null && !"".equals(keyword)) {
+						if(keyfield.equals("1")) {
+							pstmt.setString(++cnt, keyword);
+						}else if(keyfield.equals("2")) {
+							pstmt.setString(++cnt, "%" + keyword + "%");
+						}
+						
+					}
+					pstmt.setInt(++cnt, startRow);
+					pstmt.setInt(++cnt, endRow);
+					
+					//SQL문을 실행해서 결과행들을 ResultSet에 담음
+					rs = pstmt.executeQuery();
+					
+					list = new ArrayList<OItemVO>();
+					while(rs.next()) {
+						OItemVO item = new OItemVO();
+						item.setItem_num(rs.getInt("item_num"));
+						item.setTitle(rs.getString("title"));
+						item.setPrice(rs.getInt("price"));
+						item.setFilename(rs.getString("filename"));
+						item.setState(rs.getInt("state"));
+						item.setContent(rs.getString("content"));
+						item.setReg_date(rs.getDate("reg_date"));
+						
+						list.add(item);
+					}
+					
+				}catch(Exception e) {
+					throw new Exception(e);
+				}finally {
+					//자원정리
+					DBUtil.executeClose(rs, pstmt, conn);
+				}
+				return list;
+			}
 
 	// ItemList를 뽑아오고싶을 때 - State를 사용하고싶을 때는 이걸 ! 판매상품 목록/검색 목록
 	public List<OItemVO> getListItemState(int startRow, int endRow, 
