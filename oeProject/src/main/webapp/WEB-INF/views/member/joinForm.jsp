@@ -183,7 +183,7 @@
 		</ul>
 		<div class="align-center">
 		<br>
-			<input type="submit" value="회원가입" style="background-color:green; color:white; width:80%; height: 30px;"><br><br>
+			<input type="submit" value="회원가입" style="background-color:green; color:white; width:90%; height: 30px;"><br><br>
 			<%-- <input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'" 
 			style="width:50%; height: 30px;"> --%>
 			<a href="${pageContext.request.contextPath}/main/main.do"><img alt="홈으로" src="${pageContext.request.contextPath}/images/home.jpg" width="30px" height="30px"></a>
