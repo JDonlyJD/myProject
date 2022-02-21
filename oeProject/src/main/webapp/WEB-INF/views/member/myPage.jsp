@@ -109,7 +109,7 @@
 		            <c:if test="${!empty member.mem_photo}">
 		            	<img src="${pageContext.request.contextPath}/upload/${member.mem_photo}" width="150" height="150" class="my-photo"> 
 		            </c:if>
-		         </li>
+		         </li> 
 		         <li>
 		            <div class="modify-btn">
 		               <input type="button" value="수정" id="photo_btn">
