@@ -9,6 +9,7 @@ import kr.controller.Action;
 import kr.item.OItemDAO;
 import kr.item.OItemVO;
 import kr.member.OMemberDAO;
+import kr.member.OMemberVO;
 
 public class ChattingAction implements Action{
 
@@ -26,9 +27,17 @@ public class ChattingAction implements Action{
 		int trans_num = Integer.parseInt(request.getParameter("trans_num"));
 		OItemDAO dao = OItemDAO.getInstance();
 		OItemVO item = dao.getItem(item_num);
+		
+		OMemberDAO memberDao = OMemberDAO.getInstance();
+		OMemberVO db_member = memberDao.getMember(trans_num);
+		
+		OItemDAO itemDao = OItemDAO.getInstance();
+		OItemVO db_item = itemDao.getItem(item_num);
 
 		request.setAttribute("item", item);
 		request.setAttribute("trans_num", trans_num);
+		request.setAttribute("member", db_member);
+		request.setAttribute("item", db_item);
 
 		return "/WEB-INF/views/chatting/chatting.jsp";	//xml에 입력하기
 	}

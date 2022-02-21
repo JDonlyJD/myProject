@@ -82,6 +82,14 @@ $(function(){
 				<label for="price">가격</label>
 				<input type="number" name="price" id="price" value="${item.price}" min="1" max="9999999">				
 			</li>
+			<c:if test="${item.state == 1 or item.state == 2}">
+			<li>
+				<label for="state">판매상태</label>
+				<input type="radio" name="state" id="state1" value="0" <c:if test="${item.state == 0}">checked</c:if>>판매중
+				<input type="radio" name="state" id="state2" value="1" <c:if test="${item.state == 1}">checked</c:if>>예약중	
+				<input type="radio" name="state" id="state3" value="2" <c:if test="${item.state == 2}">checked</c:if>>판매완료		
+			</li>
+			</c:if>
 			<li>
 				<label for="content">내용</label>
 				<textarea rows="5" cols="30" name="content" id="content">${item.content}</textarea>

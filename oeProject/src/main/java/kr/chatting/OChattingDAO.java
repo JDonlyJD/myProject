@@ -232,18 +232,44 @@ public class OChattingDAO {
 		}
 		return list;
 	}
+	//채팅메시지함
+	public List<OChattingVO> getChattingBox(int to_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<OChattingVO> list = null;
+		String sql = null;
 
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
 
+			sql = "SELECT * FROM oitem b JOIN (SELECT max(chat_num) chat_num, sum(chatstate_num) chatstate_num, "
+					+ "from_num, to_num, item_num FROM ochatting WHERE to_num=? group by from_num,to_num,"
+					+ "item_num)c USING(item_num) order by chat_num desc";
 
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, to_num);
 
+			//SQL문 실행해서 결과행을 ResultSet에 담음
+			rs = pstmt.executeQuery();
+			list = new ArrayList<OChattingVO>();
+			while(rs.next()) {
+				OChattingVO chatting = new OChattingVO();
+				chatting.setFrom_num(rs.getInt("from_num"));
+				chatting.setTo_num(rs.getInt("to_num"));
+				chatting.setChatstate_num(rs.getInt("chatstate_num"));
+				chatting.setItem_num(rs.getInt("item_num"));
+				chatting.setTitle(rs.getString("title"));
 
-
-
-
-
-
-
-
-
-
+				list.add(chatting);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			//자원정리
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return list;
+	}
 }

@@ -11,6 +11,7 @@ public class OChattingVO {
 	private String content; //읽기상태
 	private int item_num; //상품번호
 	private Date reg_date; //채팅등록시간
+	private String title;
 
 	private String mem_id;
 
@@ -68,6 +69,10 @@ public class OChattingVO {
 	public void setReg_date(Date reg_date) {
 		this.reg_date = reg_date;
 	}
-	
-	
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
 }

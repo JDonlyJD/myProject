@@ -47,6 +47,13 @@
       padding:10px;
       height:50px;
    }
+   #trans_id{
+   	font-size:18pt;
+   }
+   #rev_msg{
+   	font-size:18pt;
+   	color:red;
+   }
 </style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
@@ -147,6 +154,34 @@
          });
          event.preventDefault();
       });
+      
+      $('#rev_btn').click(function(){
+          
+          //댓글 등록
+          $.ajax({
+             type:'post',
+             data:{item_num:${item.item_num},rev_num:${trans_num}},
+             url:'../item/revItem.do',
+             dataType:'json',
+             cache:false,
+             timeout:30000,
+             success:function(param){
+                if(param.result == 'logout'){
+                   alert('로그인해야 작성할 수 있습니다.');
+                }else if(param.result == 'success'){
+                  alert('예약되었습니다.');
+                  $('#rev_btn').hide();
+                  $('#rev_msg').text('예약중');
+                }else{
+                   alert('등록시 오류 발생');
+                }
+             },
+             error:function(){
+                alert('네트워크 오류!');
+             }
+          });
+       });
+      
       selectData();
       
       setInterval(function(){
@@ -163,12 +198,18 @@
 <!-- 중앙 컨텐츠 시작 -->
 	<div class="page-main-chat">
 	   <c:if test="${user_num != item.mem_num}">
-	   	<h2>${item.title}의 작성자 <small>${item.mem_id}</small>님과 채팅</h2>
+	   	<span id="trans_id">${item.title}의 작성자 <small>${item.mem_id}</small>님과 채팅</span>
 	   </c:if>
 	   <c:if test="${user_num == item.mem_num}">
-	   	<h2>${trans_num}과의 대화</h2>
-	   </c:if>
-	  
+	   	<span id="trans_id"><b>${member.mem_id}과의 대화</b></span>
+	   	<c:if test="${item.state == 0}">
+	   	<input type="button" value="예약" id="rev_btn">
+	   	</c:if>
+	   </c:if>	
+	   	<span id="rev_msg">
+	   	<c:if test="${item.state == 1}">예약중</c:if>
+	   	<c:if test="${item.state == 2}">판매완료</c:if>
+	   	</span>
 	   <div id="chatting_message"></div>
 	   
 	   <form method="post" id="chatting_form" style=" width:660px; background-color: #d8e3d9;  border:1px solid #999; border-radius:5px;">

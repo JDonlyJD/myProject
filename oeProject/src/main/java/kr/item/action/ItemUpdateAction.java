@@ -41,6 +41,7 @@ public class ItemUpdateAction implements Action{
       OItemVO item = new OItemVO();
       item.setItem_num(item_num);
       item.setMem_num(user_num);
+      item.setState(Integer.parseInt(multi.getParameter("state")));
       item.setCate_num(Integer.parseInt(multi.getParameter("cate_num")));
       item.setTitle(multi.getParameter("title"));
       item.setPrice(Integer.parseInt(multi.getParameter("price")));

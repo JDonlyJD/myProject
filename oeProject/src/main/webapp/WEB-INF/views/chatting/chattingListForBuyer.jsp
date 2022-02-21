@@ -26,7 +26,7 @@ $(function(){
             }else if(param.result == 'success'){
                $(param.list).each(function(index,item){
                   let output = '<div>';
-                  output += '<a href="chatting.do?item_num=${item.item_num}&trans_num='+item.from_num+'">' + item.id + '('+item.chatstate_num+')님과 대화하기</a>';
+                  output += '<a href="chatting.do?item_num=${item.item_num}&trans_num='+item.from_num+'">' + item.mem_id + '('+item.chatstate_num+')님과 대화하기</a>';
                   output += '</div>';
                   
                   //문서 객체에 추가
