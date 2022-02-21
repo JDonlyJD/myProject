@@ -143,7 +143,7 @@
 			<li>
 				<label for="id">아이디</label>
 				<input type="text" name="id" id="id" maxlength="12" placeholder="ID를 입력하세요.">
-				<input type="button" value="ID중복체크" class="join-button id-du" >
+				<input type="button" value="ID중복체크" class="join-button id-du" id="id_check" >
 				<span id="message_id"></span>
 			</li>
 			<li>
