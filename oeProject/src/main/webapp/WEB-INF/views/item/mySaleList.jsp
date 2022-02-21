@@ -69,12 +69,16 @@ input[type="submit"]{
 				</div>
 				</c:forEach>
 				</div>
-			<div class="align-center">
-				<br><a href="${pageContext.request.contextPath}/main/main.do"></a>
-				<br><br>${pagingHtml}
-			</div>
 		</c:if>
+		
+		<div class="empty">
+		</div>
+		
 	</div>
+		<br><br><br><br><div style="text-align : center !important">
+		${pagingHtml}
+		</div>
+	
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

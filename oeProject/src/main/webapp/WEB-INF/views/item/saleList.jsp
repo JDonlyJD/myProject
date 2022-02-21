@@ -60,6 +60,7 @@ input[type="submit"]{
 				onclick="location.href='itemWriteForm.do'" <c:if test="${empty user_num}">disabled="disabled"</c:if>>  <!-- 같은경로이기 떄문에 파일경로만 작성했음  -->
 		</div>
 		<br>
+		
 		<c:if test="${count == 0 }">
 			<div class="result-display">
 				표시할 게시물이 없습니다.
@@ -81,9 +82,18 @@ input[type="submit"]{
 					</span>							
 				</div>	
 				</c:forEach>
+				</div>
+			</c:if>	
+			
+				<div class="empty">
+				</div>
+				<br>
+				
 			</div>
-		</c:if>
-	</div>
+				<br><br><br><br><div style="text-align : center !important">
+				${pagingHtml}
+				</div>
+
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>  
 </html>

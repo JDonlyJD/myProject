@@ -14,20 +14,25 @@ public class SaleListAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		//** 페이징처리
+		// (1) pageNum 초기세팅
 		String pageNum = request.getParameter("pageNum");
 		if(pageNum==null) pageNum="1";
 		
+		// (2) keyfield, keyword 초기세팅
 		String keyfield = request.getParameter("keyfield");
 		String keyword = request.getParameter("keyword");
 				
-		//count를 바꿔야 페이징처리를 할 수 있으니까
+		// (3) count 세팅
 		OItemDAO dao = OItemDAO.getInstance();
 		int count = dao.getListItemCount(keyfield, keyword);
 		
-		//페이지 처리
+		//(4) 페이지 처리
 		//keyfield와 keyword, currentPage, count, rowCount, pageCount, url 을 넘겨준다
-		PagingUtil page = new PagingUtil(keyfield, keyword, Integer.parseInt(pageNum), count, 20,10,"list.do");
+		PagingUtil page = new PagingUtil(keyfield, keyword, Integer.parseInt(pageNum), count, 12,10,"saleList.do");
 		
+		// (5) list에 저장된 정보 불러와서, VEIW에서 출력할 수 있도록 request에 담아주기
 		List<OItemVO> list = null;
 		//정보를 읽어오고
 		if(count >0) {
@@ -41,7 +46,5 @@ public class SaleListAction implements Action{
 		
 		//JSP경로반환
 		return "/WEB-INF/views/item/saleList.jsp";
-		
 	}
-
 }
