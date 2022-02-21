@@ -67,7 +67,11 @@ $(function(){
 		<ul style="padding: 0 0 0 100px;">
 			<li>
 			<label for="cate">카테고리</label>
-			<input type="number" name="cate" id="cate" value="${item.cate_num}" min="1" max="9999999">				
+			<select name="cate_num">
+	         <c:forEach var="cate" items="${cateName_list}">
+	         <option value="${cate.cate_num}" <c:if test="${cate.cate_num == item.cate_num}">selected</c:if>>${cate.cate_name}</option>	
+	         </c:forEach>
+         </select>
 		</li>
 			<li>
 				<label for="title">판매글 제목</label>

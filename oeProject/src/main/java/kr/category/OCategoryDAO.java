@@ -152,21 +152,19 @@ public class OCategoryDAO {
          //1. ConnectionPool로부터 커넥션할당
          conn = DBUtil.getConnection();
          //2. sql문 작성
-            sql = "SELECT cate_name FROM ocategory WHERE cate_status=? ORDER BY cate_name";
+            sql = "SELECT * FROM ocategory WHERE cate_status=1 ORDER BY cate_name";
          //3. pstmt객체 생성
          pstmt = conn.prepareStatement(sql);
-         //4. ?에 데이터바인딩
-         pstmt.setInt(1, 1);
         
-         //5. sql문장을 수행해서 결과행들을 ResultSet에 담음
+         //4. sql문장을 수행해서 결과행들을 ResultSet에 담음
          rs = pstmt.executeQuery();
          list = new ArrayList<OCategoryVO>();
          while(rs.next()) {
             OCategoryVO cate = new OCategoryVO();
             
             cate.setCate_name(rs.getString("cate_name"));
-            //cate.setCate_status(rs.getInt("cate_status"));
-            //cate.setCate_num(rs.getInt("cate_num"));
+            cate.setCate_status(rs.getInt("cate_status"));
+            cate.setCate_num(rs.getInt("cate_num"));
             
             list.add(cate);
          }   

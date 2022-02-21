@@ -78,8 +78,12 @@
    <!-- <input type="hidden" name="mem_num" value="${member.mem_num}">  -->
    <ul style="padding: 0 0 0 100px;">
       <li>
-         <label>카테고리 여부</label>
-         <input type="number" name="cate_num" id="cate_num">
+         <label>카테고리</label>
+         <select name="cate_num">
+	         <c:forEach var="cate" items="${cateName_list}">
+	         <option value="${cate.cate_num}">${cate.cate_name}</option>	
+	         </c:forEach>
+         </select>
       </li>
       <li>
          <label for="title">판매글 제목</label>
