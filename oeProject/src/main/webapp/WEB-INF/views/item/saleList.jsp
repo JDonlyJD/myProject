@@ -36,8 +36,8 @@ input[type="submit"]{
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<div class="page-main" style="padding-top: 220px; margin: 0 auto; height: 600px;">
-		<h2>판매 내역</h2>
+	<div class="page-main">
+		<h2>전체 상품 목록</h2>
 		<form action="saleList.do" method="get" id="search_form">
 			<div class="align-center">
 			<ul class="search">
@@ -66,42 +66,21 @@ input[type="submit"]{
 			</div>
 		</c:if>
 		<c:if test="${count > 0 }">
-			<table>
-			<thead>
-				<tr>
-					<th>상품번호</th>
-					<th>아이디</th>
-					<th>제목</th>
-					<th>판매상태</th>
-					<th>상품가격</th>
-					<th>등록일</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var="item" items="${list }">
-					<tr>
-						<td>${item.item_num }</td>
-						<td>${item.mem_id}</td>
-						<td><a href="itemDetail.do?item_num=${item.item_num}" style="color: black;">${item.title }</a></td>
-						<td>
-							<c:if test="${item.state == 0 }">판매중</c:if>
-							<c:if test="${item.state == 1 }">예약중</c:if>
-							<c:if test="${item.state == 2 }">판매완료</c:if>
-						</td>						
-						<td><fmt:formatNumber value="${item.price}" pattern="#,###"/></td>
-						<td>${item.reg_date }</td>
-						<!-- 판매상태(0판매중/1예약중/2판매완료) (default 0) -->
-						<%-- <td>
-							<c:if test="${item.state == 1 }">미표시</c:if>
-							<c:if test="${item.state == 2 }">표시</c:if>
-						</td> --%>						
-					</tr>
+		<div class="item-space">
+			<c:forEach var="item" items="${list }">
+			<div class="horizontal-area">
+				
+					<img src="${pageContext.request.contextPath}/upload/${item.filename}" >
+					<a href="itemDetail.do?item_num=${item.item_num}" style="color: black;">${item.title }</a>
+					<span>
+					<br>
+					<c:if test="${item.state == 0 }">판매중</c:if>
+					<c:if test="${item.state == 1 }">예약중</c:if>
+					<c:if test="${item.state == 2 }">판매완료</c:if>
+					<br><fmt:formatNumber value="${item.price}" pattern="#,###"/>
+					</span>							
+				</div>	
 				</c:forEach>
-				</tbody>
-			</table>
-			<div class="align-center">
-				<br><a href="${pageContext.request.contextPath}/main/main.do"><img alt="홈으로" src="${pageContext.request.contextPath}/images/home.jpg" width="30px" height="30px"></a>
-				<br><br>${pagingHtml}
 			</div>
 		</c:if>
 	</div>
