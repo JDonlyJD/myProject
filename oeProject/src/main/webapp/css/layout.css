@@ -488,3 +488,15 @@ div.horizontal-area img{
 div.like img{
 	border-radius: 30px;
 }
+
+/*폰트 테스트*/
+@font-face {
+    font-family: 'paybooc-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/paybooc-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+}
+*{
+	font-family: 'paybooc-Bold' !important;
+	font-weight: bold;
+}
