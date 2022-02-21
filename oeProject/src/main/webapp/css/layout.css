@@ -406,10 +406,16 @@ div.page-main-home div ul li input{
 	border-style:solid;
 	border-radius: 5px 29px 40px 35px;
 	/*top-left-radius/top-right-radius/bottom-right-radius/bottom-left-radius*/
-
-
 }
-
+/*---위까지는 myhome과 공통이고 여기서부터 adminmyhome---*/
+div.align-center-home-admin{
+	/* outline:1px dotted red; */
+	margin: 200px 30px 30px 170px;
+}
+div.page-main-home div ul li input.admin{
+	/* outline:1px dotted yellow; */
+	width: 130px;
+}
 /*---------- 찜하기------------ */
 .item-space .like{
 	margin:2px;

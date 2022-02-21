@@ -101,6 +101,7 @@ div ul li input{
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main-home" >
+<div id="greenbox">
 	<p>MANAGER HOME</p>
 	<div class="mypage-div">
 		<div class="mypage-div-2">
@@ -115,27 +116,29 @@ div ul li input{
 		</div>
 		<div class="mypage-div-3">
 			<img alt="oi" src="${pageContext.request.contextPath}/images/oi.png" width="38" height="35">
-			<b id="my_home_b">${member.mem_nick}(${member.mem_id})님의 <font color="green">MANAGER HOME</font></b>입니다.<br>
-			<a href='${pageContext.request.contextPath}/member/adminMyPage.do' style="color: blue">회원정보 수정</a>
+			<b id="my_home_b">${member.mem_nick}(${member.mem_id})님의 <font color="green">MANAGER HOME</font>입니다.</b><br>
+			<a href='${pageContext.request.contextPath}/member/adminMyPage.do'>회원정보 수정</a>
 		</div>
 	<br>
 	</div>
 	
-	<div class="align-center-home">
+	<div class="align-center-home align-center-home-admin">
 		<ul>	
 			<li>
-			<input type="button" value="회원목록" 
-            onclick="location.href='adminMemberList.do'" style="width: 120px;">
+			<input class="admin" type="button" value="회원목록" 
+            onclick="location.href='adminMemberList.do'">
         
-            <input type="button" value="문의게시판" 
-            onclick="location.href='${pageContext.request.contextPath}/board/oList.do'" style="width: 120px;">
+            <input class="admin" type="button" value="문의게시판" 
+            onclick="location.href='${pageContext.request.contextPath}/board/oList.do'">
       
-            <input type="button" value="카테고리관리" 
-            onclick="location.href='${pageContext.request.contextPath}/category/adminCate.do'" style="width: 120px;">
+            <input  class="admin" type="button" value="카테고리관리" 
+            onclick="location.href='${pageContext.request.contextPath}/category/adminCate.do'">
 			</li>
 		</ul>
 	</div>
 </div>
+</div>
+
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>
