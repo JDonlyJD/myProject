@@ -56,8 +56,9 @@
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
-<h2>회원탈퇴</h2>
+<br><br>
 	<form action="deleteUser.do" method="post" id="delete_form">
+	<h2 style="text-align: center">회원탈퇴</h2>
 		<ul style="padding: 0 0 0 100px;">
 			<li>
 				<label for="id">아이디</label>

@@ -72,9 +72,9 @@
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
-   <br>
-   <h2 align="center"><img alt="oi" src="${pageContext.request.contextPath}/images/oi.png" width="40" height="40">판매 상품 등록</h2><br>
+   <br><br>
    <form action="itemWrite.do" method="post" enctype="multipart/form-data" id="write_form">
+   <h2 style="text-align: center">판매 상품 등록</h2><br>
    <!-- <input type="hidden" name="mem_num" value="${member.mem_num}">  -->
    <ul style="padding: 0 0 0 100px;">
       <li>

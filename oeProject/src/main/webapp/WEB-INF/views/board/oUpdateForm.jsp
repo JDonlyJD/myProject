@@ -12,9 +12,9 @@
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
-   <h2>게시판 글수정</h2>
-   <form action="oUpdate.do" method="post" enctype="multipart/form-data" 
-                                                           id="update_form">
+<br><br>
+   <form action="oUpdate.do" method="post" enctype="multipart/form-data" id="update_form">
+      <h2 style="text-align: center">게시판 글수정</h2><br> 
       <input type="hidden" name="board_num" value="${board.board_num}"> 
 	  <ul style="padding: 0 0 0 75px;">
          <li>

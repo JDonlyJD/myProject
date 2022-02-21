@@ -60,9 +60,10 @@ $(function(){
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-<div class="page-main" style="margin: 15 auto; width: 1000px; height: 800px;">
-	<h2>게시판 글수정</h2>
+<div class="page-main">
+<br><br>
 	<form action="itemUpdate.do" method="post" enctype="multipart/form-data" id="update_form">
+	<h2 style="text-align: center">판매상품 글수정</h2><br> 
 		<input type="hidden" name="item_num" value="${item.item_num}"> 
 		<ul style="padding: 0 0 0 100px;">
 			<li>

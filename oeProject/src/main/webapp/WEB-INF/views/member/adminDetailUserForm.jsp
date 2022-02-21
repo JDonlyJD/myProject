@@ -51,9 +51,10 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-<div class="page-main" style="padding: 15%; margin: 15 auto; width: 1000px; height: 600px;">
-	<h2>${member.mem_id}님의 정보 수정(관리자 전용)</h2><br>
+<div class="page-main">
+<br><br>
 	<form action="adminDetailUser.do" method="post" id="detail_form">
+	<h2 style="text-align: center">${member.mem_id}님의 정보 수정(관리자 전용)</h2><br> 
 		<input type="hidden" name="mem_num" value="${member.mem_num}">
 		<ul style="padding: 0 0 0 100px;">
 			<li>

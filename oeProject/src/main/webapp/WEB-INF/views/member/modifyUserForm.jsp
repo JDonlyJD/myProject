@@ -51,7 +51,7 @@
 <div class="page-main">
 	<form action="modifyUser.do" method="post" id="modify_form">
 	<div class="align-center">
-	<h2><img alt="oi" src="${pageContext.request.contextPath}/images/oi.png" width="40" height="40">회원정보수정</h2>
+	<h2 style="text-align: center">회원정보수정</h2>
 	</div>	
 		<ul style="padding: 0 0 0 100px;">
 			<li>

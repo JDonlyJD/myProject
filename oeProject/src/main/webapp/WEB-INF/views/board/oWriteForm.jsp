@@ -31,8 +31,9 @@
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main">
-   <h2>1:1문의게시판</h2>
+<br><br>
    <form id="write_form" action="oWrite.do" method="post" enctype="multipart/form-data">
+   <h2 style="text-align: center">글쓰기</h2><br> 
       <ul style="padding: 0 0 0 75px;">
          <!-- <li>
             <label for="kind">질문분류</label>

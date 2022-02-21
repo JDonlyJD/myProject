@@ -12,8 +12,9 @@
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div class="page-main" style="padding-top: 220px; margin: 0 auto; height: 600px;">
-	<h2>구매내역</h2><br><br>
+<br><br>
 	<form action="buyList.do" method="post" id="buylist_form" style="border:none; width: 890px">
+	<h2 style="text-align: center">구매내역</h2><br> 
 		<table>
 		<thead>
 		<tr>
