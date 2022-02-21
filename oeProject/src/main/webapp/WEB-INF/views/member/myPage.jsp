@@ -150,7 +150,7 @@
       
       <div class="passwd-modify" >
 	      <h2>보안관리</h2>
-	      <div style="padding-top: 60px;">
+	      <div style="padding-top: 25px;">
 		      <b>52MARCKET</b> 로그인 시, <br>사용하는 비밀번호를 변경할 수 있습니다.
 		      <br><br>
 		      주기적인 <b><font color="red">비밀번호 변경</font></b>으로 개인정보를 안전하게 보호하세요.<br><br>
