@@ -563,4 +563,96 @@ div.page-main-join input.join-button{
 div.page-main-join input.id-du{
 	width:82px;
 }
+/*-------- my page -------*/
+h1.mypage-txt{
+/* 	outline:1px solid green; */
+	text-align: center;
+	color:#19BC9C;/*오이그린*/
+}
+div.page-main-mypage *{
+	margin:0;
+}
+div.page-main-mypage h2 h1{
+	text-align: center;
+}
+div.page-main-mypage{
+	/* outline:2px solid red; */
+	padding:260px 10px 10px 10px;
+	margin:0 auto;
+	width:1000px;
+	height:1000px;
+}
+div.page-main-mypage div.mypage-div1{
+	/* outline:2px solid red; */
+	height:370px;
+	padding:10px 0 0 70px;
+}
+	div.mypage-div1 div.profile{
+		background-color:#C6E5C6;
+		float:left;
+		width:400px;
+		padding:20px 0 0 20px;
+		margin:30px 0 0 0;
+		height:320px;	
+/* 		border:3px solid #004600;*/
+		border-radius: 10px; 
+	}
+	div.modify-btn{
+	/* background-color: blue; */
+	/* width:200px; */
+	padding:10px 0 0 150px;
+	}
+	div.mypage-div1 div.profile li#profile{
+	padding:0 0 0 100px;
+	}
+	div.mypage-div1 div.info-modify{
+		background-color: #F3E1CB;
+		float:left;
+		width:400px;
+		height:350px;	
+		margin:0 0 0 30px;	
+		padding:40px 0 0 20px;
+		/* border:3px solid #007d00; */
+		border-radius: 10px;	
+	}
+	div.mypage-div1 div.info-modify li{
+	margin:0 0 3px 0;
+	}
+	input#info-modify-btn{
+	/* background-color: red; */
+	margin:0 0 0 150px;
+	}
+	
+	
+div.page-main-mypage div.mypage-div2{
+	/* outline:2px solid blue; */
+	height:400px;
+	padding:10px 0 0 70px;
+	
+}
+/* 	div.mypage-div2 div.ad-box{
+		background-color: lightblue;
+		float:left;
+		width:400px;
+		height:350px;	
+		border:3px solid #007d00;
+		border-radius: 10px;
+	} */
+	img.image_ad{
+	float:left;
+	width:400px;
+	margin-top:6px;
+	/* border:3px solid #007d00; */
+	border-radius: 10px;
+	}
+	div.mypage-div2 div.passwd-modify{
+		background-color: #F9F5F4;
+		float:left;
+		width:400px;
+		height:260px;
+		margin:3px 0 0 30px;
+		padding:20px 0 0 20px;
+/* 		border:3px solid #58d803;*/
+		border-radius: 10px;	 
+	}
 
