@@ -94,6 +94,7 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
 <div class="page-main-home" >
+<div id="greenbox">
 	<p>MY HOME</p>
 	<div class="mypage-div">
 		<div class="mypage-div-2">
@@ -108,8 +109,8 @@
 		</div>
 		<div class="mypage-div-3">
 			<img alt="oi" src="${pageContext.request.contextPath}/images/oi.png" width="38" height="35">
-			<b id="my_home_b">${member.mem_nick}(${member.mem_id})님의 <font color="green">MY HOME</font></b>입니다.<br>
-			<a href='${pageContext.request.contextPath}/member/myPage.do' style="color: blue">회원정보 수정</a>
+			<b id="my_home_b">${member.mem_nick}(${member.mem_id})님의 <font color="green">MY HOME</font>입니다.</b><br>
+			<a href='${pageContext.request.contextPath}/member/myPage.do' >회원정보 수정</a>
 		</div>
 	<br>
 	</div>
@@ -134,6 +135,7 @@
 			</li>
 		</ul>
 	</div>
+</div>
 </div>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>

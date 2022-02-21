@@ -331,39 +331,59 @@ label[for="order_quantity"]{
 
 /*====myHome====*/ /* 상 우 하 좌/상 좌우 하/상하 좌우 */
 div.page-main-home{
-	/* background-color:green; */
+	/* outline:1px dotted red; */
 	/* padding-top: 500px; */
  	/* padding: 16%; */ 
-	margin: 0px auto 100px;
-	padding:300px 200px 100px 300px; /*상우하좌*/
-	width: 1920px; 
-	height: 1080px;
+	margin: 0px;
+	padding:280px 200px 150px 100px; /*상우하좌*/
+	/* width: 1920px; */ 
+	height: 800px;
+	
+	
+}
+div.page-main-home div#greenbox{
+	height:500px;
+	width:800px;
+	margin:0 auto ;
+	padding:20px 0 0 0;
+	border:2px solid green;
+	border-radius: 10px;
 }
 div.page-main-home p{
-	font-size:50px;
+	font-size:30px;
+	font-weight: bold;
+	padding:20px 0px 0px 60px;
+	color:#19BC9C;
 	}
 div.page-main-home div.mypage-div{
-/* 	outline:1px dotted red; */
+	/* outline:1px dotted red; */
 	margin:0px  0px;
-	padding:50px 0px 0px 140px;
+	padding:50px 0px 0px 90px;
 	width: 100%
 	/* padding-top: 300px; */
 }
 		div.mypage-div-2{
 		/* outline:1px dotted yellow; */
-		float: left; width: 20%;
-		padding-left:70px;
+		float: left; 
+		/* width: 20%; */
+		padding-left:20px;
 		}	
 		div.mypage-div-3{
 		/* outline:1px dotted yellow; */
-		float: left; width: 50%;	
-		padding-top:60px;
-		font-size:30px;
+		float: left; 
+		text-align:left;
+		/* width: 50%;	 */
+		padding:60px 0 0 20px;
+		font-size:20px;
 		}
-
+		div.mypage-div-3 a{
+		/* outline:1px dotted yellow; */
+		padding:40px 0 0 40px;
+		margin-top:10px;
+		}
 div.align-center-home{
 	/* outline:1px dotted red; */
-	margin: 250px 30px 30px 200px;
+	margin: 200px 30px 30px 100px;
 }
 div.align-center-home ul li{
 	/* outline:1px dotted blue; */
@@ -377,7 +397,7 @@ div.page-main-home div ul li input{
 	/* outline:1px dotted yellow; */
 	background-color: #19BC9C;
 	padding:0;
-	margin:0 50px 0 0; /* 상우하좌 */
+	margin:0 30px 0 0; /* 상우하좌 */
 	color: white;
 	width: 100px;
 	height: 60px;
@@ -500,3 +520,40 @@ div.like img{
 	font-family: 'paybooc-Bold' !important;
 	font-weight: bold;
 }
+
+/*--- 회원 가입 ---*/
+div.page-main-join{
+	/* outline:2px solid red; */
+	padding: 250px 0px 200px 600px; 
+	/* width: 800px;  */
+	height: 800px;
+	margin:0; 
+}
+div.page-main-join *{
+	/* padding:5%; */
+}
+div.page-main-join form{
+	/* outline:2px solid red; */
+	margin:0;
+	padding:10px auto;
+	
+}
+div.page-main-join ul{
+	/* outline:2px solid red; */
+	/* padding: 0 0 0 100px; */
+	text-align: left;
+	margin:0;
+	padding: 0 0 0 100px;
+	width:500px;
+}
+div.page-main-join ul li{
+	/* padding: 0 0 0 100px; */
+	padding:5px;
+}
+div.page-main-join input.join-button{
+	width:100px;
+}
+div.page-main-join input.id-du{
+	width:82px;
+}
+

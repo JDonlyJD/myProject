@@ -133,16 +133,17 @@
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
-<div class="page-main" style="padding: 16%; margin: 15 auto; width: 1000px; height: 680px;">
+<div class="page-main-join" >
 	<form id="register_form" action="join.do" method="post">
 	<div class="align-center">
 	<h2><img alt="oi" src="${pageContext.request.contextPath}/images/oi.png" width="50" height="40"><font color="green">오이</font>마켓 가입하기</h2>
 	</div>
-		<ul style="padding: 0 0 0 100px;">
+		<ul>
+			<br>
 			<li>
 				<label for="id">아이디</label>
 				<input type="text" name="id" id="id" maxlength="12" placeholder="ID를 입력하세요.">
-				<input type="button" value="ID중복체크" id="id_check">
+				<input type="button" value="ID중복체크" class="join-button id-du" >
 				<span id="message_id"></span>
 			</li>
 			<li>
@@ -169,7 +170,7 @@
 			<li>
 				<label for="zipcode">우편번호</label>
 				<input type="text" name="zipcode" id="zipcode" maxlength="5" placeholder="클릭->">
-				<input type="button" onclick="sample2_execDaumPostcode()" value="우편번호 찾기">
+				<input type="button" class="join-button" onclick="sample2_execDaumPostcode()" value="우편번호 찾기">
 			</li>
 			<li>
 				<label for="address1">주소</label>
@@ -181,6 +182,7 @@
 			</li>
 		</ul>
 		<div class="align-center">
+		<br>
 			<input type="submit" value="회원가입" style="background-color:green; color:white; width:80%; height: 30px;"><br><br>
 			<%-- <input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'" 
 			style="width:50%; height: 30px;"> --%>
