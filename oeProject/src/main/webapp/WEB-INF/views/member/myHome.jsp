@@ -125,7 +125,7 @@
 				onclick="location.href='${pageContext.request.contextPath}/item/buyListForm.do'">
 	
 				<input type="button" value="채팅목록" 
-				onclick="location.href='${pageContext.request.contextPath}/chatting/chattingListForBuyer.do'">
+				onclick="location.href='${pageContext.request.contextPath}/chatting/chattingBox.do'">
 	
 				<input type="button" value="찜목록" 
 				onclick="location.href='${pageContext.request.contextPath}/item/likeList.do'">
