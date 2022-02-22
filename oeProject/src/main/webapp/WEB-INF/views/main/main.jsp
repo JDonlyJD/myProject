@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>메인</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css">
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
 </head>
 
@@ -70,7 +71,7 @@
   		</div>
 	</div>
 </div>
-<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+
     
     
 <div class="page-main2">
