@@ -489,27 +489,47 @@ padding:5px 0 30px 0px;
 		font-size:10px;
 	}
 /*-------카테고리 리스트 (adminCate.jsp)--------*/
+span.re_title2{
+	padding:20px 0 0 30px;
+	font-size: 20px;
+}
 tr#cate_tr{
 	height:40px;
-
+	background-color:none;
+	box-shadow: 0 0 20px rgb(0 0 0 / 15%);
 }
 th#cate_num{
 	float: left; width: 20%;
-	padding:5px 0 0 0px;
+	padding:10px 0 0 40px;
+	background-color: white;
+	color:#009879;
 }
 th#cate_name{
 	float: left; width: 35%;
-	padding:5px 10px 0 90px;
+	padding:10px 10px 0 100px;
 	text-align: left;
+	background-color: white;
+	color:#009879;
 }
 th#cate_status{
-	float: left; width: 20%;
-	padding:5px 20px 0 0;
+	float: left; 
+	padding:10px 20px 0 50px;
+	background-color: white;
+	color:#009879;
 }
 th#cate_del{
-	float: left; width: 20%;
-	padding:5px 10px 0 50px;
+	float: left; 
+	padding:10px 10px 0 120px;
 	text-align: center;
+	background-color: white;
+	color:#009879;
+}
+div#re_second input.submit_button{
+	/* outline:1px dotted yellow; */
+	margin:0 0 50px 200px;
+	background-color:#009879;
+	color:white;
+	
 }
 
 /*메인화면 등록된 상품 사진 모서리 테스트*/

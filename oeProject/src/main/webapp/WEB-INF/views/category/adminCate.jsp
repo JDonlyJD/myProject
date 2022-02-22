@@ -14,8 +14,9 @@
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
 	<div class="page-main">
+		<br>
 		<h2>[MANAGER] 카테고리 관리</h2>
-		
+		<br>
 	<!-- 댓글시작 -->
 	<div id="reply_div">
 		<span class="re_title">카테고리 추가</span>
@@ -32,7 +33,7 @@
 			<input type="radio" name="cate_status" value="1" id="cate_status" checked="checked" >사용
 			 ]
 			<!-- <input type="submit" value="추가"> -->
-			
+			 
 			<c:if test="${!empty user_num }">
 				<div id="re_first">
 					<span class="letter-count">10/10</span>
