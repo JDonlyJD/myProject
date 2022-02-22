@@ -34,7 +34,9 @@
   					<div class="carousel-inner">
   					
   						<div class="item active">
+  						<a href="${pageContext.request.contextPath }/board/oList.do">
   							<img src="../images/test1.png" alt="First slide">
+  						</a>	
   							<div class="carousel-caption">
   							</div>
   						</div>
@@ -50,18 +52,18 @@
   					
   					</div>		<!-- end of carousel-inner -->
   					
-  					
-  					<!-- Controls : 이전, 다음으로 갈 수 있도록 해주는 기능 -->
+  					<!-- 
+  					<!-- Controls : 이전, 다음으로 갈 수 있도록 해주는 기능 
   					<a class="left carousel-control"
   						href="#carousel-example-generic"
   						data-slide="prev">
   					<span class="glyphicon glyphicon-chevron-left"></span></a>	
-  							<!-- class=glyphicon glyphicon-chevron-left 내장된 아이콘  -->
+  							<!-- class=glyphicon glyphicon-chevron-left 내장된 아이콘  
   					
   					<a class="right carousel-control"
   						href="#carousel-example-generic"
   						data-slide="next">
-  					<span class="glyphicon glyphicon-chevron-right"></span></a>
+  					<span class="glyphicon glyphicon-chevron-right"></span></a> -->
  			
   				</div>
   			</div>
