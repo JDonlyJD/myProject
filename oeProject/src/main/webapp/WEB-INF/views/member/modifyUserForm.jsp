@@ -49,7 +49,7 @@
 <br>
 <br>
 <div class="page-main">
-	<form action="modifyUser.do" method="post" id="modify_form" style="margin: 70px 0 100px 90px; padding: 20px 0 50px 0;">
+	<form action="modifyUser.do" method="post" id="modify_form" style="margin: 70px 0 50px 150px; padding: 20px 0 50px 0;">
 	<div class="align-center">
 	<h2 style="text-align: center">회원정보수정</h2>
 	</div>	
@@ -93,7 +93,7 @@
 		</div>
 	</form>
 </div>	
-<div class="align-center" style="padding-right:100px; height: 50px;">
+<div class="align-center" style="padding:0 100 40 0; left:10px; height: 58px;">
 <font color="gray">52MACKET을 더 이용하지않는다면?&nbsp;</font><a href="deleteUserForm.do"><font color="green">회원탈퇴 바로가기</font></a>
 </div>
 <!-- 우편번호 스크립트 시작 -->
