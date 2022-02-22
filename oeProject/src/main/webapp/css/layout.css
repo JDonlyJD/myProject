@@ -254,6 +254,12 @@ div.page-main *{
 	padding:3px;
 }
 
+div.page-main2{
+	width:1100px;
+	margin:0 auto;
+	padding : 0 0 0 40px;
+}
+
 /*-- 채팅리스트 --*/
 div.page-main-chat{
 	padding-top: 200px;
