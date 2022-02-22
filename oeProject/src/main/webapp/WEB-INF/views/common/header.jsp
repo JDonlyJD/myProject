@@ -87,10 +87,10 @@
           	<ul class="nav navbar-nav">
 	<%-- **카테고리 --%>			
 		      	<li class="dropdown " id="nav1">
-		        	<a href="#" class="dropdown-toggle" data-toggle="dropdown">카테고리 </a>
+		        	<a href="#" class="dropdown-toggle" data-toggle="dropdown">상품목록</a>
 			        	<ul class="dropdown-menu">
 		    		 	<c:forEach var="cate" items="${cateName_list}">
-					        <li><a class="dropdown" id="cate_name_menu" href="#">${cate.cate_name}</a></li>
+					        <li><a class="dropdown" id="cate_name_menu" href="${pageContext.request.contextPath}/item/saleList.do?cate_num=${cate.cate_num}">${cate.cate_name}</a></li>
 		       			</c:forEach>
 				        </ul>
 		      	</li>
@@ -99,13 +99,7 @@
 		        <c:if test="${!empty user_num }"><%--로그인 했을 때--%>
 		            <li id="nav2">
 		            <a href="${pageContext.request.contextPath}/item/itemWriteForm.do">상품등록</a></li>
-	            </c:if>	 
-	 <%-- **상품목록 --%>			
-		        <c:if test="${!empty user_num }"><%--로그인 했을 때--%>
-		            <li id="nav3">
-		            <a href="${pageContext.request.contextPath}/item/saleList.do">상품목록</a></li>
-	            </c:if>
-	 <%-- **찜 목록 --%>			
+	            </c:if>	 			
 		        <c:if test="${!empty user_num }"><%--로그인 했을 때--%>
 		            <li id="nav4">
 		            <a href="${pageContext.request.contextPath}/item/likeList.do">찜목록</a></li>

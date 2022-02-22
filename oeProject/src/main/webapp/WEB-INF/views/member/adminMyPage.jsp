@@ -6,20 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>My Page_Admin</title>
-<style type="text/css">
-div{
-	border-radius: 30px;
-	border: none;
-}
-.image{
-	width: 100%;
-	height: 100%;
-	object-fit:cover;
-}
-div ul li b{
-	text-decoration: underline;
-}
-</style>
+
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 
@@ -106,71 +93,79 @@ div ul li b{
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-<div class="page-main" style="padding-top: 200px; height: 1000px;">
-   <h2>MANAGER MY PAGE</h2><br>
-   <div class="mypage-div">
-   	   <div class="profile" align="center" style="border: 1px;width: 400px;height: 400px; background-color: #d9dadb;">
-       <h3 align="center">프로필 사진</h3>
-      <ul>
-         <li>
-            <c:if test="${empty member.mem_photo}">
-            <img src="${pageContext.request.contextPath}/images/face.png" 
-                 width="200" height="200" class="my-photo">
-            </c:if>
-            <c:if test="${!empty member.mem_photo}">
-            <img src="${pageContext.request.contextPath}/upload/${member.mem_photo}"
-                 width="200" height="200" class="my-photo"> 
-            </c:if>
-         </li>
-         <li>
-            <div class="align-center2">
-               <input type="button" value="수정" id="photo_btn">
-            </div>
-               <div id="photo_choice" style="display:none;">
-               <input type="file" id="photo" accept="image/gif,image/png,image/jpeg"><br>
-               <input type="button" value="전송" id="photo_submit">
-               <input type="button" value="취소" id="photo_reset">
-            </div>
-         </li>
-      </ul>
-      </div>
+
+<div class="page-main-mypage" >
+
+   <h1 class="mypage-txt">MANAGER_MY PAGE</h1><br>
+   
+   <div class="mypage-div1">
+   		<div class="profile" >
+    	<h2>프로필 사진</h2><br>
+	    	<ul>
+		      	<li id="profile">
+		            <c:if test="${empty member.mem_photo}">
+		            	<img src="${pageContext.request.contextPath}/images/face.png" width="150" height="150" class="my-photo">
+		            </c:if>
+		            <c:if test="${!empty member.mem_photo}">
+		            	<img src="${pageContext.request.contextPath}/upload/${member.mem_photo}" width="150" height="150" class="my-photo"> 
+		            </c:if>
+		         </li> 
+		         <li>
+		            <div class="modify-btn">
+		               <input type="button" value="수정" id="photo_btn">
+			            <div id="photo_choice" style="display:none;">
+			               <input type="file" id="photo" accept="image/gif,image/png,image/jpeg"><br>
+			               <input type="button" value="전송" id="photo_submit">
+			               <input type="button" value="취소" id="photo_reset">
+			            </div>
+		            </div>
+		         </li>
+	      	</ul>
+      	</div>
+	   <div class="info-modify" >
+	      <h2>회원정보확인/수정</h2><br><br>
+	      <ul>
+	         <li>이름 : ${member.mem_nick}</li>
+	         <li>전화번호 : ${member.mem_phone}</li>
+	         <li>이메일 : ${member.mem_email}</li>
+	         <li>우편번호 : ${member.mem_zipcode}</li>
+	         <li>주소 : ${member.mem_addr} ${member.mem_addr2}</li>
+	         <li>가입일 : ${member.mem_date}</li>
+	         <c:if test="${!empty member.mem_modifydate}">
+	         	<li>최근 정보 수정일 : ${member.mem_modifydate}</li><br>
+	         </c:if>
+	         <li>
+	            <input id="info-modify-btn" type="button" value="수정" onclick="location.href='modifyUserForm.do'">
+	         </li>
+	      </ul>
+	    </div>
      </div>
+      
+   <div class="mypage-div2">
+      
+      <div class="ad-box" align="center">
+       <!-- style="position: absolute; top: 730px; left:400px; border: 1px;width: 400px;height: 190px; overflow: hidden;" -->
+  		<img class="image_ad" src="${pageContext.request.contextPath}/images/oemarket.png">
+      </div>
+      
+      <div class="passwd-modify" >
+	      <h2>보안관리</h2>
+	      <div style="padding-top: 25px;">
+		      <b>52MARCKET</b> 로그인 시, <br>사용하는 비밀번호를 변경할 수 있습니다.
+		      <br><br>
+		      주기적인 <b><font color="red">비밀번호 변경</font></b>으로 개인정보를 안전하게 보호하세요.<br><br>
+		      <ul>
+		         <li>
+		            <a href="modifyPasswordForm.do">비밀번호<b>변경하기</b></a>
+		         </li>
+		      </ul>
+	      </div>
+      </div>
    </div>
-   <div class="mypage-div" align="center" style="position: absolute; top: 293px; right:450px; border: 1px;width: 400px;height: 320px;background-color: #d9dadb;">
-   <!-- 변경해야함 -->
-      <h3>회원정보확인/수정</h3><br><br>
-      <ul>
-         <li>이름 : ${member.mem_nick}</li>
-         <li>전화번호 : ${member.mem_phone}</li>
-         <li>이메일 : ${member.mem_email}</li>
-         <li>우편번호 : ${member.mem_zipcode}</li>
-         <li>주소 : ${member.mem_addr} ${member.mem_addr2}</li>
-         <li>가입일 : ${member.mem_date}</li>
-         <c:if test="${!empty member.mem_modifydate}">
-         	<li>최근 정보 수정일 : ${member.mem_modifydate}</li>
-         </c:if>
-         <li>
-         	<br>
-            <input type="button" value="수정하기" onclick="location.href='modifyUserForm.do'">
-         </li>
-      </ul>
-      </div>
-      <div class="pwbox" align="center" style="position: absolute; top: 650px; right:450px; border: 1px;width: 400px;height: 270px;background-color: #d9dadb;">
-      <h3>보안관리</h3>
-      <div style="padding-top: 60px;">
-      <font color="green">52MARCKET</font> 로그인 시 사용하는 비밀번호를 변경할 수 있습니다.
-      <br>주기적인 <b><font color="red">비밀번호 변경</font></b>으로 개인정보를 안전하게 보호하세요.<br><br>
-      <ul>
-         <li>
-            <!-- 비밀번호&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="변경하기" onclick="location.href='modifyPasswordForm.do'"> -->
-            비밀번호&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="modifyPasswordForm.do"><b><font color="blue">변경하기</font></b></a>
-         </li>
-      </ul>
-      </div>
-      </div>
-      <div class="image-box" align="center" style="position: absolute; top: 730px; left:400px; border: 1px;width: 400px;height: 190px; overflow: hidden;">
-  		<img class="image" src="${pageContext.request.contextPath}/images/gooi.png">
-      </div>
+   
+   
+</div>
+
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

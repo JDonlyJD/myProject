@@ -18,7 +18,7 @@ public class MainAction implements Action{
 
 		//상품정보 읽기
 		OItemDAO dao = OItemDAO.getInstance();
-		List<OItemVO> itemList = dao.getListItem(1, 8, null, null);	
+		List<OItemVO> itemList = dao.getListItemForMain(1, 8);	
 		//state값 안줬음(DAO구성도 state값없음)
 
 		request.setAttribute("itemList", itemList);

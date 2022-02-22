@@ -29,7 +29,7 @@ public class MySaleListAction implements Action{
 				
 		//count를 바꿔야 페이징처리를 할 수 있으니까
 		OItemDAO dao = OItemDAO.getInstance();
-		int count = dao.getListItemCount(keyfield, keyword);
+		int count = dao.getItemCountByMem_num(keyfield, keyword, user_num);
 		//페이지 처리
 		//keyfield와 keyword, currentPage, count, rowCount, pageCount, url 을 넘겨준다
 		PagingUtil page = new PagingUtil(keyfield, keyword, Integer.parseInt(pageNum), count, 12,10,"mySaleList.do");

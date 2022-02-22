@@ -37,8 +37,9 @@ input[type="submit"]{
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<div class="page-main">
-		<h2>전체 상품 목록</h2>
+		<h2>상품분류 : ${category.cate_name}</h2>
 		<form action="saleList.do" method="get" id="search_form">
+			<input type="hidden" name="cate_num" value="${category.cate_num}"> 
 			<div class="align-center">
 			<ul class="search">
 				<li>

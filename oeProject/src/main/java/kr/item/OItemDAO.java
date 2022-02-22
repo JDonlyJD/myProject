@@ -64,7 +64,7 @@ public class OItemDAO {
 			//커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
 			conn.setAutoCommit(false);
-			
+
 			sql = "UPDATE oitem SET state=? WHERE item_num=?";
 
 			//PreparedStatement 객체 생성
@@ -75,7 +75,7 @@ public class OItemDAO {
 
 			//SQL문 실행
 			pstmt.executeUpdate();
-			
+
 			if(state==1) {
 				sql = "INSERT INTO oitem_order (order_num,item_num,mem_num,reg_date) VALUES (order_seq.nextval,?,?,SYSDATE)";
 				pstmt2 = conn.prepareStatement(sql);
@@ -91,7 +91,7 @@ public class OItemDAO {
 				pstmt2.setInt(1, item_num);
 				pstmt2.executeUpdate();
 			}
-			
+
 			conn.commit();
 		}catch(Exception e) {
 			conn.rollback();
@@ -135,7 +135,7 @@ public class OItemDAO {
 
 			//SQL문 실행
 			pstmt.executeUpdate();
-			
+
 			if(item.getState()==0) {
 				sql = "DELETE FROM oitem_order WHERE item_num=?";
 				pstmt2 = conn.prepareStatement(sql);
@@ -143,7 +143,7 @@ public class OItemDAO {
 				pstmt2.setInt(1, item.getItem_num());
 				pstmt2.executeUpdate();
 			}
-			
+
 			conn.commit();
 
 		}catch(Exception e) {
@@ -293,74 +293,116 @@ public class OItemDAO {
 		}
 		return count;
 	}
-	//내 판매목록
-			public List<OItemVO>getListItemByMem_num(int startRow, int endRow, 
-								String keyfield, String keyword, int mem_num)throws Exception{
-				Connection conn = null;
-				PreparedStatement pstmt = null;
-				ResultSet rs = null;
-				List<OItemVO> list = null;
-				String sql = null;
-				String sub_sql = "";
-				int cnt = 0;
-				
-				
-				try {
-					//커넥션 풀로부터 커넥션 할당받기
-					conn = DBUtil.getConnection();
-					
-					if(keyword != null && !"".equals(keyword)) {
-						if(keyfield.equals("1")) sub_sql = "AND item_num = ?";
-						else if(keyfield.equals("2")) sub_sql = "AND title LIKE ?";
-						else if(keyfield.equals("3")) sub_sql = "AND i.content LIKE ?";
-					}
-					
-					//SQL문 작성
-					//sql ="SELECT COUNT(*) FROM oitem WHERE mem_num=? ORDER BY item_num DESC";
-					sql ="SELECT * FROM (SELECT a.*, rownum rnum FROM "
-							+ "(SELECT * FROM oitem WHERE mem_num =? " + sub_sql
-							+ " ORDER BY item_num DESC)a) "
-							+ " WHERE rnum >= ? AND rnum <= ?";	
-					
-					pstmt = conn.prepareStatement(sql);
-					//?에 데이터를 바인딩
-					pstmt.setInt(++cnt, mem_num);
-					if(keyword != null && !"".equals(keyword)) {
-						if(keyfield.equals("1")) {
-							pstmt.setString(++cnt, keyword);
-						}else if(keyfield.equals("2")) {
-							pstmt.setString(++cnt, "%" + keyword + "%");
-						}
-						
-					}
-					pstmt.setInt(++cnt, startRow);
-					pstmt.setInt(++cnt, endRow);
-					
-					//SQL문을 실행해서 결과행들을 ResultSet에 담음
-					rs = pstmt.executeQuery();
-					
-					list = new ArrayList<OItemVO>();
-					while(rs.next()) {
-						OItemVO item = new OItemVO();
-						item.setItem_num(rs.getInt("item_num"));
-						item.setTitle(rs.getString("title"));
-						item.setPrice(rs.getInt("price"));
-						item.setFilename(rs.getString("filename"));
-						item.setState(rs.getInt("state"));
-						item.setContent(rs.getString("content"));
-						item.setReg_date(rs.getDate("reg_date"));
-						
-						list.add(item);
-					}
-					
-				}catch(Exception e) {
-					throw new Exception(e);
-				}finally {
-					//자원정리
-					DBUtil.executeClose(rs, pstmt, conn);
-				}
-				return list;
+	public int getItemCountByMem_num(String keyfield, String keyword, int mem_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		String sub_sql = "";
+		int count = 0;
+		int cnt = 0;
+
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+
+			if(keyword != null && !"".equals(keyword)) {
+				//검새 처리
+				if(keyfield.equals("1")) sub_sql = "AND name LIKE ?";
+				else if(keyfield.equals("2")) sub_sql = "AND detail LIKE ?";	
 			}
+
+			//SQL문 작성
+			sql ="SELECT COUNT(*) FROM zitem  WHERE mem_num =? " + sub_sql;
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(++cnt, mem_num);
+			if(keyword != null && !"".equals(keyword)) {
+				pstmt.setString(++cnt, "%" + keyword + "%");
+			}
+			//SQL문 실행해서 결과행을 ResultSet에 담음
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			//자원정리
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return count;
+	}
+	//내 판매목록
+	public List<OItemVO>getListItemByMem_num(int startRow, int endRow, 
+			String keyfield, String keyword, int mem_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<OItemVO> list = null;
+		String sql = null;
+		String sub_sql = "";
+		int cnt = 0;
+
+
+		try {
+			//커넥션 풀로부터 커넥션 할당받기
+			conn = DBUtil.getConnection();
+
+			if(keyword != null && !"".equals(keyword)) {
+				if(keyfield.equals("1")) sub_sql = "AND item_num = ?";
+				else if(keyfield.equals("2")) sub_sql = "AND title LIKE ?";
+				else if(keyfield.equals("3")) sub_sql = "AND i.content LIKE ?";
+			}
+
+			//SQL문 작성
+			//sql ="SELECT COUNT(*) FROM oitem WHERE mem_num=? ORDER BY item_num DESC";
+			sql ="SELECT * FROM (SELECT a.*, rownum rnum FROM "
+					+ "(SELECT * FROM oitem WHERE mem_num =? " + sub_sql
+					+ " ORDER BY item_num DESC)a) "
+					+ " WHERE rnum >= ? AND rnum <= ?";	
+
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터를 바인딩
+			pstmt.setInt(++cnt, mem_num);
+			if(keyword != null && !"".equals(keyword)) {
+				if(keyfield.equals("1")) {
+					pstmt.setString(++cnt, keyword);
+				}else if(keyfield.equals("2")) {
+					pstmt.setString(++cnt, "%" + keyword + "%");
+				}
+
+			}
+			pstmt.setInt(++cnt, startRow);
+			pstmt.setInt(++cnt, endRow);
+
+			//SQL문을 실행해서 결과행들을 ResultSet에 담음
+			rs = pstmt.executeQuery();
+
+			list = new ArrayList<OItemVO>();
+			while(rs.next()) {
+				OItemVO item = new OItemVO();
+				item.setItem_num(rs.getInt("item_num"));
+				item.setTitle(rs.getString("title"));
+				item.setPrice(rs.getInt("price"));
+				item.setFilename(rs.getString("filename"));
+				item.setState(rs.getInt("state"));
+				item.setContent(rs.getString("content"));
+				item.setReg_date(rs.getDate("reg_date"));
+
+				list.add(item);
+			}
+
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			//자원정리
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return list;
+	}
 
 	// ItemList를 뽑아오고싶을 때 - State를 사용하고싶을 때는 이걸 ! 판매상품 목록/검색 목록
 	public List<OItemVO> getListItemState(int startRow, int endRow, 
@@ -435,13 +477,14 @@ public class OItemDAO {
 	//민정
 	//총 레코드 수 (검색 레코드 수) 
 	//키워드를 통해서 검색을 할지 총갯수를 통해서 검색을 할지
-	public int getListItemCount(String keyfield,String keyword)throws Exception{
+	public int getListItemCount(String keyfield,String keyword, int cate_num)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = null;
 		String sub_sql = "";
 		int count = 0;
+		int cnt = 0;
 
 		try {
 			//커넥션 풀로부터 커넥션 할당받기
@@ -450,21 +493,22 @@ public class OItemDAO {
 			//keyword를 통한 조건체크
 			if(keyword!=null && !"".equals(keyword)) {
 				//검색글 처리
-				if(keyfield.equals("1")) sub_sql = "WHERE i.title LIKE ? OR i.content LIKE ?"; //글제목+내용
+				if(keyfield.equals("1")) sub_sql = "AND i.title LIKE ? OR i.content LIKE ?"; //글제목+내용
 				//					if(keyfield.equals("1")) sub_sql = "WHERE i.title LIKE ?"; //글제목
 				//					else if(keyfield.equals("2")) sub_sql = "WHERE m.id LIKE ?"; //
 				//					else if(keyfield.equals("3")) sub_sql = "WHERE b.content LIKE ?";
 			}
 			//SQL문 작성
-			sql = "SELECT COUNT(*) FROM oitem i JOIN omember m USING(mem_num) " + sub_sql;
+			sql = "SELECT COUNT(*) FROM oitem i JOIN omember m USING(mem_num)  WHERE cate_num = ? " + sub_sql;
 			//				sql = "SELECT COUNT(*) FROM oitem i RIGHT OUTER JOIN omember m USING(mem_num) " + sub_sql;
 
 			//PreparedStatement객체 생성
 			pstmt = conn.prepareStatement(sql);
-
+			pstmt.setInt(++cnt, cate_num);
+			
 			if(keyword!= null && !"".equals(keyword)) {
-				pstmt.setString(1, "%"+keyword+"%");
-				pstmt.setString(2, "%"+keyword+"%");
+				pstmt.setString(++cnt, "%"+keyword+"%");
+				pstmt.setString(++cnt, "%"+keyword+"%");
 			}
 			//SQL문을 실행하고 결과행을 resultSet에 담음
 			rs = pstmt.executeQuery();
@@ -486,7 +530,7 @@ public class OItemDAO {
 
 	//민정 판매목록
 
-	public List<OItemVO> getListItem(int startRow, int endRow, String keyfield, String keyword) throws Exception{
+	public List<OItemVO> getListItem(int startRow, int endRow, String keyfield, String keyword, int cate_num) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -502,7 +546,7 @@ public class OItemDAO {
 			//위와 동일한 검색에 대한 처리
 			//keyword를 통한 조건체크
 			if(keyword!=null && !"".equals(keyword)) {
-				if(keyfield.equals("1")) sub_sql = "WHERE i.title LIKE ? OR i.content LIKE ?"; //글제목+내용
+				if(keyfield.equals("1")) sub_sql = "AND i.title LIKE ? OR i.content LIKE ?"; //글제목+내용
 				//					if(keyfield.equals("1")) sub_sql = "WHERE b.title LIKE ?";
 				//					else if(keyfield.equals("2")) sub_sql = "WHERE m.id LIKE ?";
 				//					else if(keyfield.equals("3")) sub_sql = "WHERE b.content LIKE ?";
@@ -510,12 +554,13 @@ public class OItemDAO {
 
 			//SQL문 작성
 			sql = "SELECT * FROM(SELECT a.*, rownum rnum FROM "
-					+ "(SELECT * FROM oitem i JOIN omember m USING(mem_num) "
+					+ "(SELECT * FROM oitem i JOIN omember m USING(mem_num) WHERE cate_num = ? "
 					+ sub_sql + "ORDER BY i.state DESC)a) "
 					+ "WHERE rnum >= ? AND rnum <= ?";
 
 			//PreparedStatement객체 생성
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(++cnt, cate_num);
 			//조건에 따라 ? 가 생기므로 조건체크
 			if(keyword != null && !"".equals(keyword)) {
 				pstmt.setString(++cnt, "%"+keyword+"%");
@@ -554,6 +599,55 @@ public class OItemDAO {
 		return list;
 	}
 
+	public List<OItemVO> getListItemForMain(int starRow, int endRow) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<OItemVO> list = null;
+		String sql = null;
+
+		try {
+			//커넥션 풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+
+			sql = "SELECT * FROM(SELECT a.*, rownum rnum FROM(SELECT * FROM oitem i JOIN omember m USING(mem_num) ORDER BY i.state DESC)a)"
+					+ "WHERE rnum >= ? AND rnum <= ?";
+
+			//PreparedStatement객체 생성
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, starRow);
+			pstmt.setInt(2, endRow);
+			
+			//SQL문을 실행해서 결과행들을 ResultSet에 담음
+			rs = pstmt.executeQuery();
+			list = new ArrayList<OItemVO>();
+			while(rs.next()) { //다명시하지않고 표시할 것만 넣겠음
+				OItemVO item = new OItemVO();
+				item.setItem_num(rs.getInt("item_num")); //상품번호
+				item.setMem_id(rs.getString("mem_id")); //회원아이디
+				item.setTitle(StringUtil.useNoHtml(rs.getString("title")));//HTML태그를 허용하지 않음
+				item.setState(rs.getInt("state")); //판매상태(0판매중/1예약중/2판매완료) (default 0)
+				item.setPrice(rs.getInt("price")); //상품가격
+				item.setReg_date(rs.getDate("reg_date")); //상품등록일
+				item.setFilename(rs.getString("filename"));
+				//board.setMem_num(rs.getInt("mem_num")); 
+				//item.setHit(rs.getInt("hit"));
+
+				//BoardVO 를 ArrayList에 저장
+				list.add(item);
+			}
+
+		} catch (Exception e) {
+			throw new Exception(e);
+
+		} finally {
+			//자원정리
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+
+		return list;
+	}
+	
 	//다원
 	//상품Detail 부분(1) 조회수 증가메서드
 	public void updateReadcount(int item_num)throws Exception{

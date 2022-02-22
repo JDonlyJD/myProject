@@ -140,6 +140,42 @@ public class OCategoryDAO {
       return list;
    }   
    
+   public OCategoryVO getCategory(int cate_num)throws Exception{
+       Connection conn = null;
+       PreparedStatement pstmt = null;
+       ResultSet rs = null;
+       OCategoryVO vo = null;
+       String sql = null;
+       int count = 0;
+       
+       try {
+          //1. ConnectionPool로부터 커넥션 할당
+          conn = DBUtil.getConnection();
+          //2. SQL문 작성
+          sql = "SELECT * FROM ocategory WHERE cate_num=?" ;
+                
+          //3. PreparedStatement객체 생성
+          pstmt = conn.prepareStatement(sql);
+          pstmt.setInt(1, cate_num);
+
+          //4. sql문을 실행해서 결과행을 ResultSet에 담음
+          rs = pstmt.executeQuery();
+
+          if(rs.next()) {
+             vo = new OCategoryVO();
+             vo.setCate_num(rs.getInt("cate_num"));
+             vo.setCate_name(rs.getNString("cate_name"));
+          }
+       }catch(Exception e) {
+          throw new Exception(e);
+       }finally {
+          //자원정리
+          DBUtil.executeClose(rs, pstmt, conn);
+       }
+       return vo;
+    }   
+   
+   
    //** 카테고리 목록(insertReplyItem()댓글 메서드 참고함)
    public List<OCategoryVO> getListCateMenu()throws Exception{
     Connection conn = null;
