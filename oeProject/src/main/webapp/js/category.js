@@ -56,18 +56,14 @@
             $(param.list).each(function(index,item){   
             //출력하고 싶은 문자열을 모두 담아둘 output이라는 변수(?)를 만듦
             let output = '<div class="catelist">';   //item에서 수정 
-            output += '		<div class = "sub-item">';
+            output += '		<div class = "sub-item" style="clear:both;">';
             output += '			<div class = "cate_num"><p>' + item.cate_num + '</p></div>';       
             output += '			<div class = "cate_name"><p>' + item.cate_name + '</p></div>';   
             output += '			<div class = "cate_status">';         
             //조건체크 //radio는 name이 같으면 그룹으로묶음
 					if(item.cate_status == 1){
-						output += '<input type="radio" value="0" class="cate_status2" >미사용'
-						output += '<input type="radio" value="1" class="cate_status2" checked>사용'
 						output += '<p>사용</p>'
 					}else{//(item.cate_status == 0)
-						output += '<input type="radio" value="0" class="cate_status2" checked>미사용'
-						output += '<input type="radio" value="1" class="cate_status2" >사용'
 						output += '<p>미사용</p>'
 					}             
             output += '			</div>';                 
@@ -219,12 +215,11 @@
       //p태그를 찾을 때는 부모태그와 함께 명시해야한다.
       //.parent().find('p') : 부모태그(sub-item)에 접근해서 'p'태그를 찾아라
       //* 댓글 내용                              g:지정문자열 모두 찾아라. i:대소문자 무시
-      let content = $(this).parents().find('p').html().replace(/<br>/gi, '\n');
+      let content = $(this).parents().find('.cate_name p').html().replace(/<br>/gi, '\n');
                                        //br태그 대소문자 무시하고 모두 찾아서 \n으로 바꿔라   
                                        //이렇게하지않으면 <br>태그가 그대로 명시됨
 	
-	  let cate_status = $(this).parents().find('.cate_status').val();
-
+	  let cate_status = $(this).parents('.sub-item').find('.cate_status p').text();
 
       //* 댓글 수정폼 UI
       let modifyUI = '<form id="mre_form">';
@@ -232,16 +227,16 @@
          modifyUI += '  <textarea rows="3" cols="50" name="re_content" id="mre_content" class="rep-content">'+ content +'</textarea>';
          modifyUI += '  <div id="mre_first"><span class="letter-count">10/10</span></div>';
 
-		if(cate_status == 1){
-			modifyUI += '<br><input type="radio" value="1">사용';
-			modifyUI += '<p>사용</p>';
+		if(cate_status == '사용'){
+			modifyUI += '<br><input type="radio" name="cate_status" value="0">미사용';
+			modifyUI += ' <input type="radio" name="cate_status" value="1" checked>사용';
 		}else{//(item.cate_status == 0)
-			modifyUI += '<br><input type="radio" value="0">미사용';
-			modifyUI += '<p>미사용</p>';
+			modifyUI += '<br><input type="radio" name="cate_status" value="0" checked>미사용';
+			modifyUI += ' <input type="radio" name="cate_status" value="1">사용';
 		} 
 
-         modifyUI += '  <div id="mre_second" class="align-center">';
-         modifyUI += '     <input type="submit" value="수정">';
+         modifyUI += '  <div id="mre_second" class="align-center" style="width:550px;">';
+         modifyUI += '     <input type="submit" value="수정" style="clear:both;">';
          modifyUI += '     <input type="button" value="취소" class="re-reset">';
          modifyUI += '  </div>';
          modifyUI += '  <hr size="1" noshade width="96%">';
@@ -276,6 +271,7 @@
    //** 댓글 수정폼 초기화 : function initModifyForm(){}
    function initModifyForm(){
       $('.sub-item').show();   //안보여지고있던걸 보여지게 함
+      $('.cate_button').show(); 
       $('#mre_form').remove(); //form에서는 id를 명시하고잇었기때문에, hide시키면안되고 아예 remove시켜야한다.(id가 중복될 수 있기 때문)
    };       
    
@@ -320,7 +316,11 @@
  */                  
                //부모태그로올라가서 p태그 find하고 거기에 넣어준다.
                $('#mre_form').parent().find('p').html($('#mre_content').val().replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>'));
-              
+               if($('#mre_form input[name="cate_status"]:checked').val() == 0){
+					$('#mre_form').parent().find('.cate_status p').html('미사용');
+				}else{
+					$('#mre_form').parent().find('.cate_status p').html('사용');
+				}
                
                //데이터처리가 됐으니, 수정폼 삭제 및 초기화
                initModifyForm();

@@ -40,7 +40,7 @@ public class AdminUpdateCateAction implements Action{
 		OCategoryVO cate = new OCategoryVO();
 		cate.setCate_num(Integer.parseInt(request.getParameter("cate_num")));
 		cate.setCate_name(request.getParameter("re_content"));
-		cate.setCate_status(Integer.parseInt("cate_status"));
+		cate.setCate_status(Integer.parseInt(request.getParameter("cate_status")));
 		
 		OCategoryDAO dao = OCategoryDAO.getInstance();
 		dao.updateCate(cate);
