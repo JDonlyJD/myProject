@@ -93,7 +93,7 @@
 		</div>
 	</form>
 </div>	
-<div style="text-align: center">
+<div class="align-center" style="padding-right:100px; height: 50px;">
 <font color="gray">52MACKET을 더 이용하지않는다면?&nbsp;</font><a href="deleteUserForm.do"><font color="green">회원탈퇴 바로가기</font></a>
 </div>
 <!-- 우편번호 스크립트 시작 -->
