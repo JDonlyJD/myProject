@@ -49,11 +49,11 @@
 <br>
 <br>
 <div class="page-main">
-	<form action="modifyUser.do" method="post" id="modify_form">
+	<form action="modifyUser.do" method="post" id="modify_form" style="margin: 70px 0 100px 90px; padding: 20px 0 50px 0;">
 	<div class="align-center">
 	<h2 style="text-align: center">회원정보수정</h2>
 	</div>	
-		<ul style="padding: 0 0 0 100px;">
+		<ul style="padding: 0 0 0 120px; margin: 20px 0 0 0">
 			<li>
 				<label for="name">이름</label>
 				<input type="text" name="name" id="name" value="${member.mem_nick}"
@@ -73,8 +73,8 @@
 				<label for="zipcode">우편번호</label>
 				<input type="text" name="zipcode" id="zipcode" 
 				                  value="${member.mem_zipcode}" maxlength="5">
-				<input type="button" onclick="sample2_execDaumPostcode()"
-				                                          value="우편번호 찾기">                  
+				<input type="button" id="zipcode-btn" onclick="sample2_execDaumPostcode()"
+				                                          value="우편번호 찾기" style="width:90px">                  
 			</li>
 			<li>
 				<label for="address1">주소</label>
@@ -88,7 +88,7 @@
 			</li>
 		</ul>
 		<div class="align-center">
-			<input type="submit" value="수정" style="background-color:green; color:white; width:50%; height: 30px;">
+			<input type="submit" value="수정" style="background-color:green; color:white; width:65%; height: 30px;">
 			<input type="button" value="MyPage" onclick="location.href='myPage.do'">
 		</div>
 	</form>
