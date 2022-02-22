@@ -87,8 +87,8 @@
 				           value="${member.mem_addr2}" maxlength="30">
 			</li>
 		</ul>
-		<div class="align-center">
-			<input type="submit" value="수정" style="background-color:green; color:white; width:65%; height: 30px;">
+		<div class="align-center"><br>
+			<input type="submit" value="수정" style="background-color:green; color:white; width:43%; height: 30px;">
 			<input type="button" value="MyPage" onclick="location.href='myPage.do'">
 		</div>
 	</form>
