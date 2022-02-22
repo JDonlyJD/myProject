@@ -26,7 +26,7 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-<div class="page-main" style="padding-top: 200px; margin:0 auto; text-align: center;">
+<div class="page-main" style="padding-top: 250px; margin:0 auto; text-align: center;">
 	<form id="login_form" action="login.do" method="post">
 		<div class="align-center">
 		<h2>중고 직거래 사이트 오이마켓</h2>

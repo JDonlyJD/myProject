@@ -76,7 +76,9 @@
 <div class="page-main2">
 		<!-- include태그 위치 저기 맞아 ? -->
 	<div>
-		<h3> 실시간 OE 판매 상품 </h3>   
+	<br>
+		<h3>실시간 OE 판매 상품 </h3>  
+	<br><br>
 		<div class="item-space">
 			<c:forEach var="item" items="${itemList }">
 			<div class="horizontal-area">
@@ -89,6 +91,7 @@
 				</a>
 			</div>
 			</c:forEach>
+	<br>
 			<div class="float-clear">
 				<hr width="100%" size="1" noshade="noshade">
 			</div>

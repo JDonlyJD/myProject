@@ -97,37 +97,37 @@ div.header nav#second_menu{
 
 li#nav1{
 	/* outline:1px dotted red;  */
-	margin-left: 550px;
+	margin-left:520px;
 	text-align:center;
 	width:100px;
 }
 li#nav2{
 	/* outline:1px dotted red;  */
-	margin-left: 30px;
+	margin-left: 70px;
 	text-align:center;
 	width:100px;
 }
 li#nav3{
 	/* outline:1px dotted red; */ 
-	margin-left: 30px;
+	margin-left: 70px;
 	text-align:center;
 	width:100px;
 }
 li#nav4{
 	/* outline:1px dotted red; */ 
-	margin-left: 30px;
+	margin-left: 70px;
 	text-align:center;
 	width:100px;
 }
 li#nav5{
 	/* outline:1px dotted red;  */
-	margin-left: 30px;
+	margin-left: 70px;
 	text-align:center;
 	width:100px;
 }
 li#nav6{
 	/* outline:1px dotted red;  */
-	margin-left: 30px;
+	margin-left: 70px;
 	text-align:center;
 	width:100px;
 }
@@ -185,10 +185,10 @@ footer#page_footer {
 
 footer div#footer_main{
 	/* outline:1px dotted red;  */
-	padding: 40px 50px 100px 200px; 
-	float: left; width: 30%;
+	padding: 40px 50px 100px 230px; 
+	float: left; width: 35%;
 	/* margin: 100px 0 0 30%; */
-	margin: 0 100px 0 250px;
+	margin: 0 100px 0 200px;
 	width:400px;
 	height:180px;
 	text-align:left;
@@ -240,10 +240,10 @@ div[class*=foot] ul{
 		
 		/* width:200px;
 		top:25%;
-		margin:0 0 0 10%; 
 		float:left;
 		position: relative; */
 		/* 상 우 하 좌/상 좌우 하/상하 좌우 */
+		margin:0 0 0 40px; 
 	}
 	div.foot02 {	
 		/* outline:1px dotted red; */ 
