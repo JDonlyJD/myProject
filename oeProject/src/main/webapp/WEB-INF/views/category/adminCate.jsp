@@ -19,7 +19,7 @@
 		<br>
 	<!-- 댓글시작 -->
 	<div id="reply_div">
-		<span class="re_title">카테고리 추가</span>
+		<span class="re_title2">카테고리 추가</span>
 		
 		<form id="re_form">	<!-- ajax방식이기때문에 action이 없다. -->	<!-- value는 부모글번호 //아마 수정 시 쓰임//카테고리는 부모글이없으니 필요없다  -->
 			<%-- <input type="hidden" name="item_num" value="${item.item_num }" id="item_num"> --%>
@@ -39,7 +39,7 @@
 					<span class="letter-count">10/10</span>
 				</div>
 				<div id="re_second" class="align-right">
-					<input type="submit" value="추가">
+					<input type="submit" value="추가" class="submit_button">
 				</div>
 			</c:if>
 		</form>
