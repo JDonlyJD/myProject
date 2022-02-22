@@ -116,12 +116,12 @@
 		        	<li id="nav6">
 		        	<a href="${pageContext.request.contextPath}/board/oList.do">문의 게시판</a></li>
 		        </c:if>	         
-   
-    <%-- **카테고리 임시 테스트메뉴 --%> 
-	            <c:if test="${!empty user_num && user_auth == 2}"> <%--관리자일 경우--%>
+   <%-- 
+    **카테고리 임시 테스트메뉴 
+	            <c:if test="${!empty user_num && user_auth == 2}"> 관리자일 경우
 		            <li id="nav7">
 		            <a href="${pageContext.request.contextPath}/category/adminCate.do">카테고리테스트</a></li>
-	            </c:if>
+	            </c:if> --%>
 		        
           </ul>
         </div>
