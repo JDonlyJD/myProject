@@ -313,7 +313,7 @@ public class OItemDAO {
 			}
 
 			//SQL문 작성
-			sql ="SELECT COUNT(*) FROM zitem  WHERE mem_num =? " + sub_sql;
+			sql ="SELECT COUNT(*) FROM oitem  WHERE mem_num =? " + sub_sql;
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
